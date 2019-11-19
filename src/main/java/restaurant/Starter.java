@@ -96,8 +96,9 @@ public class Starter implements CommandLineRunner {
         System.out.println("zamówienie");
         System.out.println(theTablesComponent.getMyRestaurant().get(1));
 
-
-
+        // summary of all days
+        Map<LocalDate, HashMap<Integer, Integer>> day = theDaySummaryComponent.getDay();
+        System.out.println(day);
     }
 
 

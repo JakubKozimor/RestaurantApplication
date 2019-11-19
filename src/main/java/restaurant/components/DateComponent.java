@@ -19,4 +19,13 @@ public class DateComponent {
     public void setDate(LocalDate date) {
         this.date = date;
     }
+
+    // define toString
+
+    @Override
+    public String toString() {
+        return "DateComponent{" +
+                "date=" + date +
+                '}';
+    }
 }

@@ -22,9 +22,10 @@ public class MenuServiceImpl implements MenuService {
     @Override
     public HashMap<Integer, Integer> getListOfProductsWithQuantity() {
 
+        // get day by date
         Map<LocalDate, HashMap<Integer, Integer>> day = theDaySummaryComponent.getDay();
-        HashMap<Integer, Integer> listOfProductsWithQuantity = day.get(thDateComponent.getDate());
 
-        return listOfProductsWithQuantity;
+        // return map by day
+        return day.get(thDateComponent.getDate());
     }
 }

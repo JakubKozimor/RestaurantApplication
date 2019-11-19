@@ -83,19 +83,21 @@ public class RestaurantServiceImpl implements RestaurantService {
         // get table
         List<Integer> theTable = theTablesComponent.getMyRestaurant().get(theNumberOfTable);
 
+        // get list of products with quantity
         HashMap<Integer, Integer> listOfProductsWithQuantity = theMenuService.getListOfProductsWithQuantity();
 
-        for (int i = 0; i < theTable.size(); i++) {
-            int quantity=0;
-            quantity = listOfProductsWithQuantity.get(theTable.get(i))+1;
-            listOfProductsWithQuantity.put(theTable.get(i),quantity);
+        // loop through order of table and assign to map with id of product and add quantity
+        for (Integer obj : theTable) {
+            int quantity = listOfProductsWithQuantity.get(obj)+1;
+            listOfProductsWithQuantity.put(obj, quantity);
         }
+        // clear order of table
         removeOrderWithoutAcceptPayment(theNumberOfTable);
 
     }
 
     // method to check if a product is on the list for removal
-    boolean isInListToRemove(int x, List<Integer> list) {
+    private boolean isInListToRemove(int x, List<Integer> list) {
 
         for (int i = 0; i < list.size(); i++) {
             if (x == list.get(i)) {

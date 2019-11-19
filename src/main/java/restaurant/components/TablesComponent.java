@@ -94,7 +94,6 @@ public class TablesComponent {
     }
 
     // define toString
-
     @Override
     public String toString() {
         return "Tables{" +
