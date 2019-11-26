@@ -84,7 +84,7 @@ public class RestaurantServiceImpl implements RestaurantService {
         List<Integer> theTable = theTablesComponent.getMyRestaurant().get(theNumberOfTable);
 
         // get list of products with quantity
-        HashMap<Integer, Integer> listOfProductsWithQuantity = theMenuService.getListOfProductsWithQuantity();
+        HashMap<Integer, Integer> listOfProductsWithQuantity = theMenuService.getListOfDishWithQuantity();
 
         // loop through order of table and assign to map with id of product and add quantity
         for (Integer obj : theTable) {

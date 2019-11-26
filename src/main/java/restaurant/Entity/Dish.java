@@ -1,9 +1,9 @@
 package restaurant.Entity;
 
-public class Products {
+public class Dish {
 
     // define a files
-    private int productId;
+    private int dishId;
 
     private String name;
 
@@ -12,23 +12,23 @@ public class Products {
     private double priceSell;
 
     // define constructors
-    public Products() {
+    public Dish() {
     }
 
-    public Products(int productId, String name, double price_buy_or_preparation, double priceSell) {
-        this.productId = productId;
+    public Dish(int dishId, String name, double price_buy_or_preparation, double priceSell) {
+        this.dishId = dishId;
         this.name = name;
         this.price_buy_or_preparation = price_buy_or_preparation;
         this.priceSell = priceSell;
     }
 
     // define getters and setters
-    public int getProductId() {
-        return productId;
+    public int getDishId() {
+        return dishId;
     }
 
-    public void setProductId(int productId) {
-        this.productId = productId;
+    public void setDishId(int dishId) {
+        this.dishId = dishId;
     }
 
     public String getName() {
@@ -60,7 +60,7 @@ public class Products {
     @Override
     public String toString() {
         return "Products{" +
-                "productId=" + productId +
+                "productId=" + dishId +
                 ", name='" + name + '\'' +
                 ", price_buy_or_preparation=" + price_buy_or_preparation +
                 ", priceSell=" + priceSell +

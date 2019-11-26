@@ -2,7 +2,6 @@ package restaurant.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import restaurant.Entity.Products;
 import restaurant.components.DateComponent;
 import restaurant.components.DaySummaryComponent;
 
@@ -20,7 +19,7 @@ public class MenuServiceImpl implements MenuService {
     DaySummaryComponent theDaySummaryComponent;
 
     @Override
-    public HashMap<Integer, Integer> getListOfProductsWithQuantity() {
+    public HashMap<Integer, Integer> getListOfDishWithQuantity() {
 
         // get day by date
         Map<LocalDate, HashMap<Integer, Integer>> day = theDaySummaryComponent.getDay();
