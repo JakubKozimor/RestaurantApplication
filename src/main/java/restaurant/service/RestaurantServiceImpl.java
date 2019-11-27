@@ -25,7 +25,7 @@ public class RestaurantServiceImpl implements RestaurantService {
     @Autowired
     DateComponent theDateComponent;
 
-    DaySummaryComponent theDaySummaryComponent = new DaySummaryComponent();
+    private DaySummaryComponent theDaySummaryComponent = new DaySummaryComponent();
 
     @Override
     public void addOrder(int theNumberOfTable, List<Integer> theListOfOrders) {
@@ -48,14 +48,26 @@ public class RestaurantServiceImpl implements RestaurantService {
 
         // create new integer list for order
         List<Integer> theNewOrderList;
-
+/*
         // filter order
         theNewOrderList = theTable.stream()
                 .filter(x -> !isInListToRemove(x, theListToRemove))
                 .collect(Collectors.toList());
 
+
+ */
+        for (int i = 0; i < theTable.size(); i++) {
+            for (int j = 0; j < theListToRemove.size(); j++) {
+
+                if (theTable.get(i) == theListToRemove.get(j)) {
+                    theTable.remove(theTable.get(i));
+                    theListToRemove.remove(theListToRemove.get(j));
+                }
+            }
+        }
+
         // set table after remove part of order
-        myRestaurant.put(theNumberOfTable, theNewOrderList);
+        myRestaurant.put(theNumberOfTable, theTable);
 
 
     }
@@ -77,9 +89,6 @@ public class RestaurantServiceImpl implements RestaurantService {
     @Override
     public void acceptPaymentAndCleanOrder(int theNumberOfTable) {
 
-        // get day
-        Map<LocalDate, HashMap<Integer, Integer>> theDay = theDaySummaryComponent.getDay();
-
         // get table
         List<Integer> theTable = theTablesComponent.getMyRestaurant().get(theNumberOfTable);
 
@@ -91,6 +100,8 @@ public class RestaurantServiceImpl implements RestaurantService {
             int quantity = listOfProductsWithQuantity.get(obj)+1;
             listOfProductsWithQuantity.put(obj, quantity);
         }
+
+
         // clear order of table
         removeOrderWithoutAcceptPayment(theNumberOfTable);
 

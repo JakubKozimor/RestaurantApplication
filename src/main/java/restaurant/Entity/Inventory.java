@@ -1,9 +1,7 @@
 package restaurant.Entity;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class Inventory {
 
@@ -18,12 +16,11 @@ public class Inventory {
 
     List<Inventory> listOfProducts = new ArrayList<>();
 
+
     // define constructors
     public Inventory() {
-
         Inventory product1 = new Inventory(1, "mleko", 3, 2.50);
         Inventory product2 = new Inventory(2, "kukurydza", 6, 3.10);
-
         listOfProducts.add(product1);
         listOfProducts.add(product2);
     }
@@ -69,6 +66,8 @@ public class Inventory {
     }
 
     public List<Inventory> getListOfProducts() {
+
+
         return listOfProducts;
     }
 

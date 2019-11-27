@@ -15,7 +15,7 @@ import restaurant.service.RestaurantService;
 import java.time.LocalDate;
 import java.util.*;
 
-@Component
+
 public class Starter implements CommandLineRunner {
 
     @Autowired

@@ -3,6 +3,7 @@ package restaurant.service;
 import org.springframework.stereotype.Service;
 import restaurant.Entity.Inventory;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,12 +11,12 @@ import java.util.Map;
 @Service
 public class InventoryServiceImpl implements InventoryService {
 
-    Inventory inventory = new Inventory();
-    List<Inventory> listOfProducts = inventory.getListOfProducts();
+    private Inventory inventory = new Inventory();
+    private List<Inventory> listOfProducts = new ArrayList<>();
 
     @Override
     public List<Inventory> getListOfProducts() {
-
+        listOfProducts = inventory.getListOfProducts();
         // return list of inventory
         return listOfProducts;
     }
