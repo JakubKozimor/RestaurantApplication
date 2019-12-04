@@ -2,16 +2,17 @@ package restaurant.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import restaurant.Entity.Date;
+import restaurant.Entity.Dish;
+import restaurant.Entity.Summary;
 import restaurant.components.DateComponent;
-import restaurant.components.DaySummaryComponent;
 import restaurant.components.TablesComponent;
+import restaurant.data.Restaurant;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
+
 
 @Service
 public class RestaurantServiceImpl implements RestaurantService {
@@ -20,21 +21,21 @@ public class RestaurantServiceImpl implements RestaurantService {
     TablesComponent theTablesComponent;
 
     @Autowired
-    MenuService theMenuService;
-
-    @Autowired
     DateComponent theDateComponent;
 
-    private DaySummaryComponent theDaySummaryComponent = new DaySummaryComponent();
+    private Restaurant theRestaurant = new Restaurant();
 
     @Override
     public void addOrder(int theNumberOfTable, List<Integer> theListOfOrders) {
 
         // get table
-        List<Integer> theTable = theTablesComponent.getMyRestaurant().get(theNumberOfTable);
+        List<Integer> theTable = theTablesComponent.getMyRestaurant(theNumberOfTable);
+
+        // add order to list of table
+        theTable.addAll(theListOfOrders);
 
         // add ordered list of products to table
-        theTable.addAll(theListOfOrders);
+        theTablesComponent.setMyRestaurant(theNumberOfTable, theTable);
     }
 
     @Override
@@ -46,19 +47,8 @@ public class RestaurantServiceImpl implements RestaurantService {
         // get all tables
         Map<Integer, List<Integer>> myRestaurant = theTablesComponent.getMyRestaurant();
 
-        // create new integer list for order
-        List<Integer> theNewOrderList;
-/*
-        // filter order
-        theNewOrderList = theTable.stream()
-                .filter(x -> !isInListToRemove(x, theListToRemove))
-                .collect(Collectors.toList());
-
-
- */
         for (int i = 0; i < theTable.size(); i++) {
             for (int j = 0; j < theListToRemove.size(); j++) {
-
                 if (theTable.get(i) == theListToRemove.get(j)) {
                     theTable.remove(theTable.get(i));
                     theListToRemove.remove(theListToRemove.get(j));
@@ -87,36 +77,53 @@ public class RestaurantServiceImpl implements RestaurantService {
     }
 
     @Override
-    public void acceptPaymentAndCleanOrder(int theNumberOfTable) {
+    public double acceptPaymentAndCleanOrder(int theNumberOfTable) {
+
+        double sum = 0;
 
         // get table
         List<Integer> theTable = theTablesComponent.getMyRestaurant().get(theNumberOfTable);
 
-        // get list of products with quantity
-        HashMap<Integer, Integer> listOfProductsWithQuantity = theMenuService.getListOfDishWithQuantity();
+        // get list of all days
+        List<Date> listOfDays = theRestaurant.getListOfDates();
 
-        // loop through order of table and assign to map with id of product and add quantity
-        for (Integer obj : theTable) {
-            int quantity = listOfProductsWithQuantity.get(obj)+1;
-            listOfProductsWithQuantity.put(obj, quantity);
-        }
+        // find today
+        List<Date> theDays = listOfDays.stream()
+                .filter(date -> date.getDate().equals(LocalDate.now()))
+                .collect(Collectors.toList());
 
+        // set today to variable
+        Date theDay = theDays.get(0);
 
-        // clear order of table
-        removeOrderWithoutAcceptPayment(theNumberOfTable);
+        // get summary of today
+        List<Summary> listOfSummary = theRestaurant.getSummaryOfDay(theDay.getDate_id());
 
-    }
+        // get all dishes
+        List<Dish> listOfDishes = theRestaurant.getListOfDishes();
 
-    // method to check if a product is on the list for removal
-    private boolean isInListToRemove(int x, List<Integer> list) {
-
-        for (int i = 0; i < list.size(); i++) {
-            if (x == list.get(i)) {
-                list.remove(list.get(i));
-                return true;
+        // calculate sum and and quantity to summary
+        for (Integer tempTable : theTable) {
+            for (Dish tempDish : listOfDishes) {
+                if (tempDish.getDishId() == tempTable) {
+                    sum += tempDish.getPriceSell();
+                }
+            }
+            for (Summary tempSummary : listOfSummary) {
+                if (tempTable == tempSummary.getDish_id()) {
+                    int tempQuantity = tempSummary.getQuantity() + 1;
+                    tempSummary.setQuantity(tempQuantity);
+                }
             }
         }
-        return false;
+        theRestaurant.setSummaryOfDayAfter(listOfSummary);
+
+        // clear order of table
+        ArrayList<Integer> emptyList = new ArrayList<>();
+        theTablesComponent.setMyRestaurant(theNumberOfTable, emptyList);
+
+        // return sum
+        return sum;
     }
+
 
 }
