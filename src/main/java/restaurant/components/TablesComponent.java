@@ -41,8 +41,16 @@ public class TablesComponent {
         return myRestaurant;
     }
 
+    public List<Integer> getMyRestaurant(int nrOfTable) {
+        return myRestaurant.get(nrOfTable);
+    }
+
     public void setMyRestaurant(Map<Integer, List<Integer>> myRestaurant) {
         this.myRestaurant = myRestaurant;
+    }
+
+    public void setMyRestaurant(int numberOfTable, List<Integer> order) {
+        this.myRestaurant.put(numberOfTable, order);
     }
 
     public List<Integer> getTable1() {

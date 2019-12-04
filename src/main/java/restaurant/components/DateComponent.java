@@ -21,7 +21,6 @@ public class DateComponent {
     }
 
     // define toString
-
     @Override
     public String toString() {
         return "DateComponent{" +
