@@ -1,6 +1,7 @@
 package restaurant.components;
 
 import org.springframework.stereotype.Component;
+import restaurant.Entity.Dish;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -11,15 +12,15 @@ import java.util.Map;
 public class TablesComponent {
 
     // create map for tables of restaurant
-    private Map<Integer, List<Integer>> myRestaurant = new HashMap<>();
+    private Map<Integer, List<Dish>> myRestaurant = new HashMap<>();
 
     // create list for table orders
-    private List<Integer> table1 = new ArrayList<>();
-    private List<Integer> table2 = new ArrayList<>();
-    private List<Integer> table3 = new ArrayList<>();
-    private List<Integer> table4 = new ArrayList<>();
-    private List<Integer> table5 = new ArrayList<>();
-    private List<Integer> table6 = new ArrayList<>();
+    private List<Dish> table1 = new ArrayList<>();
+    private List<Dish> table2 = new ArrayList<>();
+    private List<Dish> table3 = new ArrayList<>();
+    private List<Dish> table4 = new ArrayList<>();
+    private List<Dish> table5 = new ArrayList<>();
+    private List<Dish> table6 = new ArrayList<>();
 
     // define constructors
     public TablesComponent() {
@@ -32,72 +33,72 @@ public class TablesComponent {
 
     }
 
-    public TablesComponent(Map<Integer, List<Integer>> myRestaurant) {
+    public TablesComponent(Map<Integer, List<Dish>> myRestaurant) {
         this.myRestaurant = myRestaurant;
     }
 
     // define getters and setters
-    public Map<Integer, List<Integer>> getMyRestaurant() {
+    public Map<Integer, List<Dish>> getMyRestaurant() {
         return myRestaurant;
     }
 
-    public List<Integer> getMyRestaurant(int nrOfTable) {
+    public List<Dish> getMyRestaurant(int nrOfTable) {
         return myRestaurant.get(nrOfTable);
     }
 
-    public void setMyRestaurant(Map<Integer, List<Integer>> myRestaurant) {
+    public void setMyRestaurant(Map<Integer, List<Dish>> myRestaurant) {
         this.myRestaurant = myRestaurant;
     }
 
-    public void setMyRestaurant(int numberOfTable, List<Integer> order) {
+    public void setMyRestaurant(int numberOfTable, List<Dish> order) {
         this.myRestaurant.put(numberOfTable, order);
     }
 
-    public List<Integer> getTable1() {
+    public List<Dish> getTable1() {
         return table1;
     }
 
-    public void setTable1(List<Integer> table1) {
+    public void setTable1(List<Dish> table1) {
         this.table1 = table1;
     }
 
-    public List<Integer> getTable2() {
+    public List<Dish> getTable2() {
         return table2;
     }
 
-    public void setTable2(List<Integer> table2) {
+    public void setTable2(List<Dish> table2) {
         this.table2 = table2;
     }
 
-    public List<Integer> getTable3() {
+    public List<Dish> getTable3() {
         return table3;
     }
 
-    public void setTable3(List<Integer> table3) {
+    public void setTable3(List<Dish> table3) {
         this.table3 = table3;
     }
 
-    public List<Integer> getTable4() {
+    public List<Dish> getTable4() {
         return table4;
     }
 
-    public void setTable4(List<Integer> table4) {
+    public void setTable4(List<Dish> table4) {
         this.table4 = table4;
     }
 
-    public List<Integer> getTable5() {
+    public List<Dish> getTable5() {
         return table5;
     }
 
-    public void setTable5(List<Integer> table5) {
+    public void setTable5(List<Dish> table5) {
         this.table5 = table5;
     }
 
-    public List<Integer> getTable6() {
+    public List<Dish> getTable6() {
         return table6;
     }
 
-    public void setTable6(List<Integer> table6) {
+    public void setTable6(List<Dish> table6) {
         this.table6 = table6;
     }
 

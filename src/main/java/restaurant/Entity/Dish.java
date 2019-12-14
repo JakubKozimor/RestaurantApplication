@@ -1,5 +1,7 @@
 package restaurant.Entity;
 
+import java.math.BigDecimal;
+
 public class Dish {
 
     // define a files
@@ -7,15 +9,15 @@ public class Dish {
 
     private String name;
 
-    private double price_buy_or_preparation;
+    private BigDecimal price_buy_or_preparation;
 
-    private double priceSell;
+    private BigDecimal priceSell;
 
     // define constructors
     public Dish() {
     }
 
-    public Dish(int dishId, String name, double price_buy_or_preparation, double priceSell) {
+    public Dish(int dishId, String name, BigDecimal price_buy_or_preparation, BigDecimal priceSell) {
         this.dishId = dishId;
         this.name = name;
         this.price_buy_or_preparation = price_buy_or_preparation;
@@ -39,19 +41,19 @@ public class Dish {
         this.name = name;
     }
 
-    public double getPrice_buy_or_preparation() {
+    public BigDecimal getPrice_buy_or_preparation() {
         return price_buy_or_preparation;
     }
 
-    public void setPrice_buy_or_preparation(double price_buy_or_preparation) {
+    public void setPrice_buy_or_preparation(BigDecimal price_buy_or_preparation) {
         this.price_buy_or_preparation = price_buy_or_preparation;
     }
 
-    public double getPriceSell() {
+    public BigDecimal getPriceSell() {
         return priceSell;
     }
 
-    public void setPriceSell(double priceSell) {
+    public void setPriceSell(BigDecimal priceSell) {
         this.priceSell = priceSell;
     }
 

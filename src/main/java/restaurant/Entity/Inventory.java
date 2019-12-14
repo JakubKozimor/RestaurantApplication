@@ -1,6 +1,8 @@
 package restaurant.Entity;
 
 
+import java.math.BigDecimal;
+
 public class Inventory {
 
     // define all files
@@ -10,13 +12,13 @@ public class Inventory {
 
     private int quantity;
 
-    private double price;
+    private BigDecimal price;
 
     // define constructors
     public Inventory() {
     }
 
-    public Inventory(int productId, String name, int quantity, double price) {
+    public Inventory(int productId, String name, int quantity, BigDecimal price) {
         this.productId = productId;
         this.name = name;
         this.quantity = quantity;
@@ -48,11 +50,11 @@ public class Inventory {
         this.quantity = quantity;
     }
 
-    public double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 

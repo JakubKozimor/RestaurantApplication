@@ -2,14 +2,15 @@ package restaurant.data;
 
 import restaurant.Entity.Inventory;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class InventoryData {
 
-    private Inventory product1 = new Inventory(1, "mleko", 3, 2.50);
-    private Inventory product2 = new Inventory(2, "kukurydza", 6, 3.10);
+    private Inventory product1 = new Inventory(1, "mleko", 3, BigDecimal.valueOf(2.50));
+    private Inventory product2 = new Inventory(2, "kukurydza", 6, BigDecimal.valueOf(3.10));
 
     private List<Inventory> list = new ArrayList<>(Arrays.asList(product1, product2));
 
@@ -28,3 +29,4 @@ public class InventoryData {
 
 
 }
+

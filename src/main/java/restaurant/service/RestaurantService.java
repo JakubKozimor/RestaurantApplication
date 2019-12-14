@@ -1,15 +1,18 @@
 package restaurant.service;
 
+import restaurant.Entity.Dish;
+
+import java.math.BigDecimal;
 import java.util.List;
 
 public interface RestaurantService {
 
-    void addOrder(int theNumberOfTable, List<Integer> theListOfOrders);
+    void addOrder(int theNumberOfTable, List<Dish> theListOfOrders);
 
-    void removeElementFromOrder(int theNumberOfTable, List<Integer> theListToRemove);
-
-    double acceptPaymentAndCleanOrder(int theNumberOfTable);
+    void removeElementFromOrder(int theNumberOfTable, List<Dish> theListToRemove);
 
     void removeOrderWithoutAcceptPayment(int theNumberOfTable);
+
+    BigDecimal acceptPaymentAndCleanOrder(int theNumberOfTable);
 
 }

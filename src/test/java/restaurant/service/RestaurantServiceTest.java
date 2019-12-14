@@ -5,14 +5,14 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+import restaurant.Entity.Dish;
 import restaurant.components.TablesComponent;
-import restaurant.data.Restaurant;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.*;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 
@@ -26,29 +26,29 @@ public class RestaurantServiceTest {
     @Autowired
     TablesComponent tablesComponent;
 
-
-    private Restaurant theRestaurant = new Restaurant();
-
-    private List<Integer> before;
-    private List<Integer> before1;
-    private List<Integer> after;
-
+    private List<Dish> before = new ArrayList<>();
+    private List<Dish> after = new ArrayList<>();
+    private Dish dish1 = new Dish(1,"coffee", BigDecimal.valueOf(2),BigDecimal.valueOf(5));
+    private Dish dish2 = new Dish(2,"tea",BigDecimal.valueOf(1),BigDecimal.valueOf(3));
+    private BigDecimal toPay = BigDecimal.valueOf(0);
 
     @Test
     public void testAddOrder() {
 
         // given
         before = tablesComponent.getMyRestaurant(1);
+        List<Dish> listOfOrder = new ArrayList<>();
+        listOfOrder.add(dish1);
+        listOfOrder.add(dish2);
         after = new ArrayList<>();
         after.addAll(before);
-        after.addAll(theRestaurant.order1);
+        after.addAll(listOfOrder);
 
         // when
-        restaurantService.addOrder(1, theRestaurant.order1);
+        restaurantService.addOrder(1, listOfOrder);
 
         //then
         assertThat(after, is(equalTo(tablesComponent.getMyRestaurant(1))));
-
     }
 
     @Test
@@ -56,23 +56,30 @@ public class RestaurantServiceTest {
 
         // given
         before = tablesComponent.getMyRestaurant(1);
-        before.addAll(theRestaurant.order1);
-        after = tablesComponent.getMyRestaurant(1);
-        after.addAll(theRestaurant.afterRemove);
+        after.addAll(before);
+        before.add(dish1);
+        before.add(dish1);
+        before.add(dish2);
+        List<Dish> listToRemove = new ArrayList<>();
+        listToRemove.add(dish1);
+        listToRemove.add(dish2);
+        after.add(dish1);
 
         // when
-        restaurantService.removeElementFromOrder(1,theRestaurant.order2);
+        restaurantService.removeElementFromOrder(1,listToRemove);
 
         // then
         assertThat(after,is(equalTo(tablesComponent.getMyRestaurant(1))));
-
     }
 
     @Test
     public void testRemoveOrderWithoutAcceptPayment() {
 
         // given
-        tablesComponent.getMyRestaurant(1).addAll(theRestaurant.order1);
+        before = tablesComponent.getMyRestaurant(1);
+        before.add(dish1);
+        before.add(dish2);
+        before.add(dish2);
         after = new ArrayList<>();
 
         // when
@@ -88,19 +95,19 @@ public class RestaurantServiceTest {
 
         // given
         before = new ArrayList<>();
-        before1 = Arrays.asList(1, 2);
+        before.add(dish1);
+        before.add(dish1);
+        before.add(dish2);
         tablesComponent.setMyRestaurant(1, before);
-        tablesComponent.setMyRestaurant(1, before1);
+        toPay = toPay.add(dish1.getPriceSell());
+        toPay = toPay.add(dish1.getPriceSell());
+        toPay = toPay.add(dish2.getPriceSell());
 
         //when
-        double toPay = restaurantService.acceptPaymentAndCleanOrder(1);
+        BigDecimal toPayFromService = restaurantService.acceptPaymentAndCleanOrder(1);
 
         //then
-        assertThat(theRestaurant.getListOfDishes().get(0).getPriceSell()
-                + theRestaurant.getListOfDishes().get(1).getPriceSell(),
-                is(equalTo(toPay)));
+        assertThat(toPay, is(equalTo(toPayFromService)));
         assertThat(tablesComponent.getMyRestaurant(1).size(),is(equalTo(0)));
     }
-
-
 }
