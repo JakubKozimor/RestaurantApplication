@@ -8,6 +8,7 @@ import restaurant.Entity.Summary;
 import restaurant.components.DateComponent;
 import restaurant.components.TablesComponent;
 import restaurant.data.Restaurant;
+import restaurant.data.SummaryRepository;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -22,7 +23,16 @@ public class SummaryServiceImpl implements SummaryService {
     @Autowired
     TablesComponent theTablesComponent;
 
+    @Autowired
+    SummaryRepository summaryRepository;
+
     Restaurant theRestaurant = new Restaurant();
+
+    @Override
+    public List<Summary> getListOfSummary() {
+
+        return summaryRepository.findAll();
+    }
 
     @Override
     public void updateSummary(int theNumberOfTable) {
@@ -52,7 +62,7 @@ public class SummaryServiceImpl implements SummaryService {
         }
 
         // get summary of day
-        List<Summary> listOfSummary = theRestaurant.getSummaryOfDay(theDay.getDate_id());
+//        List<Summary> listOfSummary = theRestaurant.getSummaryOfDay(theDay.getDate_id());
 
         System.out.println(theDay);
 

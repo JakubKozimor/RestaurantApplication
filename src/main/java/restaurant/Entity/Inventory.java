@@ -1,17 +1,32 @@
 package restaurant.Entity;
 
 
+import net.bytebuddy.implementation.bind.annotation.Default;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
+@Entity
+@Table(name = "inventory")
 public class Inventory {
 
     // define all files
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "product_id")
     private int productId;
 
+    @NotNull
+    @Column(name = "product_name",columnDefinition = "varchar(255)")
     private String name;
 
+    @NotNull
+    @Column(name = "product_quantity",columnDefinition = "int default '0'")
     private int quantity;
 
+    @NotNull
+    @Column(name = "product_price",columnDefinition = "decimal(10,2)")
     private BigDecimal price;
 
     // define constructors

@@ -20,17 +20,17 @@ public class Restaurant {
     private Dish dish2 = new Dish(2, "Kebab", BigDecimal.valueOf(8), BigDecimal.valueOf(12));
 
     private Date theDate = new Date(1, LocalDate.now());
+//
+//    private Summary sum1 = new Summary(1, 1, 0);
+//    private Summary sum2 = new Summary(1, 2, 0);
 
-    private Summary sum1 = new Summary(1, 1, 0);
-    private Summary sum2 = new Summary(1, 2, 0);
-
-    private List<Summary> summaryOfDay = new ArrayList<>(Arrays.asList(sum1, sum2));
+//    private List<Summary> summaryOfDay = new ArrayList<>(Arrays.asList(sum1, sum2));
     private List<Date> allDays = new ArrayList<>(Arrays.asList(theDate));
     private List<Dish> allDishes = new ArrayList<>(Arrays.asList(dish1, dish2));
 
-    public List<Summary> getSummaryOfDay(int dayId) {
-        return summaryOfDay;
-    }
+//    public List<Summary> getSummaryOfDay(int dayId) {
+//        return summaryOfDay;
+//    }
 
     public List<Date> getListOfDates() {
         return allDays;
@@ -46,9 +46,9 @@ public class Restaurant {
         this.allDays.add(new Date(newId, LocalDate.now()));
     }
 
-    public void setSummaryOfDayAfter(List<Summary> summaryOfDayAfter) {
-        this.summaryOfDay = summaryOfDayAfter;
-    }
+//    public void setSummaryOfDayAfter(List<Summary> summaryOfDayAfter) {
+//        this.summaryOfDay = summaryOfDayAfter;
+//    }
 }
 
 

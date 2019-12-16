@@ -1,16 +1,30 @@
 package restaurant.Entity;
 
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
+
+@Entity
+@Table(name = "Dish")
 public class Dish {
 
     // define a files
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "dish_id")
     private int dishId;
 
+    @NotNull
+    @Column(name = "dish_name", columnDefinition = "varchar(255)")
     private String name;
 
+    @NotNull
+    @Column(name = "dish_price_buy_or_preparation",columnDefinition = "decimal(10,2)")
     private BigDecimal price_buy_or_preparation;
 
+    @NotNull
+    @Column(name = "dish_price_sell", columnDefinition = "decimal(10,2)")
     private BigDecimal priceSell;
 
     // define constructors

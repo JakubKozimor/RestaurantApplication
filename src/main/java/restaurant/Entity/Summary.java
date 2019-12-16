@@ -1,39 +1,65 @@
 package restaurant.Entity;
 
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
+
+@Entity
+@Table(name = "summary")
 public class Summary {
 
     // define files
-    private int date_id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "summary_id")
+    private int summaryId;
 
-    private int dish_id;
+    @NotNull
+    @Column(name = "date",columnDefinition = "date")
+    private LocalDate date;
 
+    @NotNull
+    @OneToOne(targetEntity = Dish.class)
+    @JoinColumn(name = "dish", columnDefinition = "int")
+    private Dish dish;
+
+    @NotNull
+    @Column(name = "quantity", columnDefinition = "int default '0' ")
     private int quantity;
 
     // define constructors
     public Summary() {
     }
 
-    public Summary(int date_id, int dish_id, int quantity) {
-        this.date_id = date_id;
-        this.dish_id = dish_id;
+    public Summary(LocalDate date, Dish dish, int quantity) {
+        this.date = date;
+        this.dish = dish;
         this.quantity = quantity;
     }
 
     // define getters and setters
-    public int getDate_id() {
-        return date_id;
+    public int getSummaryId() {
+        return summaryId;
     }
 
-    public void setDate_id(int date_id) {
-        this.date_id = date_id;
+    public void setSummaryId(int summary_id) {
+        this.summaryId = summary_id;
     }
 
-    public int getDish_id() {
-        return dish_id;
+    public LocalDate getdate() {
+        return date;
     }
 
-    public void setDish_id(int dish_id) {
-        this.dish_id = dish_id;
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
+    public Dish getdish() {
+        return dish;
+    }
+
+    public void setDish(Dish dish) {
+        this.dish = dish;
     }
 
     public int getQuantity() {
@@ -44,12 +70,12 @@ public class Summary {
         this.quantity = quantity;
     }
 
-    // define toString
     @Override
     public String toString() {
         return "Summary{" +
-                "date_id=" + date_id +
-                ", dish_id=" + dish_id +
+                "summary_id=" + summaryId +
+                ", date=" + date +
+                ", dish=" + dish +
                 ", quantity=" + quantity +
                 '}';
     }
