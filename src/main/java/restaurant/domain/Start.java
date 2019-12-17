@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-
+@Component
 public class Start implements CommandLineRunner {
 
     @Autowired
@@ -33,9 +33,9 @@ public class Start implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-//        List<Dish> list = dishRepository.findAll();
-//        restaurantService.addOrder(1, list);
-//        System.out.println(tablesComponent.getMyRestaurant(1));
+        List<Dish> list = dishRepository.findAll();
+        restaurantService.addOrder(1, list);
+        restaurantService.addOrder(1, list);
 //        BigDecimal sum = restaurantService.acceptPaymentAndCleanOrder(1);
 //        System.out.println(sum);
 

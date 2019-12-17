@@ -35,7 +35,6 @@ public class SummaryServiceImpl implements SummaryService {
     @Override
     public void updateSummary(int theNumberOfTable) {
 
-
         // get table
         List<Dish> theTable = theTablesComponent.getMyRestaurant().get(theNumberOfTable);
 
