@@ -2,10 +2,10 @@ package restaurant.Entity;
 
 
 import net.bytebuddy.implementation.bind.annotation.Default;
+import org.springframework.format.annotation.NumberFormat;
 
 import javax.persistence.*;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.*;
 import java.math.BigDecimal;
 
 @Entity
@@ -18,16 +18,18 @@ public class Inventory {
     @Column(name = "product_id")
     private int productId;
 
-    @NotNull
-    @Column(name = "product_name",columnDefinition = "varchar(255)")
+    @NotNull(message = "Nazwa nie może byś pusta")
+    @NotBlank(message = "Nazwa nie może byś pusta")
+    @Column(name = "product_name", columnDefinition = "varchar(255)")
     private String name;
 
     @NotNull
-    @Column(name = "product_quantity",columnDefinition = "int default '0'")
+    @Column(name = "product_quantity", columnDefinition = "int default '0'")
     private int quantity;
 
-    @NotNull
-    @Column(name = "product_price",columnDefinition = "decimal(10,2)")
+    @NotNull(message = "Pole nie może być puste")
+    @Digits(integer = 10, fraction = 2, message = "Wartość przed kropką nie może mieć więcej niż 10 znaków i więcej niż 2 po kropce")
+    @Column(name = "product_price", columnDefinition = "decimal(10,2)")
     private BigDecimal price;
 
     // define constructors

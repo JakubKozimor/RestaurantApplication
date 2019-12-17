@@ -26,8 +26,6 @@ public class SummaryServiceImpl implements SummaryService {
     @Autowired
     SummaryRepository summaryRepository;
 
-    Restaurant theRestaurant = new Restaurant();
-
     @Override
     public List<Summary> getListOfSummary() {
 
@@ -41,34 +39,19 @@ public class SummaryServiceImpl implements SummaryService {
         // get table
         List<Dish> theTable = theTablesComponent.getMyRestaurant().get(theNumberOfTable);
 
-        List<Date> listOfDates = theRestaurant.getListOfDates();
+        // get summary of today
+        List<Summary> listOfSummaryToday = summaryRepository.findAllByDate(LocalDate.now().getDayOfMonth(),
+                LocalDate.now().getMonthValue(), LocalDate.now().getYear());
 
-        // get list of all days
-        List<Date> listOfDays = theRestaurant.getListOfDates();
-
-        // find today
-        List<Date> theListOfDays = listOfDays.stream()
-                .filter(date -> date.getDate().equals(LocalDate.now()))
-                .collect(Collectors.toList());
-
-        // set today to variable
-        Date theDay;
-        if (theListOfDays.isEmpty()) {
-            theRestaurant.addNewDay();
-            List<Date> listOfDatesWithNewDay = theRestaurant.getListOfDates();
-            theDay = listOfDatesWithNewDay.get(0);
-        } else {
-            theDay = theListOfDays.get(0);
+        // update quantity
+        for (Summary tempProduct : listOfSummaryToday) {
+            for (Dish tempDish : theTable) {
+                if (tempDish.getDishId() == tempProduct.getdish().getDishId()) {
+                    int newQuantity = tempProduct.getQuantity() + 1;
+                    tempProduct.setQuantity(newQuantity);
+                    summaryRepository.save(tempProduct);
+                }
+            }
         }
-
-        // get summary of day
-//        List<Summary> listOfSummary = theRestaurant.getSummaryOfDay(theDay.getDate_id());
-
-        System.out.println(theDay);
-
-
-        // todo update summary
-
-
     }
 }

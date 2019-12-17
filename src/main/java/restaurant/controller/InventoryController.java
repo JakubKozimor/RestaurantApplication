@@ -1,12 +1,11 @@
 package restaurant.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 import restaurant.Entity.Inventory;
 import restaurant.service.InventoryService;
 
@@ -45,12 +44,19 @@ public class InventoryController {
     }
 
     @PostMapping("/saveProduct")
-    public String saveProduct( @ModelAttribute("product") Inventory product) {
+    public String saveProduct(@Valid @ModelAttribute("product") Inventory product, BindingResult bindingResult) {
 
-        // save product
-        inventoryService.saveProduct(product);
+        // check errors if not errors save product if not back to form for add
+        if (bindingResult.hasErrors()) {
+            return "inventory/inventory-form";
+        } else {
 
-        // redirect to list of products
-        return "redirect:/inventory/inventoryList";
+            // save product
+            inventoryService.saveProduct(product);
+
+            // redirect to list of products
+            return "redirect:/inventory/inventoryList";
+        }
+
     }
 }

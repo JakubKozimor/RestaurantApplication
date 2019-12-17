@@ -22,8 +22,10 @@
           th:object="${product}" method="post">
         <input type="text" th:field="*{name}"
                class="form-control mb-4 col-4 " placeholder="Nazwa">
+        <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}"/>
         <input type="text" th:field="*{price}"
                class="form-control mb-4 col-4 " placeholder="Cena">
+        <p th:if="${#fields.hasErrors('price')}" th:errors="*{price}"/>
         <input type="text" th:field="*{quantity}"
                class="form-control mb-4 col-4 " placeholder="Ilość">
         <button type="submit" class="btn btn-info col-2">Zapisz</button>
