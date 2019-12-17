@@ -14,4 +14,6 @@ public interface InventoryService {
 
     Inventory getSingleProduct(int idOfProduct);
 
+    void saveProduct(Inventory product);
+
 }

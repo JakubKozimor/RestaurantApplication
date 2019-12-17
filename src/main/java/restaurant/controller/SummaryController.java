@@ -26,6 +26,6 @@ public class SummaryController {
         // add list of summary to model
         model.addAttribute("listOfSummary", listOfSummary);
 
-        return "summary-list";
+        return "summary/summary-list";
     }
 }

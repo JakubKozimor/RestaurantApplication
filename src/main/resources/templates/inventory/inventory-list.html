@@ -18,7 +18,11 @@
 <div class="container">
     <h3>Lista Produktów</h3>
     <hr>
-
+    <!-- Add a button -->
+    <a th:href="@{/inventory/showFormForAddProduct}"
+       class="btn btn-primary btn-sm mb-3">
+        Dodaj produkt
+    </a>
     <table class="table table-bordered table-striped">
         <thead class="thead-dark">
         <tr>

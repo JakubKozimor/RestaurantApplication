@@ -22,6 +22,11 @@ public class InventoryServiceImpl implements InventoryService {
     }
 
     @Override
+    public void saveProduct(Inventory product) {
+        inventoryRepository.save(product);
+    }
+
+    @Override
     public void addToInventory(int theIdOfProduct, int quantity) {
 //
 //        // get product
