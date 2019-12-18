@@ -23,21 +23,6 @@ public class DishServiceImpl implements DishService {
     @Override
     public List<Dish> matchDishesById(List<Integer> listOfOrder) {
 
-        // get list all dishes
-        List<Dish> listAllDishes = dishRepository.findAll();
-
-        // match order
-        List<Dish> listOfOrderedDishes = listAllDishes.stream()
-                .filter(dish -> {
-                    for (int tempId : listOfOrder) {
-                        if (dish.getDishId() == tempId) {
-                            listOfOrder.remove((Object)tempId);
-                            return true;
-                        }
-                    }
-                    return false;
-                }).collect(Collectors.toList());
-
-        return listOfOrderedDishes;
+        return dishRepository.findAllById(listOfOrder);
     }
 }

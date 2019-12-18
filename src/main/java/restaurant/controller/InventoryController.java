@@ -9,6 +9,7 @@ import restaurant.Entity.Inventory;
 import restaurant.service.InventoryService;
 
 import javax.validation.Valid;
+import javax.validation.constraints.Min;
 import java.util.List;
 
 @Controller
@@ -26,6 +27,9 @@ public class InventoryController {
 
         // add list of products to model
         model.addAttribute("listOfProducts", listOfProducts);
+
+        // add model attribute for new quantity
+        model.addAttribute("quantity");
 
         return "inventory/inventory-list";
     }
@@ -56,6 +60,26 @@ public class InventoryController {
             // redirect to list of products
             return "redirect:/inventory/inventoryList";
         }
+    }
 
+    @GetMapping("/showFormForEditListOfProduct")
+    public String showFormForEditListOfProduct(Model model) {
+
+        // get list of products
+        List<Inventory> listOfProducts = inventoryService.getListOfProductsFromInventory();
+
+        // add list of products to model
+        model.addAttribute("listOfProducts", listOfProducts);
+
+        return "/inventory/inventory-edit-list";
+    }
+
+    @PostMapping("/updateQuantity")
+    public String updateQuantity(@RequestParam("productId") int productId, @RequestParam(value = "quantity", required = false) @Min(2) Integer newQuantity) {
+        System.out.println("id: " + productId);
+        System.out.println("quantity: " + newQuantity);
+
+        // redirect to list of products
+        return "redirect:/inventory/inventoryList";
     }
 }

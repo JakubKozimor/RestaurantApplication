@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <title>Magazyn</title>
+    <title>Edytuj produkty</title>
 
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -11,17 +11,17 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="/static/js/inventory/inventory-list.js" rel="stylesheet"></script>
 
 </head>
 <body>
 
 <div class="container">
-    <h1>Zawartość magazynu</h1>
+    <h3>Edytuj liste produktów</h3>
     <hr>
-    <a th:href="@{/inventory/showFormForEditListOfProduct}"
+    <!-- Add a button -->
+    <a th:href="@{/inventory/showFormForAddProduct}"
        class="btn btn-primary btn-sm mb-3">
-        Zaktualizuj liste produktów
+        Dodaj produkt
     </a>
     <table class="table table-bordered table-striped">
         <thead class="thead-dark">
@@ -29,9 +29,7 @@
             <th>Nazwa</th>
             <th>Ilość</th>
             <th>Cena</th>
-            <th>Zaktualizuj(nowa ilość)</th>
-
-
+            <th>Akcja</th>
         </tr>
         </thead>
         <tbody>
@@ -39,19 +37,7 @@
             <td th:text="${tempProduct.getName()}"/>
             <td th:text="${tempProduct.getQuantity()}"/>
             <td th:text="${tempProduct.getPrice()}+ zł"/>
-            <td>
-                <form th:action="@{/inventory/updateQuantity(productId=${tempProduct.getProductId()})}"
-                      name="myForm" onsubmit="return myFunction()" th:object="${quantity}" method="post">
-                    <div class="input-group">
-                        <input th:type="text" name="quantity" class="form-control col-2 " placeholder="Ilość" required/>
-                        <div class="input-group-prepend">
-                            <input type="submit" value="Aktualizuj" class="btn btn-primary btn-sm"/>
-                        </div>
-
-                    </div>
-                </form>
-            </td>
-        </tr>
+            <td />
         </tbody>
     </table>
 </div>
@@ -67,7 +53,5 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
-
 </body>
-
 </html>

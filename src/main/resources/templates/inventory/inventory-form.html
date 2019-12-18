@@ -18,7 +18,7 @@
     <h3>Dodaj produkt</h3>
     <hr>
     <p class="h4 mb-4">Produkt</p>
-    <form action="#" th:action="@{/inventory/saveProduct}"
+    <form  th:action="@{/inventory/saveProduct}"
           th:object="${product}" method="post">
         <input type="text" th:field="*{name}"
                class="form-control mb-4 col-4 " placeholder="Nazwa">

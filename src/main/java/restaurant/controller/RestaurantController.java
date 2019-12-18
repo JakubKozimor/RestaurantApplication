@@ -51,8 +51,6 @@ public class RestaurantController {
 
         // add order
         restaurantService.addOrder(numberOfTable,listOrderedDishes);
-        System.out.println(listOrderedDishes);
-        System.out.println(numberOfTable);
 
         return "redirect:/restaurant/allTables";
     }
