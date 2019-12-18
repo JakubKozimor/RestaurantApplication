@@ -14,6 +14,31 @@
 
 </head>
 <body>
+<form th:action="@{/restaurant/getOrder}" th:object="${allTables}" method="post">
+<div class="container">
+    <h3>Menu</h3>
+    <hr>
+
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+        <tr>
+            <th>Nazwa</th>
+            <th>Cena</th>
+            <th>Wybierz</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="tempDish : ${listOfDishes}">
+            <td th:text="${tempDish.getName()}"/>
+            <td th:text="${tempDish.getPriceSell()}+ zł"/>
+            <td>
+                <input th:type="checkbox" th:name="order" th:value="${tempDish.dishId}"/>
+            </td>
+        </tbody>
+    </table>
+    <input type="submit" value="Zatwierdź"/>
+</div>
 
 <div class="container">
     <h3>Restauracja</h3>
@@ -22,9 +47,9 @@
     <table class="table table-bordered table-striped">
         <thead class="thead-dark">
         <tr>
-            <th>Nazwa</th>
-            <th>Ilość</th>
-            <th>Cena</th>
+            <th>Numer stolika</th>
+            <th>Zamówienie</th>
+            <th>Zaznacz stolik</th>
 
         </tr>
         </thead>
@@ -36,11 +61,18 @@
                     <li th:text="${tempOrder.name}"/>
                 </ul>
             </td>
+            <td>
+                <input th:type="checkbox" th:name="numberOfTable" th:value="${tempTable.key}"/>
+            </td>
 
         </tbody>
     </table>
-</div>
 
+
+
+
+</div>
+</form>
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

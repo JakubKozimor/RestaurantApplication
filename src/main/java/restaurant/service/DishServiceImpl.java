@@ -6,6 +6,7 @@ import restaurant.Entity.Dish;
 import restaurant.data.DishRepository;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class DishServiceImpl implements DishService {
@@ -17,5 +18,26 @@ public class DishServiceImpl implements DishService {
     public List<Dish> getListOfDishes() {
 
         return dishRepository.findAll();
+    }
+
+    @Override
+    public List<Dish> matchDishesById(List<Integer> listOfOrder) {
+
+        // get list all dishes
+        List<Dish> listAllDishes = dishRepository.findAll();
+
+        // match order
+        List<Dish> listOfOrderedDishes = listAllDishes.stream()
+                .filter(dish -> {
+                    for (int tempId : listOfOrder) {
+                        if (dish.getDishId() == tempId) {
+                            listOfOrder.remove((Object)tempId);
+                            return true;
+                        }
+                    }
+                    return false;
+                }).collect(Collectors.toList());
+
+        return listOfOrderedDishes;
     }
 }

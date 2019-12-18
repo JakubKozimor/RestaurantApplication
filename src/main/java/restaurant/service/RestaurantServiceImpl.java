@@ -3,7 +3,6 @@ package restaurant.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import restaurant.Entity.Dish;
-import restaurant.components.DateComponent;
 import restaurant.components.TablesComponent;
 
 import java.math.BigDecimal;
@@ -16,9 +15,6 @@ public class RestaurantServiceImpl implements RestaurantService {
 
     @Autowired
     TablesComponent theTablesComponent;
-
-    @Autowired
-    DateComponent theDateComponent;
 
     @Autowired
     SummaryService theSummaryService;
@@ -89,34 +85,10 @@ public class RestaurantServiceImpl implements RestaurantService {
         // get table
         List<Dish> theTable = theTablesComponent.getMyRestaurant().get(theNumberOfTable);
 
-//        // get list of all days
-//        List<Date> listOfDays = theRestaurant.getListOfDates();
-//
-//        // find today
-//        List<Date> theDays = listOfDays.stream()
-//                .filter(date -> date.getDate().equals(LocalDate.now()))
-//                .collect(Collectors.toList());
-//
-//        // set today to variable
-//        Date theDay = theDays.get(0);
-//
-//        // get summary of today
-//        List<Summary> listOfSummary = theRestaurant.getSummaryOfDay(theDay.getDate_id());
-
-        // get all dishes
-//        List<Dish> listOfDishes = theRestaurant.getListOfDishes();
-
         // calculate sum and and quantity to summary
         for (Dish tempDish : theTable) {
             sum = sum.add(tempDish.getPriceSell());
-//            for (Summary tempSummary : listOfSummary) {
-//                if (tempTable == tempSummary.getDish_id()) {
-//                    int tempQuantity = tempSummary.getQuantity() + 1;
-//                    tempSummary.setQuantity(tempQuantity);
-//                }
-//            }
         }
-//        theRestaurant.setSummaryOfDayAfter(listOfSummary);
 
         // clear order of table
         ArrayList<Dish> emptyList = new ArrayList<>();
@@ -125,7 +97,4 @@ public class RestaurantServiceImpl implements RestaurantService {
         // return sum
         return sum;
     }
-
-
-
 }
