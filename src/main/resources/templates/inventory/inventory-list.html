@@ -11,7 +11,9 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="/static/js/inventory/inventory-list.js" rel="stylesheet"></script>
+
+
+
 
 </head>
 <body>
@@ -20,7 +22,7 @@
     <h1>Zawartość magazynu</h1>
     <hr>
     <a th:href="@{/inventory/showFormForEditListOfProduct}"
-       class="btn btn-primary btn-sm mb-3">
+       class="btn btn-warning btn-lg mb-3">
         Zaktualizuj liste produktów
     </a>
     <table class="table table-bordered table-striped">
@@ -29,7 +31,9 @@
             <th>Nazwa</th>
             <th>Ilość</th>
             <th>Cena</th>
-            <th>Zaktualizuj(nowa ilość)</th>
+            <th width="18%">Zaktualizuj(nowa ilość)</th>
+            <th width="18%">Dodaj</th>
+            <th width="18%">Usuń</th>
 
 
         </tr>
@@ -41,13 +45,36 @@
             <td th:text="${tempProduct.getPrice()}+ zł"/>
             <td>
                 <form th:action="@{/inventory/updateQuantity(productId=${tempProduct.getProductId()})}"
-                      name="myForm" onsubmit="return myFunction()" th:object="${quantity}" method="post">
+                     onsubmit="return myFunctionForUpdate()" th:object="${quantity}" method="post">
                     <div class="input-group">
-                        <input th:type="text" name="quantity" class="form-control col-2 " placeholder="Ilość" required/>
+                        <input th:type="text" id="quantityUpdate" th:name="quantityUpdate" class="form-control col-4 " required/>
                         <div class="input-group-prepend">
                             <input type="submit" value="Aktualizuj" class="btn btn-primary btn-sm"/>
                         </div>
 
+                    </div>
+                </form>
+            </td>
+            <td>
+                <form th:action="@{/inventory/addQuantity(productId=${tempProduct.getProductId()})}"
+                      onsubmit="return myFunctionForAdd()" th:object="${quantity}" method="post">
+                    <div class="input-group" >
+                        <input  th:type="text" id="quantityAdd" th:name="quantityAdd" class="form-control col-4 " required/>
+                        <div class="input-group-prepend">
+                            <input type="submit" value="+" class="btn btn-success"/>
+                        </div>
+
+                    </div>
+                </form>
+            </td>
+            <td>
+                <form th:action="@{/inventory/removeQuantity(productId=${tempProduct.getProductId()})}"
+                      onsubmit="return myFunctionForRemove()" th:object="${quantity}" method="post">
+                    <div class="input-group">
+                        <input th:type="text" id="quantityRemove" th:name="quantityRemove" class="form-control col-4 " required/>
+                        <div class="input-group-prepend">
+                            <input type="submit" value="-" class="btn btn-danger"/>
+                        </div>
                     </div>
                 </form>
             </td>
@@ -67,7 +94,7 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
-
+<script type="text/javascript" th:src="@{/js/inventory/inventory-list.js}" rel="stylesheet"></script>
 </body>
 
 </html>

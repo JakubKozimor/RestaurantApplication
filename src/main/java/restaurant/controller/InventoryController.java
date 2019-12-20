@@ -29,7 +29,7 @@ public class InventoryController {
         model.addAttribute("listOfProducts", listOfProducts);
 
         // add model attribute for new quantity
-        model.addAttribute("quantity");
+        model.addAttribute("quantity", 0);
 
         return "inventory/inventory-list";
     }
@@ -75,9 +75,30 @@ public class InventoryController {
     }
 
     @PostMapping("/updateQuantity")
-    public String updateQuantity(@RequestParam("productId") int productId, @RequestParam(value = "quantity", required = false) @Min(2) Integer newQuantity) {
-        System.out.println("id: " + productId);
-        System.out.println("quantity: " + newQuantity);
+    public String updateQuantity(@RequestParam("productId") int productId, @RequestParam(value = "quantityUpdate", required = false) Integer newQuantity) {
+
+        // set new quantity
+        inventoryService.updateQuantity(productId, newQuantity);
+
+        // redirect to list of products
+        return "redirect:/inventory/inventoryList";
+    }
+
+    @PostMapping("/addQuantity")
+    public String addQuantity(@RequestParam("productId") int productId, @RequestParam(value = "quantityAdd", required = false) Integer newQuantity) {
+
+        // add to quantity
+        inventoryService.addQuantity(productId, newQuantity);
+
+        // redirect to list of products
+        return "redirect:/inventory/inventoryList";
+    }
+
+    @PostMapping("/removeQuantity")
+    public String removeQuantity(@RequestParam("productId") int productId, @RequestParam(value = "quantityRemove", required = false) Integer newQuantity) {
+
+        // remove quantity
+        inventoryService.removeQuantity(productId, newQuantity);
 
         // redirect to list of products
         return "redirect:/inventory/inventoryList";

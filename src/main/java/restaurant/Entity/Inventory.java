@@ -76,6 +76,15 @@ public class Inventory {
         this.price = price;
     }
 
+    // define useful method
+    public void addQuantity(int quantity) {
+        this.quantity += quantity;
+    }
+
+    public void removeQuantity(int quantity) {
+        this.quantity -= quantity;
+    }
+
     // define toString
     @Override
     public String toString() {

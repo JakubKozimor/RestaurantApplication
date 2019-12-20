@@ -6,6 +6,7 @@ import restaurant.Entity.Inventory;
 import restaurant.data.InventoryRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class InventoryServiceImpl implements InventoryService {
@@ -52,12 +53,43 @@ public class InventoryServiceImpl implements InventoryService {
     }
 
     @Override
-    public Inventory getSingleProduct(int idOfProduct) {
-//
-//        // return single product
-//        return theDataInventory.getSingleProduct(idOfProduct);
-        return null;
+    public Optional<Inventory> getSingleProduct(int idOfProduct) {
+
+        // return single product
+        return inventoryRepository.findById(idOfProduct);
     }
 
+    @Override
+    public void updateQuantity(int productId, Integer newQuantity) {
 
+        // set new quantity and update in database
+        Optional<Inventory> tempProduct = getSingleProduct(productId);
+        tempProduct.ifPresent(product -> {
+            product.setQuantity(newQuantity);
+            inventoryRepository.save(product);
+        });
+    }
+
+    @Override
+    public void addQuantity(int productId, Integer quantity) {
+
+        // add quantity
+        Optional<Inventory> temProduct = getSingleProduct(productId);
+        temProduct.ifPresent(product -> {
+            product.addQuantity(quantity);
+            inventoryRepository.save(product);
+        });
+
+    }
+
+    @Override
+    public void removeQuantity(int productId, Integer quantity) {
+
+        // remove quantity
+        Optional<Inventory> tempProduct = getSingleProduct(productId);
+        tempProduct.ifPresent(product ->{
+            product.removeQuantity(quantity);
+            inventoryRepository.save(product);
+        });
+    }
 }
