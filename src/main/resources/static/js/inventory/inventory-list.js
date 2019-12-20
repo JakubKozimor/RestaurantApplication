@@ -2,7 +2,7 @@ function myFunctionForUpdate() {
     var x;
     x = document.getElementById("quantityUpdate").value;
 
-    if (isNaN(x) || x < 0) {
+    if (isNaN(x) || x < 0 ) {
         alert("Wartość musi być cyfrą większą od zera");
         return false;
     } else {

@@ -16,13 +16,20 @@
 <body>
 
 <div class="container">
-    <h3>Edytuj liste produktów</h3>
+    <h1>Edytuj liste produktów</h1>
     <hr>
-    <!-- Add a button -->
-    <a th:href="@{/inventory/showFormForAddProduct}"
-       class="btn btn-primary btn-sm mb-3">
-        Dodaj produkt
-    </a>
+        <div>
+            <a th:href="@{/inventory/showFormForAddProduct}"
+               class="btn btn-success btn-lg mb-3">
+                Dodaj produkt
+            </a>
+            <a style="float:right" th:href="@{/inventory/inventoryList}"
+               class="btn btn-secondary btn-lg mb-3">
+                Wróć
+            </a>
+        </div>
+
+
     <table class="table table-bordered table-striped">
         <thead class="thead-dark">
         <tr>
@@ -37,7 +44,10 @@
             <td th:text="${tempProduct.getName()}"/>
             <td th:text="${tempProduct.getQuantity()}"/>
             <td th:text="${tempProduct.getPrice()}+ zł"/>
-            <td />
+            <td>
+                <a th:href="@{/inventory/delete(productId=${tempProduct.getProductId()})}"
+                   class="btn btn-danger" onclick="if (!(confirm('Na pewno chcesz usunąć produkt?'))) return false">Usuń</a>
+            </td>
         </tbody>
     </table>
 </div>

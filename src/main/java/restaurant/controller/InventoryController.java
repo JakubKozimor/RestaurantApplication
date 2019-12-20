@@ -58,7 +58,7 @@ public class InventoryController {
             inventoryService.saveProduct(product);
 
             // redirect to list of products
-            return "redirect:/inventory/inventoryList";
+            return "redirect:/inventory/showFormForEditListOfProduct";
         }
     }
 
@@ -102,5 +102,15 @@ public class InventoryController {
 
         // redirect to list of products
         return "redirect:/inventory/inventoryList";
+    }
+
+    @GetMapping("/delete")
+    public String delete(@RequestParam("productId") int productId) {
+
+        // remove product
+        inventoryService.remove(productId);
+
+        // redirect to form for edit product
+        return "redirect:/inventory/showFormForEditListOfProduct";
     }
 }

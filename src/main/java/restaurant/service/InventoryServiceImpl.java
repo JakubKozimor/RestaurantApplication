@@ -23,34 +23,14 @@ public class InventoryServiceImpl implements InventoryService {
 
     @Override
     public void saveProduct(Inventory product) {
+
+        // to lower case name
+        product.setName(product.getName().toLowerCase());
+
+        // save product
         inventoryRepository.save(product);
     }
 
-    @Override
-    public void addToInventory(int theIdOfProduct, int quantity) {
-//
-//        // get product
-//        Inventory tempInventory = theDataInventory.getSingleProduct(theIdOfProduct);
-//
-//        // get old quantity and add received quantity
-//        int newQuantity = tempInventory.getQuantity() + quantity;
-//
-//        // set new quantity
-//        theDataInventory.setQuantity(theIdOfProduct, newQuantity);
-    }
-
-    @Override
-    public void removeFromInventory(int theIdOfProduct, int quantity) {
-//
-//        // get product
-//        Inventory tempInventory = theDataInventory.getSingleProduct(theIdOfProduct);
-//
-//        // get old quantity and remove received quantity
-//        int newQuantity = tempInventory.getQuantity() - quantity;
-//
-//        // set new quantity
-//        theDataInventory.setQuantity(theIdOfProduct, newQuantity);
-    }
 
     @Override
     public Optional<Inventory> getSingleProduct(int idOfProduct) {
@@ -88,8 +68,22 @@ public class InventoryServiceImpl implements InventoryService {
         // remove quantity
         Optional<Inventory> tempProduct = getSingleProduct(productId);
         tempProduct.ifPresent(product ->{
-            product.removeQuantity(quantity);
-            inventoryRepository.save(product);
+            if (product.getQuantity() < quantity) {
+                product.setQuantity(0);
+                inventoryRepository.save(product);
+            } else {
+                product.removeQuantity(quantity);
+                inventoryRepository.save(product);
+            }
+
         });
+    }
+
+    @Override
+    public void remove(int productId) {
+
+        // delete product
+        inventoryRepository.deleteById(productId);
+
     }
 }

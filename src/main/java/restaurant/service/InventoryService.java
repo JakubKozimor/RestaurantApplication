@@ -9,10 +9,6 @@ public interface InventoryService {
 
     List<Inventory> getListOfProductsFromInventory();
 
-    void removeFromInventory(int theIdOfProduct, int quantity);
-
-    void addToInventory(int theIdOfProduct, int quantity);
-
     Optional<Inventory> getSingleProduct(int idOfProduct);
 
     void saveProduct(Inventory product);
@@ -22,4 +18,6 @@ public interface InventoryService {
     void addQuantity(int productId, Integer newQuantity);
 
     void removeQuantity(int productId, Integer newQuantity);
+
+    void remove(int productId);
 }

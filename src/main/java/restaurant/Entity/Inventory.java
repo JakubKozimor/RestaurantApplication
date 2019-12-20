@@ -1,9 +1,5 @@
 package restaurant.Entity;
 
-
-import net.bytebuddy.implementation.bind.annotation.Default;
-import org.springframework.format.annotation.NumberFormat;
-
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.math.BigDecimal;
@@ -20,10 +16,12 @@ public class Inventory {
 
     @NotNull(message = "Nazwa nie może byś pusta")
     @NotBlank(message = "Nazwa nie może byś pusta")
+    @Pattern(regexp = "[a-zA-Z]+", message = "Nazwa nie może zawierać znaków specjalnych")
     @Column(name = "product_name", columnDefinition = "varchar(255)")
     private String name;
 
     @NotNull
+    @Min(value = 0,message = "Wartość musi być większa od 0")
     @Column(name = "product_quantity", columnDefinition = "int default '0'")
     private int quantity;
 
