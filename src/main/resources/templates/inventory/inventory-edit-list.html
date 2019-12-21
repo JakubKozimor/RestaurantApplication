@@ -20,11 +20,11 @@
     <hr>
         <div>
             <a th:href="@{/inventory/showFormForAddProduct}"
-               class="btn btn-success btn-lg mb-3">
+               class="btn btn-success btn-lg mb-3 col-2">
                 Dodaj produkt
             </a>
             <a style="float:right" th:href="@{/inventory/inventoryList}"
-               class="btn btn-secondary btn-lg mb-3">
+               class="btn btn-secondary btn-lg mb-3 col-2">
                 Wróć
             </a>
         </div>
@@ -36,7 +36,7 @@
             <th>Nazwa</th>
             <th>Ilość</th>
             <th>Cena</th>
-            <th>Akcja</th>
+            <th width="30%">Akcja</th>
         </tr>
         </thead>
         <tbody>
@@ -45,8 +45,12 @@
             <td th:text="${tempProduct.getQuantity()}"/>
             <td th:text="${tempProduct.getPrice()}+ zł"/>
             <td>
-                <a th:href="@{/inventory/delete(productId=${tempProduct.getProductId()})}"
-                   class="btn btn-danger" onclick="if (!(confirm('Na pewno chcesz usunąć produkt?'))) return false">Usuń</a>
+                <a th:href="@{/inventory/showFormForUpdateProduct(productId=${tempProduct.productId})}"
+                    class="btn btn-info col-5">
+                    Edytuj
+                </a>
+                <a th:href="@{/inventory/delete(productId=${tempProduct.productId})}"
+                   class="btn btn-danger col-5" onclick="if (!(confirm('Na pewno chcesz usunąć produkt?'))) return false">Usuń</a>
             </td>
         </tbody>
     </table>

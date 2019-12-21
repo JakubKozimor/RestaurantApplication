@@ -17,10 +17,11 @@
     <h1>Dodaj produkt</h1>
     <hr>
 </div>
-<div class="container" align="center">
+<div class="container" th:align="center">
     <p class="h1 mb-4">Produkt</p>
     <form th:action="@{/inventory/saveProduct}"
           th:object="${product}" method="post">
+        <input type="hidden" th:field="*{productId}">
         <input style="height:50px" type="text" th:field="*{name}"
                class="form-control mb-4 col-4 " placeholder="Nazwa" required>
         <p style="color: red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"/>

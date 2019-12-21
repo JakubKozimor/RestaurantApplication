@@ -9,8 +9,9 @@ import restaurant.Entity.Inventory;
 import restaurant.service.InventoryService;
 
 import javax.validation.Valid;
-import javax.validation.constraints.Min;
 import java.util.List;
+import java.util.Optional;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 @Controller
 @RequestMapping("/inventory")
@@ -112,5 +113,22 @@ public class InventoryController {
 
         // redirect to form for edit product
         return "redirect:/inventory/showFormForEditListOfProduct";
+    }
+
+    @GetMapping("showFormForUpdateProduct")
+    public String showFormForUpdateProduct(@RequestParam("productId") int productId, Model model) {
+
+        // get product
+        Optional<Inventory> theProduct = inventoryService.getSingleProduct(productId);
+
+        // theProduct is always present
+        theProduct.ifPresent(product ->{
+
+            // set product as a model attribute
+            model.addAttribute("product", product);
+
+        });
+
+        return "/inventory/inventory-form";
     }
 }
