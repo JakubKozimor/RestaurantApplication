@@ -1,7 +1,10 @@
 package restaurant.Entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import java.math.BigDecimal;
 
 
@@ -15,18 +18,23 @@ public class Dish {
     @Column(name = "dish_id")
     private int dishId;
 
-    @NotNull
+    @NotNull(message = "Nazwa nie może byś pusta")
+    @NotBlank(message = "Nazwa nie może byś pusta")
     @Column(name = "dish_name", columnDefinition = "varchar(255)")
     private String name;
 
-    @NotNull
+    @NotNull(message = "Pole nie może być puste")
+    @Digits(integer = 10, fraction = 2, message = "Wartość przed kropką nie może mieć więcej niż 10 znaków i więcej niż 2 po kropce")
     @Column(name = "dish_price_buy_or_preparation",columnDefinition = "decimal(10,2)")
     private BigDecimal price_buy_or_preparation;
 
-    @NotNull
+    @NotNull(message = "Pole nie może być puste")
+    @Digits(integer = 10, fraction = 2, message = "Wartość przed kropką nie może mieć więcej niż 10 znaków i więcej niż 2 po kropce")
     @Column(name = "dish_price_sell", columnDefinition = "decimal(10,2)")
     private BigDecimal priceSell;
 
+    @NotNull(message = "Nazwa nie może byś pusta")
+    @NotBlank(message = "Nazwa nie może byś pusta")
     @Column(name = "description", columnDefinition = "varchar(255)")
     private String description;
 
@@ -99,11 +107,13 @@ public class Dish {
     // define toString
     @Override
     public String toString() {
-        return "Products{" +
-                "productId=" + dishId +
+        return "Dish{" +
+                "dishId=" + dishId +
                 ", name='" + name + '\'' +
                 ", price_buy_or_preparation=" + price_buy_or_preparation +
                 ", priceSell=" + priceSell +
+                ", description='" + description + '\'' +
+                ", category='" + category + '\'' +
                 '}';
     }
 }

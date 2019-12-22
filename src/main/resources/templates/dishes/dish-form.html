@@ -1,0 +1,78 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Dodaj danie</title>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+</head>
+<body>
+<div class="container">
+    <h1>Dodaj danie</h1>
+    <hr>
+</div>
+<div class="container" th:align="center">
+    <p class="h1 mb-4">Danie</p>
+    <form th:action="@{/dish/saveDish}"
+          th:object="${dish}" method="post">
+        <input type="hidden" th:field="*{dishId}">
+
+        <input style="height:50px" type="text" th:field="*{name}"
+               class="form-control mb-4 col-4 " placeholder="Nazwa" required/>
+        <p style="color: red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"/>
+
+        <input style="height:50px" type="text" th:field="*{price_buy_or_preparation}"
+               class="form-control mb-4 col-4 " placeholder="Kwota potrzebna do przygotowania" required
+               pattern="[0-9]+\.[0-9]?+" title="Wartość musi być cyfrą (oddnieloną .)"/>
+        <p style="color: red" th:if="${#fields.hasErrors('price_buy_or_preparation')}"
+           th:errors="*{price_buy_or_preparation}"/>
+
+        <input style="height:50px" type="text" th:field="*{priceSell}"
+               class="form-control mb-4 col-4" placeholder="Cena" required pattern="[0-9]+\.[0-9]?+"
+               title="Wartość musi być cyfrą (oddnieloną .)"/>
+        <p style="color: red" th:if="${#fields.hasErrors('priceSell')}" th:errors="*{priceSell}"/>
+
+        <input style="height:50px" type="text" th:field="*{description}"
+               class="form-control mb-4 col-4" placeholder="Opis (składniki)" required />
+        <p style="color: red" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"/>
+
+        <select class="form-control mb-4 col-4" style="height:50px" th:field="*{category}">
+            <option th:text="pizza" th:value="pizza"/>
+            <option th:text="kebab" th:value="kebab"/>
+            <option th:text="sałatka" th:value="sałatka"/>
+            <option th:text="soki" th:value="soki"/>
+        </select>
+
+        <button type="submit" class="btn btn-info btn-lg col-4">Zapisz</button>
+    </form>
+    <br>
+
+    <a th:href="@{/dish/dishEditList}"
+       class="btn btn-secondary btn-lg col-4">
+        Wróć
+    </a>
+</div>
+
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+<script type="text/javascript" th:src="@{/js/inventory/inventory-list.js}" rel="stylesheet"></script>
+</body>
+
+</html>

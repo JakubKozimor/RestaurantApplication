@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <title>Menu</title>
+    <title>Edytuj menu</title>
 
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -20,14 +20,14 @@
 <body>
 
 <div class="container">
-    <h1>Menu</h1>
+    <h1>Edutuj menu</h1>
     <hr>
     <div>
-        <a th:href="@{/dish/dishEditList}"
-           class="btn btn-warning btn-lg mb-3 col-2">
-            Edytuj menu
+        <a th:href="@{/dish/showFormForAddDish}"
+           class="btn btn-success btn-lg mb-3 col-2">
+            Dodaj danie
         </a>
-        <a style="float:right" th:href="@{/}"
+        <a style="float:right" th:href="@{/dish/dishList}"
            class="btn btn-secondary btn-lg mb-3 col-2">
             Wróć
         </a>
@@ -40,6 +40,7 @@
                     <tr>
                         <th>Pizza</th>
                         <th width="15%">Cena</th>
+                        <th>Akcja</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -52,6 +53,7 @@
                             </p>
                         </td>
                         <td th:text="${tempDish.getPriceSell()}+ zł">
+                    <td/>
                     </tbody>
                 </table>
             </div>
@@ -61,6 +63,7 @@
                     <tr>
                         <th>Kebab</th>
                         <th width="15%">Cena</th>
+                        <th>Akcja</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -73,6 +76,7 @@
                             </p>
                         </td>
                         <td th:text="${tempDish.getPriceSell()}+ zł"/>
+                        <td/>
                     </tbody>
                 </table>
             </div>
@@ -84,6 +88,7 @@
                     <tr>
                         <th>Sałatki</th>
                         <th width="15%">Cena</th>
+                        <th>Akcja</th>
                     </tr>
                     </thead>
 
@@ -97,6 +102,7 @@
                             </p>
                         </td>
                         <td th:text="${tempDish.getPriceSell()}+ zł"/>
+                        <td/>
                     </tbody>
                 </table>
             </div>
@@ -106,6 +112,7 @@
                     <tr>
                         <th>Soki</th>
                         <th width="15%">Cena</th>
+                        <th>Akcja</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -118,6 +125,7 @@
                             </p>
                         </td>
                         <td th:text="${tempDish.getPriceSell()}+ zł"/>
+                        <td/>
                     </tbody>
                 </table>
             </div>

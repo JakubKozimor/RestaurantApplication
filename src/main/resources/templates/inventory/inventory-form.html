@@ -26,13 +26,12 @@
                class="form-control mb-4 col-4 " placeholder="Nazwa" required>
         <p style="color: red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"/>
         <input style="height:50px"  type="text" th:field="*{price}"
-               class="form-control mb-4 col-4 " placeholder="Cena" required pattern="[0-9]+\.[0-9]?+" title="Wartość musi być cyfrą (oddnieloną .)">
+               class="form-control mb-4 col-4 " placeholder="Cena" required pattern="[0-9]+\.[0-9]?+" title="Wartość musi być cyfrą (oddnieloną .)" />
         <p style="color: red" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"/>
         <input style="height:50px" type="text" th:field="*{quantity}"
                class="form-control mb-4 col-4" placeholder="Ilość">
         <p style="color: red" th:if="${#fields.hasErrors('quantity')}" th:errors="*{quantity}"/>
         <button type="submit" class="btn btn-info btn-lg col-4">Zapisz</button>
-
     </form>
     <br>
 

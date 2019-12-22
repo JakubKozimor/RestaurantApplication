@@ -8,4 +8,6 @@ public interface DishService {
     List<Dish> getListOfDishes();
 
     List<Dish> matchDishesById(List<Integer> listOfOrder);
+
+    void saveDish(Dish dish);
 }

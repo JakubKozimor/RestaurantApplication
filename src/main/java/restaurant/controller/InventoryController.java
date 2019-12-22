@@ -38,7 +38,7 @@ public class InventoryController {
     @GetMapping("/showFormForAddProduct")
     public String showFormForAddProduct(Model model) {
 
-        // create empty model
+        // create empty object
         Inventory product = new Inventory();
 
         // add empty object to model
