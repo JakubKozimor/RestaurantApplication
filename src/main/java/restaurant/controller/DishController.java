@@ -4,16 +4,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import restaurant.Entity.Dish;
 import restaurant.Entity.Inventory;
 import restaurant.service.DishService;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/dish")
@@ -71,5 +69,23 @@ public class DishController {
             // redirect to list of products
             return "redirect:/dish/dishEditList";
         }
+    }
+
+    @GetMapping("/showFormForUpdateDish")
+    public String showFormForUpdateDish(@RequestParam("dishId") int dishId, Model model) {
+
+        // get product
+        Optional<Dish> theDish = dishService.getSingleDish(dishId);
+
+        // theDish is always present
+        theDish.ifPresent(dish ->{
+
+            // set product as a model attribute
+            model.addAttribute("dish", theDish);
+
+        });
+
+        return "/dishes/dish-form";
+
     }
 }

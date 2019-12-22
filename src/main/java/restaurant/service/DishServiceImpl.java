@@ -6,6 +6,7 @@ import restaurant.Entity.Dish;
 import restaurant.data.DishRepository;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -30,4 +31,12 @@ public class DishServiceImpl implements DishService {
     public void saveDish(Dish dish) {
         dishRepository.save(dish);
     }
+
+    @Override
+    public Optional<Dish> getSingleDish(int dishId) {
+
+        // return single dish
+        return dishRepository.findById(dishId);
+    }
+
 }
