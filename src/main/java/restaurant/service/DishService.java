@@ -14,4 +14,5 @@ public interface DishService {
 
     Optional<Dish> getSingleDish(int dishId);
 
+    void remove(int dishId);
 }

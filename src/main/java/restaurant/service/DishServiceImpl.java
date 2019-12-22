@@ -39,4 +39,9 @@ public class DishServiceImpl implements DishService {
         return dishRepository.findById(dishId);
     }
 
+    @Override
+    public void remove(int productId) {
+        dishRepository.deleteById(productId);
+
+    }
 }

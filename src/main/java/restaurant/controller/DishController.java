@@ -86,6 +86,15 @@ public class DishController {
         });
 
         return "/dishes/dish-form";
+    }
 
+    @GetMapping("/delete")
+    public String delete(@RequestParam("dishId") int dishId) {
+
+        // remove product
+        dishService.remove(dishId);
+
+        // redirect to form for edit product
+        return "redirect:/dish/dishEditList";
     }
 }
