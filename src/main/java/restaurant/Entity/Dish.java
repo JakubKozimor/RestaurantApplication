@@ -27,8 +27,16 @@ public class Dish {
     @Column(name = "dish_price_sell", columnDefinition = "decimal(10,2)")
     private BigDecimal priceSell;
 
+    @Column(name = "description", columnDefinition = "varchar(255)")
+    private String description;
+
+    @NotNull
+    @Column(name = "category", columnDefinition = "varchar(255)")
+    private String category;
+
     // define constructors
     public Dish() {
+
     }
 
     public Dish(int dishId, String name, BigDecimal price_buy_or_preparation, BigDecimal priceSell) {
@@ -36,6 +44,7 @@ public class Dish {
         this.name = name;
         this.price_buy_or_preparation = price_buy_or_preparation;
         this.priceSell = priceSell;
+
     }
 
     // define getters and setters
@@ -71,8 +80,23 @@ public class Dish {
         this.priceSell = priceSell;
     }
 
-    // define toString
+    public String getDescription() {
+        return description;
+    }
 
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    // define toString
     @Override
     public String toString() {
         return "Products{" +

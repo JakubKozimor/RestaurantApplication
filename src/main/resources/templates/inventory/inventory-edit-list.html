@@ -41,7 +41,7 @@
         </thead>
         <tbody>
         <tr th:each="tempProduct : ${listOfProducts}">
-            <td th:text="${tempProduct.getName()}"/>
+            <td style="text-transform: capitalize;" th:text="${tempProduct.getName()}"/>
             <td th:text="${tempProduct.getQuantity()}"/>
             <td th:text="${tempProduct.getPrice()}+ zł"/>
             <td>
