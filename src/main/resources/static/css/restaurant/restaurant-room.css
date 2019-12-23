@@ -1,0 +1,180 @@
+#wyloguj{
+    float: right;
+    margin-right: 10%;
+}
+
+#container{
+    border-radius: 100px;
+    min-height: 570px;
+    margin-right: 10%;
+    margin-left:10%;
+}
+
+#table1
+{
+    width:125px;
+    height:75px;
+    text-align:center;
+    padding-top:  25px;
+    border-radius:15px;
+    margin:5%;
+    float:left;
+}
+
+#table2
+{
+    width:75px;
+    height:125px;
+    text-align:center;
+    padding-top:  40px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius:15px;
+    margin-left:5%;
+    margin-bottom: 3%;
+    clear:left;
+    float:left;
+
+
+}
+
+#table3
+{
+    width:75px;
+    height:125px;
+    text-align:center;
+    padding-top:  40px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius:15px;
+    margin-left:5%;
+    margin-bottom: 3%;
+    clear:left;
+    float:left;
+
+
+}
+
+#table4
+{
+    width:125px;
+    height:75px;
+    text-align:center;
+    padding-top:  25px;
+    border-radius:15px;
+    margin:5%;
+    float:left;
+    clear:left;
+    margin-top: 0%;
+}
+
+#table5
+{
+    width:125px;
+    height:75px;
+    text-align:center;
+    padding-top:  25px;
+    border-radius:15px;
+    margin: 5%;
+    float:left;
+}
+
+#table6
+{
+    width:125px;
+    height:75px;
+    text-align:center;
+    padding-top:  25px;
+    border-radius:15px;
+    margin: 4%;
+    float:left;
+    margin-left:15%;
+
+
+}
+
+#table7
+{
+    width:125px;
+    height:75px;
+    text-align:center;
+    padding-top:  25px;
+    border-radius:15px;
+    margin: 4%;
+    float:left;
+    margin-left:15%;
+
+
+}
+
+#table8
+{
+    width:125px;
+    height:75px;
+    text-align:center;
+    padding-top:  25px;
+    border-radius:15px;
+    margin: 4%;
+    float:left;
+    margin-top: 0%;
+
+}
+
+#table9
+{
+    width:125px;
+    height:75px;
+    text-align:center;
+    padding-top:  25px;
+    border-radius:15px;
+    margin:5%;
+    float:left;
+
+}
+
+#table10
+{
+    width:75px;
+    height:125px;
+    text-align:center;
+    padding-top:  30px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius:15px;
+    margin-left:9%;
+    margin-bottom: 3%;
+    float:left;
+    margin-top: 0;
+}
+
+#table11
+{
+    width:75px;
+    height:125px;
+    text-align:center;
+    padding-top:  30px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius:15px;
+    margin-left:9%;
+    margin-bottom: 3%;
+    float:left;
+    margin-top: 0;
+}
+
+#table12
+{
+    width:125px;
+    height:75px;
+    text-align:center;
+    padding-top:  25px;
+    border-radius:15px;
+    margin:5%;
+    float:left;
+    margin-top: 0%;
+
+
+}
+
+
+

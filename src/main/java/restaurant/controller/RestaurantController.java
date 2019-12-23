@@ -50,8 +50,19 @@ public class RestaurantController {
         List<Dish> listOrderedDishes = dishService.matchDishesById(listOfIdsOrderedDishes);
 
         // add order
-        restaurantService.addOrder(numberOfTable,listOrderedDishes);
+        restaurantService.addOrder(numberOfTable, listOrderedDishes);
 
         return "redirect:/restaurant/allTables";
+    }
+
+    @GetMapping("/restaurantRoom")
+    public String restaurantRoom() {
+        return "/restaurant/restaurant-room";
+    }
+
+    @GetMapping("/orderOfTable")
+    public String orderOfTable(@RequestParam("tableId") int tableId) {
+        System.out.println(tableId);
+        return "redirect:/restaurant/restaurantRoom";
     }
 }

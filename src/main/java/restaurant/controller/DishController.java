@@ -58,7 +58,8 @@ public class DishController {
 
     @PostMapping("/saveDish")
     public String saveDish(@Valid @ModelAttribute("dish") Dish dish, BindingResult bindingResult) {
-// check errors if not errors save product if not back to form for add
+
+        // check errors if not errors save product if not back to form for add
         if (bindingResult.hasErrors()) {
             return "dishes/dish-form";
         } else {

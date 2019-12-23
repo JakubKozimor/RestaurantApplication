@@ -18,17 +18,21 @@ public class DishServiceImpl implements DishService {
     @Override
     public List<Dish> getListOfDishes() {
 
+        // return list of dishes
         return dishRepository.findAll();
     }
 
     @Override
     public List<Dish> matchDishesById(List<Integer> listOfOrder) {
 
+        // return list of dishes
         return dishRepository.findAllById(listOfOrder);
     }
 
     @Override
     public void saveDish(Dish dish) {
+
+        // save dish to database
         dishRepository.save(dish);
     }
 
@@ -41,7 +45,8 @@ public class DishServiceImpl implements DishService {
 
     @Override
     public void remove(int productId) {
-        dishRepository.deleteById(productId);
 
+        // delete product form database
+        dishRepository.deleteById(productId);
     }
 }
