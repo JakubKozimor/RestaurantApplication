@@ -15,4 +15,5 @@ public interface RestaurantService {
 
     BigDecimal acceptPaymentAndCleanOrder(int theNumberOfTable);
 
+    BigDecimal getMoneyForOrder(int theNumberOfTable);
 }

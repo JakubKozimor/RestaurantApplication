@@ -45,11 +45,11 @@
             <td th:text="${tempProduct.getQuantity()}"/>
             <td th:text="${tempProduct.getPrice()}+ zł"/>
             <td>
-                <a th:href="@{/inventory/showFormForUpdateProduct(dishId=${tempProduct.productId})}"
+                <a th:href="@{/inventory/showFormForUpdateProduct(productId=${tempProduct.productId})}"
                     class="btn btn-info col-5">
                     Edytuj
                 </a>
-                <a th:href="@{/inventory/delete(dishId=${tempProduct.productId})}"
+                <a th:href="@{/inventory/delete(productId=${tempProduct.productId})}"
                    class="btn btn-danger col-5" onclick="if (!(confirm('Na pewno chcesz usunąć produkt?'))) return false">Usuń</a>
             </td>
         </tbody>

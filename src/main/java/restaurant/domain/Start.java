@@ -9,6 +9,7 @@ import restaurant.data.DishRepository;
 import restaurant.service.RestaurantServiceImpl;
 import restaurant.service.SummaryService;
 
+import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
 
@@ -26,14 +27,8 @@ public class Start implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-
-//
-//        List<Dish> list = dishRepository.findAll();
-//        restaurantService.addOrder(1, list);
-//        restaurantService.addOrder(1, list);
-//        System.out.println(tablesComponent.getMyRestaurant(1));
-        //BigDecimal a = restaurantService.acceptPaymentAndCleanOrder(1);
-
+        List<Dish> list = dishRepository.findAll();
+        restaurantService.addOrder(1, list);
 
     }
 }

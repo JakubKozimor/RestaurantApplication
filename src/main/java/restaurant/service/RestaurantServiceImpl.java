@@ -52,13 +52,19 @@ public class RestaurantServiceImpl implements RestaurantService {
     @Override
     public BigDecimal acceptPaymentAndCleanOrder(int theNumberOfTable) {
         theSummaryService.updateSummary(theNumberOfTable);
+        BigDecimal sum = getMoneyForOrder(theNumberOfTable);
+        ArrayList<Dish> emptyList = new ArrayList<>();
+        theTablesComponent.setMyRestaurant(theNumberOfTable, emptyList);
+        return sum;
+    }
+
+    @Override
+    public BigDecimal getMoneyForOrder(int theNumberOfTable) {
         BigDecimal sum = BigDecimal.valueOf(0);
         List<Dish> theTable = theTablesComponent.getMyRestaurant().get(theNumberOfTable);
         for (Dish tempDish : theTable) {
             sum = sum.add(tempDish.getPriceSell());
         }
-        ArrayList<Dish> emptyList = new ArrayList<>();
-        theTablesComponent.setMyRestaurant(theNumberOfTable, emptyList);
         return sum;
     }
 }

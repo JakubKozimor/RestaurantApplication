@@ -9,6 +9,7 @@ import restaurant.components.TablesComponent;
 import restaurant.service.DishService;
 import restaurant.service.RestaurantService;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
@@ -45,8 +46,14 @@ public class RestaurantController {
     }
 
     @GetMapping("/orderOfTable")
-    public String orderOfTable(@RequestParam("tableId") int tableId) {
-        System.out.println(tableId);
-        return "redirect:/restaurant/restaurantRoom";
+    public String orderOfTable(@RequestParam("tableId") int tableId, Model model) {
+        List<Dish> listOfOrder = tablesComponent.getMyRestaurant(tableId);
+        List<Dish> listOfDishes = dishService.getListOfDishes();
+        BigDecimal moneyForOrder = restaurantService.getMoneyForOrder(tableId);
+        model.addAttribute("order", listOfOrder);
+        model.addAttribute("listOfDishes", listOfDishes);
+        model.addAttribute("money", moneyForOrder);
+        model.addAttribute("numberOfTable", tableId);
+        return "/restaurant/order-of-table";
     }
 }
