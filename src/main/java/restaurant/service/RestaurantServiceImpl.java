@@ -20,6 +20,9 @@ public class RestaurantServiceImpl implements RestaurantService {
 
     @Override
     public void addOrder(int theNumberOfTable, List<Dish> theListOfOrders) {
+        if (theTablesComponent.getMyRestaurant(theNumberOfTable) == null) {
+            theTablesComponent.addTable(theNumberOfTable);
+        }
         List<Dish> theTable = theTablesComponent.getMyRestaurant(theNumberOfTable);
         theTable.addAll(theListOfOrders);
         theTablesComponent.setMyRestaurant(theNumberOfTable, theTable);
@@ -27,8 +30,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 
     @Override
     public void removeElementFromOrder(int theNumberOfTable, List<Dish> theListToRemove) {
-        List<Dish> theTable = theTablesComponent.getMyRestaurant().get(theNumberOfTable);
-        Map<Integer, List<Dish>> myRestaurant = theTablesComponent.getMyRestaurant();
+        List<Dish> theTable = theTablesComponent.getMyRestaurant(theNumberOfTable);
         List<Dish> afterRemove = theTable.stream()
                 .filter(dish -> {
                     if (theListToRemove.contains(dish)) {
@@ -38,30 +40,33 @@ public class RestaurantServiceImpl implements RestaurantService {
                     return true;
                 })
                 .collect(Collectors.toList());
-        myRestaurant.put(theNumberOfTable, afterRemove);
+        if (afterRemove.size() == 0) {
+            theTablesComponent.removeTable(theNumberOfTable);
+        } else {
+            theTablesComponent.setMyRestaurant(theNumberOfTable,afterRemove);
+        }
+
     }
 
 
     @Override
     public void removeOrderWithoutAcceptPayment(int theNumberOfTable) {
-        Map<Integer, List<Dish>> myRestaurant = theTablesComponent.getMyRestaurant();
-        List<Dish> emptyTable = new ArrayList<>();
-        myRestaurant.put(theNumberOfTable, emptyTable);
+        theTablesComponent.removeTable(theNumberOfTable);
+
     }
 
     @Override
     public BigDecimal acceptPaymentAndCleanOrder(int theNumberOfTable) {
         theSummaryService.updateSummary(theNumberOfTable);
         BigDecimal sum = getMoneyForOrder(theNumberOfTable);
-        ArrayList<Dish> emptyList = new ArrayList<>();
-        theTablesComponent.setMyRestaurant(theNumberOfTable, emptyList);
+        theTablesComponent.removeTable(theNumberOfTable);
         return sum;
     }
 
     @Override
     public BigDecimal getMoneyForOrder(int theNumberOfTable) {
         BigDecimal sum = BigDecimal.valueOf(0);
-        List<Dish> theTable = theTablesComponent.getMyRestaurant().get(theNumberOfTable);
+        List<Dish> theTable = theTablesComponent.getMyRestaurant(theNumberOfTable);
         for (Dish tempDish : theTable) {
             sum = sum.add(tempDish.getPriceSell());
         }

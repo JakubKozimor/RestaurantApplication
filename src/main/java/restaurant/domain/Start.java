@@ -28,7 +28,8 @@ public class Start implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         List<Dish> list = dishRepository.findAll();
-        restaurantService.addOrder(1, list);
+        restaurantService.addOrder(12, list);
+        restaurantService.addOrder(12, list);
 
     }
 }

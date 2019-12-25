@@ -64,6 +64,7 @@ public class RestaurantServiceTest {
         listToRemove.add(dish1);
         listToRemove.add(dish2);
         after.add(dish1);
+        tablesComponent.setMyRestaurant(1,before);
 
         // when
         restaurantService.removeElementFromOrder(1,listToRemove);

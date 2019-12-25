@@ -13,22 +13,7 @@ public class TablesComponent {
 
     private Map<Integer, List<Dish>> myRestaurant = new HashMap<>();
 
-    // todo change this
-    private List<Dish> table1 = new ArrayList<>();
-    private List<Dish> table2 = new ArrayList<>();
-    private List<Dish> table3 = new ArrayList<>();
-    private List<Dish> table4 = new ArrayList<>();
-    private List<Dish> table5 = new ArrayList<>();
-    private List<Dish> table6 = new ArrayList<>();
-
     public TablesComponent() {
-        myRestaurant.put(1, table1);
-        myRestaurant.put(2, table2);
-        myRestaurant.put(3, table3);
-        myRestaurant.put(4, table4);
-        myRestaurant.put(5, table5);
-        myRestaurant.put(6, table6);
-
     }
 
     public TablesComponent(Map<Integer, List<Dish>> myRestaurant) {
@@ -40,7 +25,11 @@ public class TablesComponent {
     }
 
     public List<Dish> getMyRestaurant(int nrOfTable) {
-        return myRestaurant.get(nrOfTable);
+        if (myRestaurant.get(nrOfTable) == null) {
+            return new ArrayList<>();
+        }else {
+            return myRestaurant.get(nrOfTable);
+        }
     }
 
     public void setMyRestaurant(Map<Integer, List<Dish>> myRestaurant) {
@@ -51,16 +40,18 @@ public class TablesComponent {
         this.myRestaurant.put(numberOfTable, order);
     }
 
+    public void addTable(int numberOfTable) {
+        this.myRestaurant.put(numberOfTable, new ArrayList<>());
+    }
+
+    public void removeTable(int numberOfTable) {
+        this.myRestaurant.remove(numberOfTable);
+    }
+
     @Override
     public String toString() {
-        return "Tables{" +
+        return "TablesComponent{" +
                 "myRestaurant=" + myRestaurant +
-                ", table1=" + table1 +
-                ", table2=" + table2 +
-                ", table3=" + table3 +
-                ", table4=" + table4 +
-                ", table5=" + table5 +
-                ", table6=" + table6 +
                 '}';
     }
 }
