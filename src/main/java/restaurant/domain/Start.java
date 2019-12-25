@@ -9,6 +9,7 @@ import restaurant.data.DishRepository;
 import restaurant.service.RestaurantServiceImpl;
 import restaurant.service.SummaryService;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Component
@@ -16,18 +17,16 @@ public class Start implements CommandLineRunner {
 
     @Autowired
     RestaurantServiceImpl restaurantService;
-
     @Autowired
     TablesComponent tablesComponent;
-
     @Autowired
     SummaryService summaryService;
-
     @Autowired
     DishRepository dishRepository;
 
     @Override
     public void run(String... args) throws Exception {
+
 //
 //        List<Dish> list = dishRepository.findAll();
 //        restaurantService.addOrder(1, list);

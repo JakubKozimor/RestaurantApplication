@@ -12,7 +12,6 @@ import java.math.BigDecimal;
 @Table(name = "Dish")
 public class Dish {
 
-    // define a files
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "dish_id")
@@ -42,7 +41,6 @@ public class Dish {
     @Column(name = "category", columnDefinition = "varchar(255)")
     private String category;
 
-    // define constructors
     public Dish() {
 
     }
@@ -55,7 +53,6 @@ public class Dish {
 
     }
 
-    // define getters and setters
     public int getDishId() {
         return dishId;
     }
@@ -104,7 +101,6 @@ public class Dish {
         this.category = category;
     }
 
-    // define toString
     @Override
     public String toString() {
         return "Dish{" +

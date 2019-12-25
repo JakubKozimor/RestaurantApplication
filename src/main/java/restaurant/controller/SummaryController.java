@@ -19,13 +19,8 @@ public class SummaryController {
 
     @GetMapping("/allSummary")
     public String getAllSummary(Model model) {
-
-        // get list summary
         List<Summary> listOfSummary = summaryService.getListOfSummary();
-
-        // add list of summary to model
         model.addAttribute("listOfSummary", listOfSummary);
-
         return "summary/summary-list";
     }
 }

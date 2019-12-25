@@ -8,7 +8,6 @@ import java.math.BigDecimal;
 @Table(name = "inventory")
 public class Inventory {
 
-    // define all files
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "product_id")
@@ -30,7 +29,6 @@ public class Inventory {
     @Column(name = "product_price", columnDefinition = "decimal(10,2)")
     private BigDecimal price;
 
-    // define constructors
     public Inventory() {
     }
 
@@ -41,7 +39,6 @@ public class Inventory {
         this.price = price;
     }
 
-    // define getters and setters
     public int getProductId() {
         return productId;
     }
@@ -74,7 +71,6 @@ public class Inventory {
         this.price = price;
     }
 
-    // define useful method
     public void addQuantity(int quantity) {
         this.quantity += quantity;
     }
@@ -83,7 +79,6 @@ public class Inventory {
         this.quantity -= quantity;
     }
 
-    // define toString
     @Override
     public String toString() {
         return "Inventory{" +

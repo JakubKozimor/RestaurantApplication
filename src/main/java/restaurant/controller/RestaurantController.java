@@ -18,40 +18,24 @@ public class RestaurantController {
 
     @Autowired
     TablesComponent tablesComponent;
-
     @Autowired
     DishService dishService;
-
     @Autowired
     RestaurantService restaurantService;
 
     @GetMapping("/allTables")
     public String getAllTables(Model model) {
-
-        // get all tables
         Map<Integer, List<Dish>> allTables = tablesComponent.getMyRestaurant();
-
-
-        // for test now
         List<Dish> listOfDishes = dishService.getListOfDishes();
         model.addAttribute("listOfDishes", listOfDishes);
-
-
-        // add all tables to model
         model.addAttribute("allTables", allTables);
-
         return "restaurant/restaurant";
     }
 
     @PostMapping("/getOrder")
     public String getOrder(@RequestParam("numberOfTable") int numberOfTable, @RequestParam("order") List<Integer> listOfIdsOrderedDishes) {
-
-        // get list of ordered dishes
         List<Dish> listOrderedDishes = dishService.matchDishesById(listOfIdsOrderedDishes);
-
-        // add order
         restaurantService.addOrder(numberOfTable, listOrderedDishes);
-
         return "redirect:/restaurant/allTables";
     }
 

@@ -8,14 +8,13 @@ import java.time.LocalDate;
 @Table(name = "summary")
 public class Summary {
 
-    // define files
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "summary_id")
     private int summaryId;
 
     @NotNull
-    @Column(name = "date",columnDefinition = "date")
+    @Column(name = "date", columnDefinition = "date")
     private LocalDate date;
 
     @NotNull
@@ -27,7 +26,6 @@ public class Summary {
     @Column(name = "quantity", columnDefinition = "int default '0' ")
     private int quantity;
 
-    // define constructors
     public Summary() {
     }
 
@@ -37,7 +35,6 @@ public class Summary {
         this.quantity = quantity;
     }
 
-    // define getters and setters
     public int getSummaryId() {
         return summaryId;
     }

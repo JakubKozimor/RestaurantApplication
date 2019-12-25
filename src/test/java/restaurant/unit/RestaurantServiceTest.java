@@ -23,7 +23,6 @@ public class RestaurantServiceTest {
 
     @Autowired
     RestaurantServiceImpl restaurantService;
-
     @Autowired
     TablesComponent tablesComponent;
 
