@@ -17,5 +17,5 @@ public interface RestaurantService {
 
     BigDecimal getMoneyForOrder(int theNumberOfTable);
 
-    List<Dish> getDishesByIds(List<Integer> listToAdd);
+    List<Dish> getDishesByIds(List<Integer> listOfIds);
 }

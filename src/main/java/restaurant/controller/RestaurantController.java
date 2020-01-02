@@ -66,6 +66,7 @@ public class RestaurantController {
                                   @RequestParam(value = "tableId") int tableId, RedirectAttributes redirectAttributes) {
         if (listOfOrderToRemove != null) {
             List<Dish> listOfDishes = restaurantService.getDishesByIds(listOfOrderToRemove);
+            System.out.println(listOfDishes);
             restaurantService.removeElementFromOrder(tableId, listOfDishes);
         }
         redirectAttributes.addAttribute("tableId",tableId);

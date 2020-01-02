@@ -8,6 +8,7 @@ import restaurant.data.DishRepository;
 
 import java.math.BigDecimal;
 import java.util.*;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 
@@ -34,29 +35,26 @@ public class RestaurantServiceImpl implements RestaurantService {
     @Override
     public void removeElementFromOrder(int theNumberOfTable, List<Dish> theListToRemove) {
         List<Dish> theTable = tablesComponent.getMyRestaurant(theNumberOfTable);
-        System.out.println(theTable);
         List<Dish> afterRemove = theTable.stream()
                 .filter(dish -> {
                     for (Dish tempDish : theListToRemove) {
                         if (dish.getDishId() == tempDish.getDishId()) {
-                            theListToRemove.remove(dish);
+                            theListToRemove.remove(tempDish);
                             return false;
-                        }else {
+                        } else {
                             return true;
                         }
                     }
                     return true;
                 })
                 .collect(Collectors.toList());
-        System.out.println(afterRemove);
+
         if (afterRemove.size() == 0) {
             tablesComponent.removeTable(theNumberOfTable);
         } else {
-            tablesComponent.setMyRestaurant(theNumberOfTable,afterRemove);
+            tablesComponent.setMyRestaurant(theNumberOfTable, afterRemove);
         }
-
     }
-
 
     @Override
     public void removeOrderWithoutAcceptPayment(int theNumberOfTable) {
@@ -83,7 +81,12 @@ public class RestaurantServiceImpl implements RestaurantService {
     }
 
     @Override
-    public List<Dish> getDishesByIds(List<Integer> listToAdd) {
-        return dishRepository.findAllById(listToAdd);
+    public List<Dish> getDishesByIds(List<Integer> listOfIds) {
+        List<Dish> listOfDishes = new ArrayList<>();
+        for (Integer tempId : listOfIds) {
+            Optional<Dish> tempDish = dishRepository.findById(tempId);
+            tempDish.ifPresent(listOfDishes::add);
+        }
+        return listOfDishes;
     }
 }
