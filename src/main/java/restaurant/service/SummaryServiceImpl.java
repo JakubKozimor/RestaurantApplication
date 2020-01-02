@@ -5,9 +5,11 @@ import org.springframework.stereotype.Service;
 import restaurant.Entity.Dish;
 import restaurant.Entity.Summary;
 import restaurant.components.TablesComponent;
-import restaurant.data.SummaryRepository;
+import restaurant.dao.SummaryRepository;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @Service
@@ -54,5 +56,26 @@ public class SummaryServiceImpl implements SummaryService {
                 summaryRepository.save(tempSummary);
             }
         }
+    }
+
+    @Override
+    public List<Integer> getListOfYears() {
+        return summaryRepository.findDistinctYears();
+    }
+
+    @Override
+    public List<Integer> getListOfMonths(Integer year) {
+        return summaryRepository.findDistinctMonths(year);
+    }
+
+    @Override
+    public List<Integer> getListOfDays(Integer year, Integer month) {
+        return summaryRepository.findDistinctDays(year, month);
+    }
+
+    @Override
+    public List<LocalDate> getYears() {
+        Collection<LocalDate> collectionOfDates = summaryRepository.getYears();
+        return new ArrayList<>(collectionOfDates);
     }
 }

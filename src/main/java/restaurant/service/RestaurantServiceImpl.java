@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import restaurant.Entity.Dish;
 import restaurant.components.TablesComponent;
-import restaurant.data.DishRepository;
+import restaurant.dao.DishRepository;
 
 import java.math.BigDecimal;
 import java.util.*;

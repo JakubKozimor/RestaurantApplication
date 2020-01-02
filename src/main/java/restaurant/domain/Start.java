@@ -4,14 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import restaurant.Entity.Dish;
-import restaurant.Entity.Summary;
 import restaurant.components.TablesComponent;
-import restaurant.data.DishRepository;
-import restaurant.data.SummaryRepository;
+import restaurant.dao.DishRepository;
+import restaurant.dao.SummaryRepository;
 import restaurant.service.RestaurantServiceImpl;
 import restaurant.service.SummaryService;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @Component
@@ -34,8 +32,6 @@ public class Start implements CommandLineRunner {
         restaurantService.addOrder(12, list);
         restaurantService.addOrder(1, list);
         restaurantService.addOrder(5, list);
-
-
     }
 }
 

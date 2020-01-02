@@ -2,58 +2,50 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <title>Edytuj produkty</title>
-
+    <title>Dzień</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
 </head>
 <body>
-
 <div class="container">
-    <h1>Edytuj liste produktów</h1>
+    <h1 style="font-size: 64px">Dzień</h1>
     <hr>
-        <div>
-            <a th:href="@{/inventory/showFormForAddProduct}"
-               class="btn btn-success btn-lg mb-3 col-2">
-                Dodaj produkt
-            </a>
-            <a style="float:right" th:href="@{/inventory/inventoryList}"
-               class="btn btn-secondary btn-lg mb-3 col-2">
-                Wróć
-            </a>
-        </div>
+    <div>
+        <a th:href="@{/summary/getMonths(year=${year})}"
+           class="btn btn-secondary btn-lg mb-3 col-2">
+            Wróć
+        </a>
+    </div>
     <table class="table table-bordered table-striped">
         <thead class="thead-dark">
         <tr>
-            <th>Nazwa</th>
-            <th>Ilość</th>
-            <th>Cena</th>
-            <th width="30%">Akcja</th>
+            <th style="font-size: 32px;" width="20%">Dzień</th>
+            <th style="font-size: 32px;" width="40%">Podsumowanie</th>
+            <th style="font-size: 32px;" width="40%">Raport</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="tempProduct : ${listOfProducts}">
-            <td style="text-transform: capitalize;" th:text="${tempProduct.getName()}"/>
-            <td th:text="${tempProduct.getQuantity()}"/>
-            <td th:text="${tempProduct.getPrice()}+ zł"/>
-            <td>
-                <a th:href="@{/inventory/showFormForUpdateProduct(productId=${tempProduct.productId})}"
-                    class="btn btn-info col-5">
-                    Edytuj
+        <tr th:each="tempDay : ${days}">
+            <td style="font-size: 32px" th:text="${tempDay}"/>
+            <td align="center">
+                <a th:href="@{/}"
+                   class="btn btn-info col-5 btn-lg" >
+                    Zobacz
                 </a>
-                <a th:href="@{/inventory/delete(productId=${tempProduct.productId})}"
-                   class="btn btn-danger col-5" onclick="if (!(confirm('Na pewno chcesz usunąć produkt?'))) return false">Usuń</a>
+            </td>
+            <td align="center">
+                <a th:href="@{/}"
+                   class="btn btn-success btn-lg" >
+                    Pobierz raport
+                </a>
             </td>
         </tbody>
     </table>
 </div>
-
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -65,5 +57,6 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+
 </body>
 </html>

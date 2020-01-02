@@ -1,4 +1,4 @@
-package restaurant.data;
+package restaurant.dao;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import restaurant.Entity.Dish;

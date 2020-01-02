@@ -1,0 +1,96 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Miesiąc</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body onload="myFunction()">
+<div class="container">
+    <h1 style="font-size: 64px">Miesiąc</h1>
+    <hr>
+    <div>
+        <a th:href="@{/summary/getAllYears}"
+           class="btn btn-secondary btn-lg mb-3 col-2">
+            Wróć
+        </a>
+    </div>
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+        <tr>
+            <th style="font-size: 32px;" width="50%">Miesiąc</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="tempMonth : ${months}">
+            <td th:id="${tempMonth}" style="font-size: 32px"/>
+            <td align="center">
+                <a th:href="@{/summary/getDays(year=${year},month=${tempMonth})}"
+                   class="btn btn-info col-5 btn-lg" >
+                    Wybierz
+                </a>
+            </td>
+        </tbody>
+    </table>
+</div>
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+<script>
+    function myFunction() {
+        if (document.getElementById('1') != null) {
+            document.getElementById('1').innerHTML = "Styczeń";
+        }
+        if (document.getElementById('2') != null) {
+            document.getElementById('2').innerHTML = "Luty";
+        }
+        if (document.getElementById('3') != null) {
+            document.getElementById('3').innerHTML = "Marzec";
+        }
+        if (document.getElementById('4') != null) {
+            document.getElementById('4').innerHTML = "Kwiecień";
+        }
+        if (document.getElementById('5') != null) {
+            document.getElementById('5').innerHTML = "Maj";
+        }
+        if (document.getElementById('6') != null) {
+            document.getElementById('6').innerHTML = "Czerwiec";
+        }
+        if (document.getElementById('7') != null) {
+            document.getElementById('7').innerHTML = "Lipiec";
+        }
+        if (document.getElementById('8') != null) {
+            document.getElementById('8').innerHTML = "Sierpień";
+        }
+        if (document.getElementById('9') != null) {
+            document.getElementById('9').innerHTML = "Wrzesień";
+        }
+        if (document.getElementById('10') != null) {
+            document.getElementById('10').innerHTML = "Październik";
+        }
+        if (document.getElementById('11') != null) {
+            document.getElementById('11').innerHTML = "Listopad";
+        }
+        if (document.getElementById('12') != null) {
+            document.getElementById('12').innerHTML = "Grudzień";
+        }
+    }
+</script>
+
+</body>
+</html>
