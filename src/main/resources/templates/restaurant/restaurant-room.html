@@ -19,11 +19,9 @@
     <h1>Sala</h1>
     <hr>
     <div id="container" class=" bg-white">
-        <form th:value="${table1}">
         <a  th:href="@{/restaurant/orderOfTable(tableId=1)}">
             <div class="border border-dark bg-light text-dark" id="table1">Stolik nr:1</div>
         </a>
-        </form>
         <a th:href="@{/restaurant/orderOfTable(tableId=5)}">
             <div class="border border-dark bg-light text-dark" id="table5">Stolik nr:5</div>
         </a>

@@ -6,181 +6,205 @@
 
     <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, IE=edge,chrome=1">
 
     <!-- Bootstrap CSS -->
+    <link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <link th:href="@{/css/restaurant/order-of-table.css}" rel="stylesheet" type="text/css"/>
+
+    <style>
+        th, td {
+            font-size: 16px;
+        }
+    </style>
 </head>
 <body>
 <div class="container">
     <h1>Stolik numer: <span th:text="${numberOfTable}"/></h1>
     <hr>
     <div class="row">
-        <div class="col-sm-5    ">
-            <div class="table-wrapper-scroll-y my-custom-scrollbar">
+        <div class="col-sm-5">
+            <form th:action="@{/restaurant/addToOrder(tableId=${numberOfTable})}"
+                  th:object="${listOfDishes}" th:method="post" id="addToOrderForm">
+                <div class="table-wrapper-scroll-y my-custom-scrollbar">
 
-                <div class="container">
-                    <div class="col">
-                        <div class="row">
-                            <table class="table table-bordered table-hover">
-                                <thead class="thead-dark">
-                                <tr>
-                                    <th>Pizza</th>
-                                    <th width="15%">Cena</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr th:each="tempDish : ${listOfDishes}" th:if="${tempDish.category} == 'pizza'">
-                                    <td>
-                                        <p>
+                    <table class="table table-bordered table-hover">
+                        <thead class="thead-dark">
+                        <th></th>
+                        <th>Danie</th>
+                        <th width="15%">Cena</th>
+                        </thead>
+                        <tbody>
+                        <tr th:each="tempDish : ${listOfDishes}" th:if="${tempDish.category} == 'pizza'">
+                            <td><input th:name="listToAdd" th:value="${tempDish.dishId}" type="checkbox"></td>
+                            <td>
+                                <p>
                         <span style="font-size:large;font-weight: bold;text-transform: capitalize;"
                               th:text="${tempDish.getName()}"/>
-                                            <span th:text="${tempDish.getDescription()}"></span>
-                                        </p>
-                                    </td>
-                                    <td th:text="${tempDish.getPriceSell()}+ zł">
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="row">
-                            <table class="table table-bordered table-hover">
-                                <thead class="thead-dark">
-                                <tr>
-                                    <th>Kebab</th>
-                                    <th width="15%">Cena</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr th:each="tempDish : ${listOfDishes}" th:if="${tempDish.category} == 'kebab'">
-                                    <td>
-                                        <p>
+                                    <span th:text="${tempDish.getDescription()}"></span>
+                                </p>
+                            </td>
+                            <td th:text="${tempDish.getPriceSell()}+ zł">
+                        </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-bordered table-hover">
+                        <thead class="thead-dark">
+                        <tr>
+                            <th></th>
+                            <th>Kebab</th>
+                            <th width="15%">Cena</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="tempDish : ${listOfDishes}" th:if="${tempDish.category} == 'kebab'">
+                            <td><input th:name="listToAdd" th:value="${tempDish.dishId}" type="checkbox"></td>
+                            <td>
+                                <p>
                         <span style="font-size:large;font-weight: bold;text-transform: capitalize;"
                               th:text="${tempDish.getName()}"/>
-                                            <span th:text="${tempDish.getDescription()}"></span>
-                                        </p>
-                                    </td>
-                                    <td th:text="${tempDish.getPriceSell()}+ zł"/>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="row">
-                            <table class="table table-bordered table-hover">
-                                <thead class="thead-dark">
-                                <tr>
-                                    <th>Sałatki</th>
-                                    <th width="15%">Cena</th>
-                                </tr>
-                                </thead>
-
-                                <tbody>
-                                <tr th:each="tempDish : ${listOfDishes}" th:if="${tempDish.category} == 'sałatka'">
-                                    <td>
-                                        <p>
+                                    <span th:text="${tempDish.getDescription()}"></span>
+                                </p>
+                            </td>
+                            <td th:text="${tempDish.getPriceSell()}+ zł"/>
+                        </tbody>
+                    </table>
+                    <table class="table table-bordered table-hover">
+                        <thead class="thead-dark">
+                        <tr>
+                            <th></th>
+                            <th>Sałatki</th>
+                            <th width="15%">Cena</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="tempDish : ${listOfDishes}" th:if="${tempDish.category} == 'sałatka'">
+                            <td><input th:name="listToAdd" th:value="${tempDish.dishId}" type="checkbox"></td>
+                            <td>
+                                <p>
                         <span style="font-size:large;font-weight: bold;text-transform: capitalize;"
                               th:text="${tempDish.getName()}"/>
-                                            <span th:text="${tempDish.getDescription()}"></span>
-                                        </p>
-                                    </td>
-                                    <td th:text="${tempDish.getPriceSell()}+ zł"/>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="row">
-                            <table class="table table-bordered table-hover">
-                                <thead class="thead-dark">
-                                <tr>
-                                    <th>Soki</th>
-                                    <th width="15%">Cena</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr th:each="tempDish : ${listOfDishes}" th:if="${tempDish.category} == 'sok'">
-                                    <td>
-                                        <p>
+                                    <span th:text="${tempDish.getDescription()}"></span>
+                                </p>
+                            </td>
+                            <td th:text="${tempDish.getPriceSell()}+ zł"/>
+                        </tbody>
+                    </table>
+                    <table class="table table-bordered table-hover">
+                        <thead class="thead-dark">
+                        <tr>
+                            <th width="8%"></th>
+                            <th>Soki</th>
+                            <th width="15%">Cena</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="tempDish : ${listOfDishes}" th:if="${tempDish.category} == 'sok'">
+                            <td><input th:name="listToAdd" th:value="${tempDish.dishId}" type="checkbox"></td>
+                            <td>
+                                <p>
                         <span style="font-size:large;font-weight: bold;text-transform: capitalize;"
                               th:text="${tempDish.getName()}"/>
-                                            <span th:text="${tempDish.getDescription()}"></span>
-                                        </p>
-                                    </td>
-                                    <td th:text="${tempDish.getPriceSell()}+ zł"/>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+                                    <span th:text="${tempDish.getDescription()}"></span>
+                                </p>
+                            </td>
+                            <td th:text="${tempDish.getPriceSell()}+ zł"/>
+                        </tbody>
+                    </table>
                 </div>
-
-            </div>
+            </form>
         </div>
         <div class="col-sm-5">
             <div class="table-wrapper-scroll-y my-custom-scrollbar">
-                <table class="table table-bordered table-hover">
-                    <thead class="thead-dark">
-                    <tr>
+                <form th:action="@{/restaurant/removeFromOrder(tableId=${numberOfTable})}"
+                      th:object="${order}" th:method="post" id="removeFromOrderForm">
+                    <table class="table table-bordered table-hover">
+                        <thead class="thead-dark">
+                        <th width="8%"></th>
                         <th>Danie</th>
                         <th width="15%">Cena</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr th:each="tempDish : ${order}">
-                        <td th:text="${tempDish.getName()}"
-                            style="font-size:large;font-weight: bold;text-transform: capitalize;"/>
-                        <td th:text="${tempDish.getPriceSell()}+ zł"/>
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                        <tr th:each="tempDish : ${order}">
+                            <td><input th:name="order" th:value="${tempDish.dishId}" type="checkbox"></td>
+                            <td th:text="${tempDish.getName()}"
+                                style="font-size:large;font-weight: bold;text-transform: capitalize;"/>
+                            <td th:text="${tempDish.getPriceSell()}+ zł"/>
+                        </tr>
+                        </tbody>
+                    </table>
+                </form>
             </div>
         </div>
         <div class="col-sm-2">
-            <p style="font-size:large;font-weight: bold;">Do zapłaty:  <span th:text="${money}"/>zł</p>
+            <p style="padding: 15px 32px;font-size:large;font-weight: bold;">Do zapłaty: <span th:text="${money}"/>zł</p>
             <br>
-            <a th:href="@{/}"
-               class="btn btn-primary btn-lg" style="width: 100%">
-                Dodaj do zamówienia
-            </a>
+            <input type="submit" value="Dodaj do zamówienia" form="addToOrderForm" class="btn btn btn-primary"
+                   style="font-size: 14px;padding: 15px;width: 100%"/>
             <br>
-            <a th:href="@{/}"
-               class="btn btn-warning btn-lg" style="width: 100%">
-                Usuń z zamówienia
-            </a>
+            <input type="submit" value="Usuń z zamówienia" form="removeFromOrderForm" class="btn btn btn-warning"
+                   style="font-size: 14px;padding: 15px;width: 100%"/>
             <br>
             <br>
-            <a th:href="@{/}"
-               class="btn btn-danger btn-lg" style="width: 100%">
+            <a th:href="@{/restaurant/removeWithoutAcceptPayment(tableId=${numberOfTable})}"
+               class="btn btn-danger btn-lg" style="font-size: 14px;padding: 15px;width: 100%">
                 Wyczyść zamówienie
             </a>
             <br>
             <br>
             <a th:href="@{/}"
-               class="btn btn-success btn-lg" style="width: 100%">
+               class="btn btn-success btn-lg" style="font-size: 14px;padding: 15px;width: 100%">
                 Przyjmij płatność
             </a>
             <br>
             <br>
             <a th:href="@{/restaurant/restaurantRoom}"
-               class="btn btn-secondary btn-lg" style="width: 100%">
+               class="btn btn-secondary btn-lg" style="font-size: 14px;padding: 15px;width: 100%;">
                 Wróć
             </a>
 
         </div>
     </div>
+    <script>
+        $('table').tableCheckbox({ /* options */});
+    </script>
 
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" th:src="@{/js/restaurant/jquery.tableCheckbox.js}" rel="stylesheet"></script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+
+    <script>
+        $('table').tableCheckbox({ /* options */});
+    </script>
 </div>
-<!-- Optional JavaScript -->
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
+<script type="text/javascript">
 
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-36251023-1']);
+    _gaq.push(['_setDomainName', 'jqueryscript.net']);
+    _gaq.push(['_trackPageview']);
+
+    (function () {
+        var ga = document.createElement('script');
+        ga.type = 'text/javascript';
+        ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(ga, s);
+    })();
+
+</script>
 </body>
-
 </html>

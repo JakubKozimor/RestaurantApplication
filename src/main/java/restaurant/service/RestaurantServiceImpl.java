@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import restaurant.Entity.Dish;
 import restaurant.components.TablesComponent;
+import restaurant.data.DishRepository;
 
 import java.math.BigDecimal;
 import java.util.*;
@@ -14,36 +15,44 @@ import java.util.stream.Collectors;
 public class RestaurantServiceImpl implements RestaurantService {
 
     @Autowired
-    TablesComponent theTablesComponent;
+    TablesComponent tablesComponent;
     @Autowired
-    SummaryService theSummaryService;
+    SummaryService summaryService;
+    @Autowired
+    DishRepository dishRepository;
 
     @Override
     public void addOrder(int theNumberOfTable, List<Dish> theListOfOrders) {
-        if (theTablesComponent.getMyRestaurant(theNumberOfTable) == null) {
-            theTablesComponent.addTable(theNumberOfTable);
+        if (tablesComponent.getMyRestaurant(theNumberOfTable) == null) {
+            tablesComponent.addTable(theNumberOfTable);
         }
-        List<Dish> theTable = theTablesComponent.getMyRestaurant(theNumberOfTable);
+        List<Dish> theTable = tablesComponent.getMyRestaurant(theNumberOfTable);
         theTable.addAll(theListOfOrders);
-        theTablesComponent.setMyRestaurant(theNumberOfTable, theTable);
+        tablesComponent.setMyRestaurant(theNumberOfTable, theTable);
     }
 
     @Override
     public void removeElementFromOrder(int theNumberOfTable, List<Dish> theListToRemove) {
-        List<Dish> theTable = theTablesComponent.getMyRestaurant(theNumberOfTable);
+        List<Dish> theTable = tablesComponent.getMyRestaurant(theNumberOfTable);
+        System.out.println(theTable);
         List<Dish> afterRemove = theTable.stream()
                 .filter(dish -> {
-                    if (theListToRemove.contains(dish)) {
-                        theListToRemove.remove(dish);
-                        return false;
+                    for (Dish tempDish : theListToRemove) {
+                        if (dish.getDishId() == tempDish.getDishId()) {
+                            theListToRemove.remove(dish);
+                            return false;
+                        }else {
+                            return true;
+                        }
                     }
                     return true;
                 })
                 .collect(Collectors.toList());
+        System.out.println(afterRemove);
         if (afterRemove.size() == 0) {
-            theTablesComponent.removeTable(theNumberOfTable);
+            tablesComponent.removeTable(theNumberOfTable);
         } else {
-            theTablesComponent.setMyRestaurant(theNumberOfTable,afterRemove);
+            tablesComponent.setMyRestaurant(theNumberOfTable,afterRemove);
         }
 
     }
@@ -51,25 +60,30 @@ public class RestaurantServiceImpl implements RestaurantService {
 
     @Override
     public void removeOrderWithoutAcceptPayment(int theNumberOfTable) {
-        theTablesComponent.removeTable(theNumberOfTable);
+        tablesComponent.removeTable(theNumberOfTable);
 
     }
 
     @Override
     public BigDecimal acceptPaymentAndCleanOrder(int theNumberOfTable) {
-        theSummaryService.updateSummary(theNumberOfTable);
+        summaryService.updateSummary(theNumberOfTable);
         BigDecimal sum = getMoneyForOrder(theNumberOfTable);
-        theTablesComponent.removeTable(theNumberOfTable);
+        tablesComponent.removeTable(theNumberOfTable);
         return sum;
     }
 
     @Override
     public BigDecimal getMoneyForOrder(int theNumberOfTable) {
         BigDecimal sum = BigDecimal.valueOf(0);
-        List<Dish> theTable = theTablesComponent.getMyRestaurant(theNumberOfTable);
+        List<Dish> theTable = tablesComponent.getMyRestaurant(theNumberOfTable);
         for (Dish tempDish : theTable) {
             sum = sum.add(tempDish.getPriceSell());
         }
         return sum;
+    }
+
+    @Override
+    public List<Dish> getDishesByIds(List<Integer> listToAdd) {
+        return dishRepository.findAllById(listToAdd);
     }
 }

@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import restaurant.Entity.Dish;
 import restaurant.components.TablesComponent;
 import restaurant.service.DishService;
@@ -25,22 +26,6 @@ public class RestaurantController {
     @Autowired
     RestaurantService restaurantService;
 
-    @GetMapping("/allTables")
-    public String getAllTables(Model model) {
-        Map<Integer, List<Dish>> allTables = tablesComponent.getMyRestaurant();
-        List<Dish> listOfDishes = dishService.getListOfDishes();
-        model.addAttribute("listOfDishes", listOfDishes);
-        model.addAttribute("allTables", allTables);
-        return "restaurant/restaurant";
-    }
-
-    @PostMapping("/getOrder")
-    public String getOrder(@RequestParam("numberOfTable") int numberOfTable, @RequestParam("order") List<Integer> listOfIdsOrderedDishes) {
-        List<Dish> listOrderedDishes = dishService.matchDishesById(listOfIdsOrderedDishes);
-        restaurantService.addOrder(numberOfTable, listOrderedDishes);
-        return "redirect:/restaurant/allTables";
-    }
-
     @GetMapping("/restaurantRoom")
     public String restaurantRoom() {
         return "/restaurant/restaurant-room";
@@ -57,4 +42,35 @@ public class RestaurantController {
         model.addAttribute("numberOfTable", tableId);
         return "/restaurant/order-of-table";
     }
+
+    @GetMapping("/removeWithoutAcceptPayment")
+    public String removeWithoutAcceptPayment(@RequestParam("tableId") int tableId, RedirectAttributes redirectAttributes) {
+        restaurantService.removeOrderWithoutAcceptPayment(tableId);
+        redirectAttributes.addAttribute("tableId", tableId);
+        return "redirect:/restaurant/orderOfTable";
+    }
+
+    @PostMapping("/addToOrder")
+    public String addOrder(@RequestParam(value = "listToAdd", required = false) List<Integer> listToAdd,
+                           @RequestParam(value = "tableId") int tableId ,RedirectAttributes redirectAttributes) {
+        if (listToAdd != null) {
+            List<Dish> listOfDishes = restaurantService.getDishesByIds(listToAdd);
+            restaurantService.addOrder(tableId, listOfDishes);
+        }
+        redirectAttributes.addAttribute("tableId",tableId);
+        return "redirect:/restaurant/orderOfTable";
+    }
+
+    @PostMapping("/removeFromOrder")
+    public String removeFromOrder(@RequestParam(value = "order", required = false) List<Integer> listOfOrderToRemove,
+                                  @RequestParam(value = "tableId") int tableId, RedirectAttributes redirectAttributes) {
+        if (listOfOrderToRemove != null) {
+            List<Dish> listOfDishes = restaurantService.getDishesByIds(listOfOrderToRemove);
+            restaurantService.removeElementFromOrder(tableId, listOfDishes);
+        }
+        redirectAttributes.addAttribute("tableId",tableId);
+        return "redirect:/restaurant/orderOfTable";
+    }
+
+
 }
