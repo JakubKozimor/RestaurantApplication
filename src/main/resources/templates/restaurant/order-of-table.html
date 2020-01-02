@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <title>Restauracja</title>
+    <title th:text="'Stolik nr: '+ ${numberOfTable}"/>
 
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -24,7 +24,7 @@
 </head>
 <body>
 <div class="container">
-    <h1>Stolik numer: <span th:text="${numberOfTable}"/></h1>
+    <h1 style="font-size: 4em">Stolik numer: <span th:text="${numberOfTable}"/></h1>
     <hr>
     <div class="row">
         <div class="col-sm-5">
@@ -141,7 +141,8 @@
             </div>
         </div>
         <div class="col-sm-2">
-            <p style="padding: 15px 32px;font-size:large;font-weight: bold;">Do zapłaty: <span th:text="${money}"/>zł</p>
+            <p style="padding: 15px 32px;font-size:large;font-weight: bold;">Do zapłaty: <span th:text="${money}"/>zł
+            </p>
             <br>
             <input type="submit" value="Dodaj do zamówienia" form="addToOrderForm" class="btn btn btn-primary"
                    style="font-size: 14px;padding: 15px;width: 100%"/>
@@ -156,8 +157,9 @@
             </a>
             <br>
             <br>
-            <a th:href="@{/}"
-               class="btn btn-success btn-lg" style="font-size: 14px;padding: 15px;width: 100%">
+            <a th:href="@{/restaurant/acceptPayment(tableId=${numberOfTable})}"
+               class="btn btn-success btn-lg" style="font-size: 14px;padding: 15px;width: 100%"
+               onclick="if (!(confirm('Potwierdzić płatność?'))) return false">
                 Przyjmij płatność
             </a>
             <br>

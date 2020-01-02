@@ -25,17 +25,36 @@ public class SummaryServiceImpl implements SummaryService {
 
     @Override
     public void updateSummary(int theNumberOfTable) {
+        updateMissingDishesInSummary(theNumberOfTable);
         List<Dish> theTable = theTablesComponent.getMyRestaurant().get(theNumberOfTable);
         List<Summary> listOfSummaryToday = summaryRepository.findAllByDate(LocalDate.now().getDayOfMonth(),
                 LocalDate.now().getMonthValue(), LocalDate.now().getYear());
-        // todo fix changing data
         for (Summary tempProduct : listOfSummaryToday) {
             for (Dish tempDish : theTable) {
                 if (tempDish.getDishId() == tempProduct.getdish().getDishId()) {
                     int newQuantity = tempProduct.getQuantity() + 1;
                     tempProduct.setQuantity(newQuantity);
+                    tempProduct.setDate(tempProduct.getdate().plusDays(1));
                     summaryRepository.save(tempProduct);
                 }
+            }
+        }
+    }
+
+    public void updateMissingDishesInSummary(int theNumberOfTable) {
+        List<Dish> theTable = theTablesComponent.getMyRestaurant().get(theNumberOfTable);
+        List<Summary> listOfSummaryToday = summaryRepository.findAllByDate(LocalDate.now().getDayOfMonth(),
+                LocalDate.now().getMonthValue(), LocalDate.now().getYear());
+        for (Dish tempDish : theTable) {
+            boolean flag = false;
+            for (Summary tempSummary : listOfSummaryToday) {
+                if (tempDish.getDishId() == tempSummary.getdish().getDishId()) {
+                    flag = true;
+                }
+            }
+            if (!flag) {
+                Summary tempSummary = new Summary(LocalDate.now().plusDays(1), tempDish);
+                summaryRepository.save(tempSummary);
             }
         }
     }

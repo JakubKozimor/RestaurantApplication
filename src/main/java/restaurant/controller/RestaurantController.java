@@ -52,12 +52,12 @@ public class RestaurantController {
 
     @PostMapping("/addToOrder")
     public String addOrder(@RequestParam(value = "listToAdd", required = false) List<Integer> listToAdd,
-                           @RequestParam(value = "tableId") int tableId ,RedirectAttributes redirectAttributes) {
+                           @RequestParam(value = "tableId") int tableId, RedirectAttributes redirectAttributes) {
         if (listToAdd != null) {
             List<Dish> listOfDishes = restaurantService.getDishesByIds(listToAdd);
             restaurantService.addOrder(tableId, listOfDishes);
         }
-        redirectAttributes.addAttribute("tableId",tableId);
+        redirectAttributes.addAttribute("tableId", tableId);
         return "redirect:/restaurant/orderOfTable";
     }
 
@@ -66,12 +66,18 @@ public class RestaurantController {
                                   @RequestParam(value = "tableId") int tableId, RedirectAttributes redirectAttributes) {
         if (listOfOrderToRemove != null) {
             List<Dish> listOfDishes = restaurantService.getDishesByIds(listOfOrderToRemove);
-            System.out.println(listOfDishes);
             restaurantService.removeElementFromOrder(tableId, listOfDishes);
         }
-        redirectAttributes.addAttribute("tableId",tableId);
+        redirectAttributes.addAttribute("tableId", tableId);
         return "redirect:/restaurant/orderOfTable";
     }
 
-
+    @GetMapping("/acceptPayment")
+    public String acceptPayment(@RequestParam(value = "tableId") int tableId, RedirectAttributes redirectAttributes) {
+        if (tablesComponent.getMyRestaurant(tableId) != null) {
+            restaurantService.acceptPaymentAndCleanOrder(tableId);
+        }
+        redirectAttributes.addAttribute("tableId", tableId);
+        return "redirect:/restaurant/orderOfTable";
+    }
 }

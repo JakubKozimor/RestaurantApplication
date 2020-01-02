@@ -48,7 +48,6 @@ public class RestaurantServiceImpl implements RestaurantService {
                     return true;
                 })
                 .collect(Collectors.toList());
-
         if (afterRemove.size() == 0) {
             tablesComponent.removeTable(theNumberOfTable);
         } else {

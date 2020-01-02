@@ -29,6 +29,11 @@ public class Summary {
     public Summary() {
     }
 
+    public Summary(LocalDate date, Dish dish) {
+        this.date = date;
+        this.dish = dish;
+    }
+
     public Summary(LocalDate date, Dish dish, int quantity) {
         this.date = date;
         this.dish = dish;
