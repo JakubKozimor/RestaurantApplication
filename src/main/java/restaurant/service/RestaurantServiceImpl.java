@@ -8,7 +8,6 @@ import restaurant.data.DishRepository;
 
 import java.math.BigDecimal;
 import java.util.*;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 
@@ -41,9 +40,7 @@ public class RestaurantServiceImpl implements RestaurantService {
                         if (dish.getDishId() == tempDish.getDishId()) {
                             theListToRemove.remove(tempDish);
                             return false;
-                        } else {
-                            return true;
-                        }
+                        } else return true;
                     }
                     return true;
                 })

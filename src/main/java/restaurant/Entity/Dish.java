@@ -1,19 +1,9 @@
 package restaurant.Entity;
 
-import org.aspectj.bridge.Message;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.MessageSource;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.ImportResource;
-import org.springframework.context.annotation.PropertySource;
-
-import javax.annotation.Resource;
 import javax.persistence.*;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
 import java.math.BigDecimal;
 
 
@@ -51,7 +41,6 @@ public class Dish {
     private String category;
 
     public Dish() {
-
     }
 
     public Dish(int dishId, String name, BigDecimal price_buy_or_preparation, BigDecimal priceSell) {

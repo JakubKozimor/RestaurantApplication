@@ -32,10 +32,6 @@ public class TablesComponent {
         }
     }
 
-    public void setMyRestaurant(Map<Integer, List<Dish>> myRestaurant) {
-        this.myRestaurant = myRestaurant;
-    }
-
     public void setMyRestaurant(int numberOfTable, List<Dish> order) {
         this.myRestaurant.put(numberOfTable, order);
     }

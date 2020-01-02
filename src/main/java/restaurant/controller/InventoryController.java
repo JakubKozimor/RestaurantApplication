@@ -11,7 +11,6 @@ import restaurant.service.InventoryService;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 @Controller
 @RequestMapping("/inventory")
@@ -79,9 +78,7 @@ public class InventoryController {
     @GetMapping("showFormForUpdateProduct")
     public String showFormForUpdateProduct(@RequestParam("productId") int productId, Model model) {
         Optional<Inventory> theProduct = inventoryService.getSingleProduct(productId);
-        theProduct.ifPresent(product ->{
-            model.addAttribute("product", product);
-        });
+        theProduct.ifPresent(product -> model.addAttribute("product", product));
         return "/inventory/inventory-form";
     }
 }

@@ -47,11 +47,8 @@ public class SummaryServiceImpl implements SummaryService {
                 LocalDate.now().getMonthValue(), LocalDate.now().getYear());
         for (Dish tempDish : theTable) {
             boolean flag = false;
-            for (Summary tempSummary : listOfSummaryToday) {
-                if (tempDish.getDishId() == tempSummary.getdish().getDishId()) {
-                    flag = true;
-                }
-            }
+            for (Summary tempSummary : listOfSummaryToday)
+                if (tempDish.getDishId() == tempSummary.getdish().getDishId()) flag = true;
             if (!flag) {
                 Summary tempSummary = new Summary(LocalDate.now().plusDays(1), tempDish);
                 summaryRepository.save(tempSummary);
