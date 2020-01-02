@@ -8,8 +8,6 @@ import restaurant.components.TablesComponent;
 import restaurant.dao.SummaryRepository;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 @Service
@@ -31,13 +29,13 @@ public class SummaryServiceImpl implements SummaryService {
         List<Dish> theTable = theTablesComponent.getMyRestaurant().get(theNumberOfTable);
         List<Summary> listOfSummaryToday = summaryRepository.findAllByDate(LocalDate.now().getDayOfMonth(),
                 LocalDate.now().getMonthValue(), LocalDate.now().getYear());
-        for (Summary tempProduct : listOfSummaryToday) {
+        for (Summary tempSummary : listOfSummaryToday) {
             for (Dish tempDish : theTable) {
-                if (tempDish.getDishId() == tempProduct.getdish().getDishId()) {
-                    int newQuantity = tempProduct.getQuantity() + 1;
-                    tempProduct.setQuantity(newQuantity);
-                    tempProduct.setDate(tempProduct.getdate().plusDays(1));
-                    summaryRepository.save(tempProduct);
+                if (tempDish.getDishId() == tempSummary.getdish().getDishId()) {
+                    int newQuantity = tempSummary.getQuantity() + 1;
+                    tempSummary.setQuantity(newQuantity);
+//                    tempSummary.setDate(tempSummary.getdate());
+                    summaryRepository.save(tempSummary);
                 }
             }
         }
@@ -52,7 +50,7 @@ public class SummaryServiceImpl implements SummaryService {
             for (Summary tempSummary : listOfSummaryToday)
                 if (tempDish.getDishId() == tempSummary.getdish().getDishId()) flag = true;
             if (!flag) {
-                Summary tempSummary = new Summary(LocalDate.now().plusDays(1), tempDish);
+                Summary tempSummary = new Summary(LocalDate.now(), tempDish);
                 summaryRepository.save(tempSummary);
             }
         }
@@ -74,8 +72,7 @@ public class SummaryServiceImpl implements SummaryService {
     }
 
     @Override
-    public List<LocalDate> getYears() {
-        Collection<LocalDate> collectionOfDates = summaryRepository.getYears();
-        return new ArrayList<>(collectionOfDates);
+    public List<Summary> getSummaryOfDay(int year, int month, int day) {
+        return summaryRepository.getSummaryOfDay(year, month, day);
     }
 }

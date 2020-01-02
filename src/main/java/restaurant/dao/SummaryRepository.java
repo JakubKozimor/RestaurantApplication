@@ -45,11 +45,13 @@ public interface SummaryRepository extends JpaRepository<Summary, Integer> {
     List<Integer> findDistinctDays(@Param("yearParam") Integer year, @Param("monthParam") Integer month);
 
 
-    @Query(
-            value = "SELECT DISTINCT date " +
-                    "FROM summary ORDER BY extract(year from date) DESC ",
-            nativeQuery = true
 
+    @Query(
+            value = "SELECT * FROM summary " +
+                    "WHERE extract(year from date) = :yearParam " +
+                    "AND extract(month from date) = :monthParam " +
+                    "AND extract(day from date) = :dayParam",
+            nativeQuery = true
     )
-    Collection<LocalDate> getYears();
+    List<Summary> getSummaryOfDay(@Param("yearParam") Integer year, @Param("monthParam") Integer month,@Param("dayParam") Integer day);
 }

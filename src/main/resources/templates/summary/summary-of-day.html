@@ -1,8 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-
 <head>
-    <title>Dzień</title>
+    <title>Podsumowanie</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -12,10 +11,10 @@
 </head>
 <body>
 <div class="container">
-    <h1 style="font-size: 64px">Dzień</h1>
+    <h1 th:text="'Data: ' + ${summaryOfDay.get(0).getdate()}"/>
     <hr>
     <div>
-        <a th:href="@{/summary/getMonths(year=${year})}"
+        <a th:href="@{/summary/getDays(year=${summaryOfDay.get(0).getdate().year},month=${summaryOfDay.get(0).getdate().monthValue})}"
            class="btn btn-secondary btn-lg mb-3 col-2">
             Wróć
         </a>
@@ -27,26 +26,20 @@
     <table class="table table-bordered table-striped">
         <thead class="thead-dark">
         <tr>
-            <th style="font-size: 32px;" width="20%">Dzień</th>
-            <th style="font-size: 32px;" width="40%">Podsumowanie</th>
-            <th style="font-size: 32px;" width="40%">Raport</th>
+            <th style="font-size: 25px;">Danie</th>
+            <th style="font-size: 25px;">Ilość</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="tempDay : ${days}">
-            <td style="font-size: 32px" th:text="${tempDay}"/>
-            <td align="center">
-                <a th:href="@{/summary/getSummary(year=${year},month=${month},day=${tempDay})}"
-                   class="btn btn-primary col-5 btn-lg" >
-                    Zobacz
-                </a>
+        <tr th:each="tempSummary : ${summaryOfDay}">
+            <td>
+                <p>
+                        <span style="font-size:large;font-weight: bold;text-transform: capitalize;"
+                              th:text="${tempSummary.getdish().getName()}"/>
+                    <span th:text="'kategoria: ' + ${tempSummary.getdish().getCategory()}"></span>
+                </p>
             </td>
-            <td align="center">
-                <a th:href="@{/}"
-                   class="btn btn-success btn-lg" >
-                    Pobierz raport
-                </a>
-            </td>
+            <td style="font-size:large" th:text="${tempSummary.getQuantity()}"/>
         </tbody>
     </table>
 </div>
@@ -61,6 +54,5 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
-
 </body>
 </html>

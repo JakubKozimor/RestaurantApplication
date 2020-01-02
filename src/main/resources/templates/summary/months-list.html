@@ -19,6 +19,10 @@
            class="btn btn-secondary btn-lg mb-3 col-2">
             Wróć
         </a>
+        <a style="float:right" th:href="@{/}"
+           class="btn btn-info btn-lg mb-3 col-2">
+            Wyloguj
+        </a>
     </div>
     <table class="table table-bordered table-striped">
         <thead class="thead-dark">
@@ -32,7 +36,7 @@
             <td th:id="${tempMonth}" style="font-size: 32px"/>
             <td align="center">
                 <a th:href="@{/summary/getDays(year=${year},month=${tempMonth})}"
-                   class="btn btn-info col-5 btn-lg" >
+                   class="btn btn-primary col-5 btn-lg" >
                     Wybierz
                 </a>
             </td>

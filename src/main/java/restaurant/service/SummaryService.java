@@ -17,6 +17,6 @@ public interface SummaryService {
 
     List<Integer> getListOfDays(Integer year, Integer month);
 
-    List<LocalDate> getYears();
 
+    List<Summary> getSummaryOfDay(int year, int month, int day);
 }

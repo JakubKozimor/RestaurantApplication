@@ -9,9 +9,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import restaurant.Entity.Summary;
 import restaurant.service.SummaryService;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -42,11 +39,22 @@ public class SummaryController {
         model.addAttribute("year", year);
         return "/summary/months-list";
     }
+
     @GetMapping("/getDays")
-    public String getDays(@RequestParam("year") int year,@RequestParam("month") int month, Model model) {
+    public String getDays(@RequestParam("year") int year, @RequestParam("month") int month, Model model) {
         List<Integer> listOfDays = summaryService.getListOfDays(year, month);
         model.addAttribute("days", listOfDays);
         model.addAttribute("year", year);
+        model.addAttribute("month", month);
         return "/summary/days-list";
     }
+
+    @GetMapping("/getSummary")
+    public String getSummary(@RequestParam("year") int year, @RequestParam("month") int month,
+                             @RequestParam("day") int day, Model model) {
+        List<Summary> summaryOfDay = summaryService.getSummaryOfDay(year, month, day);
+        model.addAttribute("summaryOfDay", summaryOfDay);
+        return "/summary/summary-of-day";
+    }
+
 }

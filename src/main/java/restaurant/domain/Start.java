@@ -10,6 +10,7 @@ import restaurant.dao.SummaryRepository;
 import restaurant.service.RestaurantServiceImpl;
 import restaurant.service.SummaryService;
 
+import java.util.Calendar;
 import java.util.List;
 
 @Component
@@ -32,6 +33,9 @@ public class Start implements CommandLineRunner {
         restaurantService.addOrder(12, list);
         restaurantService.addOrder(1, list);
         restaurantService.addOrder(5, list);
+        Calendar now = Calendar.getInstance();
+        System.out.println(now.getTimeZone());
+        System.out.println(now.getTime());
     }
 }
 
