@@ -10,6 +10,7 @@ import restaurant.dao.SummaryRepository;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,16 +22,31 @@ public class ReportServiceImpl implements ReportService {
     SummaryRepository summaryRepository;
 
     @Override
-    public String exportReport() throws FileNotFoundException, JRException {
+    public void exportReport(int year, int month, int day) throws FileNotFoundException, JRException {
         String path = "C:\\Users\\Jakub\\Desktop\\reports";
-        List<Summary> summary = summaryRepository.findAll();
+        List<Summary> summary = summaryRepository.getSummaryOfDay(year, month, day);
+        StringBuilder dateParameter = new StringBuilder("").append(day).append("-").append(month).append("-").append(year);
+        BigDecimal dailyProfit = getDailyProfit(year, month, day);
         File file = ResourceUtils.getFile("classpath:report.jrxml");
         JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
         JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(summary);
         Map<String, Object> parameters = new HashMap<>();
-        parameters.put("created by", "Java Techie");
+        parameters.put("dateParameter", dateParameter.toString());
+        parameters.put("dailyProfit", dailyProfit);
         JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
-        JasperExportManager.exportReportToPdfFile(jasperPrint,path+"\\summary.pdf");
-        return "report generated in path : " + path;
+        JasperExportManager.exportReportToPdfFile(jasperPrint,
+                path + "\\summary-of-day-"+ year + "-" + month + "-" + day +".pdf");
+    }
+
+    public BigDecimal getDailyProfit(int year, int month, int day) {
+        BigDecimal preparationPrice = BigDecimal.valueOf(0);
+        BigDecimal sellPrice = BigDecimal.valueOf(0);
+        List<Summary> summary = summaryRepository.getSummaryOfDay(year, month, day);
+        for (Summary tempSummary : summary) {
+            preparationPrice = preparationPrice.add(tempSummary.getdish().getPrice_buy_or_preparation());
+            sellPrice = sellPrice.add(tempSummary.getdish().getPriceSell());
+        }
+        BigDecimal result = sellPrice.subtract(preparationPrice);
+        return result;
     }
 }

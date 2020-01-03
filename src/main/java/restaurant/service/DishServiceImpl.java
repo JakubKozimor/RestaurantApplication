@@ -26,6 +26,7 @@ public class DishServiceImpl implements DishService {
 
     @Override
     public void saveDish(Dish dish) {
+        dish.setOldDish(0);
         dishRepository.save(dish);
     }
 

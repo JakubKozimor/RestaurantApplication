@@ -40,7 +40,7 @@
         <p style="color: red" th:if="${#fields.hasErrors('priceSell')}" th:errors="*{priceSell}"/>
 
         <input style="height:50px" type="text" th:field="*{description}"
-               class="form-control mb-4 col-4" placeholder="Opis (składniki)" required />
+               class="form-control mb-4 col-4" placeholder="Opis (składniki)"/>
         <p style="color: red" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"/>
 
         <select class="form-control mb-4 col-4" style="height:50px" th:field="*{category}">

@@ -38,7 +38,7 @@ public class Dish {
     @Column(name = "category", columnDefinition = "varchar(255)")
     private String category;
 
-    @Column(name = "old_dish", columnDefinition = "int default 0")
+    @Column(name = "old_dish", columnDefinition = "int default '0'")
     private Integer oldDish;
 
     public Dish() {

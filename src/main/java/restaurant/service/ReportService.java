@@ -6,5 +6,5 @@ import java.io.FileNotFoundException;
 
 public interface ReportService {
 
-    String exportReport() throws FileNotFoundException, JRException;
+    void exportReport(int year, int month, int day) throws FileNotFoundException, JRException;
 }
