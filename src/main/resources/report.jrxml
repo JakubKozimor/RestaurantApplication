@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.11.0.final using JasperReports Library version 6.11.0-0c4056ccaa4d25a5a8c45672d2f764ea3498bebb  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="03e8dcc4-8a2a-42f2-a6fc-d15a374d3906">
+    <field name="dish" class="restaurant.Entity.Dish"/>
+    <field name="quantity" class="java.lang.Integer"/>
+    <background>
+        <band/>
+    </background>
+    <title>
+        <band height="72">
+            <frame>
+                <reportElement mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699" uuid="fc73c5c8-0b05-423b-b5b0-8b1e54746f02"/>
+                <staticText>
+                    <reportElement x="20" y="20" width="380" height="43" forecolor="#FFFFFF" uuid="dcefcf41-a4f5-405f-8875-10453f8221d1"/>
+                    <textElement>
+                        <font size="34" isBold="true"/>
+                    </textElement>
+                    <text><![CDATA[Podsumowanie dnia:]]></text>
+                </staticText>
+                <textField>
+                    <reportElement x="370" y="25" width="195" height="42" forecolor="#FFFFFF" uuid="f0c191e5-7acb-4872-8167-bc1ea5fd0098"/>
+                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                        <font size="24"/>
+                    </textElement>
+                    <textFieldExpression><![CDATA["Text Field"]]></textFieldExpression>
+                </textField>
+            </frame>
+        </band>
+    </title>
+    <pageHeader>
+        <band height="82">
+            <frame>
+                <reportElement x="-10" y="10" width="581" height="62" uuid="13e208dc-3b87-4ceb-8a8e-10c812065b67"/>
+                <staticText>
+                    <reportElement x="-3" y="5" width="290" height="52" uuid="8f453d41-3aef-40ba-a958-dd2fa5af36d2"/>
+                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                        <font size="26"/>
+                    </textElement>
+                    <text><![CDATA[Dzienny dochód:]]></text>
+                </staticText>
+                <textField>
+                    <reportElement x="240" y="10" width="290" height="42" uuid="791b1ddf-6c46-4b6b-a539-dac67063b471"/>
+                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                        <font size="26"/>
+                    </textElement>
+                    <textFieldExpression><![CDATA["Text Field"]]></textFieldExpression>
+                </textField>
+            </frame>
+        </band>
+    </pageHeader>
+    <columnHeader>
+        <band height="21">
+            <line>
+                <reportElement x="-20" y="20" width="595" height="1" forecolor="#666666" uuid="7c059999-409d-4925-ad4c-8ec7bb0d7eb6"/>
+            </line>
+            <staticText>
+                <reportElement mode="Opaque" x="0" y="0" width="277" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="4d75896b-60a1-406b-9c96-c6659e0e4d87">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="0a064e62-0942-4979-8a08-8a9a40f1da71"/>
+                </reportElement>
+                <textElement textAlignment="Center">
+                    <font size="14" isBold="true"/>
+                </textElement>
+                <text><![CDATA[DANIE]]></text>
+            </staticText>
+            <staticText>
+                <reportElement mode="Opaque" x="277" y="0" width="277" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="7ea3e822-ca92-4e3a-8841-7149386d6538">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="0dd119f6-cb3b-4d5d-9d31-edf6fd4c4ff0"/>
+                </reportElement>
+                <textElement textAlignment="Center">
+                    <font size="14" isBold="true"/>
+                </textElement>
+                <text><![CDATA[ILOSC]]></text>
+            </staticText>
+        </band>
+    </columnHeader>
+    <detail>
+        <band height="20">
+            <line>
+                <reportElement positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1" uuid="8c19113e-d1fb-4c4c-a594-62c4afce0cae"/>
+            </line>
+            <textField textAdjust="StretchHeight">
+                <reportElement x="0" y="0" width="277" height="20" uuid="8753e007-7552-475d-9c9b-399d0e05be17">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="0a064e62-0942-4979-8a08-8a9a40f1da71"/>
+                </reportElement>
+                <textElement>
+                    <font size="14"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{dish}.getName()]]></textFieldExpression>
+            </textField>
+            <textField textAdjust="StretchHeight">
+                <reportElement x="277" y="0" width="277" height="20" uuid="9dc4700d-fb0e-49b0-b9e2-278c75cb1317">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="0dd119f6-cb3b-4d5d-9d31-edf6fd4c4ff0"/>
+                </reportElement>
+                <textElement textAlignment="Center">
+                    <font size="14"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{quantity}]]></textFieldExpression>
+            </textField>
+        </band>
+    </detail>
+    <columnFooter>
+        <band/>
+    </columnFooter>
+    <pageFooter>
+        <band height="17">
+            <textField>
+                <reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" uuid="57f1e9a8-1ccf-4af9-8807-08fa01bfc397"/>
+                <textElement textAlignment="Right"/>
+                <textFieldExpression><![CDATA["Strona "+$V{PAGE_NUMBER}+" z"]]></textFieldExpression>
+            </textField>
+            <textField evaluationTime="Report">
+                <reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="3222a8ae-139f-484a-af2e-98f6d424ce0b"/>
+                <textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+            </textField>
+        </band>
+    </pageFooter>
+    <summary>
+        <band/>
+    </summary>
+</jasperReport>
