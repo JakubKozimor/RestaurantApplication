@@ -29,13 +29,13 @@
         <p style="color: red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"/>
 
         <input style="height:50px" type="text" th:field="*{price_buy_or_preparation}"
-               class="form-control mb-4 col-4 " placeholder="Kwota potrzebna do przygotowania" required
-               pattern="[0-9]+\.[0-9]?+" title="Wartość musi być cyfrą (oddnieloną .)"/>
+               class="form-control mb-4 col-4 " placeholder="Kwota potrzebna do przygotowania"
+               pattern="[0-9]+\.[0-9]+" required/>
         <p style="color: red" th:if="${#fields.hasErrors('price_buy_or_preparation')}"
            th:errors="*{price_buy_or_preparation}"/>
 
         <input style="height:50px" type="text" th:field="*{priceSell}"
-               class="form-control mb-4 col-4" placeholder="Cena" required pattern="[0-9]+\.[0-9]?+"
+               class="form-control mb-4 col-4" placeholder="Cena" required pattern="[0-9]+\.[0-9]+"
                title="Wartość musi być cyfrą (oddnieloną .)"/>
         <p style="color: red" th:if="${#fields.hasErrors('priceSell')}" th:errors="*{priceSell}"/>
 

@@ -18,13 +18,6 @@ public class SummaryController {
     @Autowired
     SummaryService summaryService;
 
-    @GetMapping("/allSummary")
-    public String getAllSummary(Model model) {
-        List<Summary> listOfSummary = summaryService.getListOfSummary();
-        model.addAttribute("listOfSummary", listOfSummary);
-        return "/summary/summary-list";
-    }
-
     @GetMapping("/getAllYears")
     public String getAllYears(Model model) {
         List<Integer> listOfYears = summaryService.getListOfYears();
