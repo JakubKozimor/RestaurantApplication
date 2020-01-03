@@ -31,14 +31,15 @@ public class Dish {
     @Column(name = "dish_price_sell", columnDefinition = "decimal(10,2)")
     private BigDecimal priceSell;
 
-    @NotNull(message = "Nazwa nie może byś pusta")
-    @NotBlank(message = "Nazwa nie może byś pusta")
     @Column(name = "description", columnDefinition = "varchar(255)")
     private String description;
 
     @NotNull
     @Column(name = "category", columnDefinition = "varchar(255)")
     private String category;
+
+    @Column(name = "old_dish", columnDefinition = "int default 0")
+    private Integer oldDish;
 
     public Dish() {
     }
@@ -99,6 +100,14 @@ public class Dish {
         this.category = category;
     }
 
+    public Integer getOldDish() {
+        return oldDish;
+    }
+
+    public void setOldDish(Integer oldDish) {
+        this.oldDish = oldDish;
+    }
+
     @Override
     public String toString() {
         return "Dish{" +
@@ -108,6 +117,7 @@ public class Dish {
                 ", priceSell=" + priceSell +
                 ", description='" + description + '\'' +
                 ", category='" + category + '\'' +
+                ", oldDish=" + oldDish +
                 '}';
     }
 }

@@ -16,7 +16,7 @@ public class DishServiceImpl implements DishService {
 
     @Override
     public List<Dish> getListOfDishes() {
-        return dishRepository.findAll();
+        return dishRepository.findAllActualMenu();
     }
 
     @Override
@@ -36,6 +36,10 @@ public class DishServiceImpl implements DishService {
 
     @Override
     public void remove(int productId) {
-        dishRepository.deleteById(productId);
+        Optional<Dish> tempDish = dishRepository.findById(productId);
+        tempDish.ifPresent(dish -> {
+            dish.setOldDish(1);
+            dishRepository.save(dish);
+        });
     }
 }
