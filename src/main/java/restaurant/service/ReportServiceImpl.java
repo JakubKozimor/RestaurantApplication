@@ -23,11 +23,12 @@ public class ReportServiceImpl implements ReportService {
 
     @Override
     public void exportReport(int year, int month, int day) throws FileNotFoundException, JRException {
-        String path = "C:\\Users\\Jakub\\Desktop\\reports";
+        StringBuilder pathBuilder = new StringBuilder("C:\\Users\\").append(System.getProperty("user.name")).append("\\Downloads");
+        String path = pathBuilder.toString();
         List<Summary> summary = summaryRepository.getSummaryOfDay(year, month, day);
         StringBuilder dateParameter = new StringBuilder("").append(day).append("-").append(month).append("-").append(year);
         BigDecimal dailyProfit = getDailyProfit(year, month, day);
-        File file = ResourceUtils.getFile("classpath:report.jrxml");
+        File file = ResourceUtils.getFile("classpath:report/report.jrxml");
         JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
         JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(summary);
         Map<String, Object> parameters = new HashMap<>();

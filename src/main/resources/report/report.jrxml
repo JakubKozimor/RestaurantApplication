@@ -32,7 +32,9 @@
     <pageHeader>
         <band height="82">
             <frame>
-                <reportElement x="-10" y="10" width="581" height="62" uuid="13e208dc-3b87-4ceb-8a8e-10c812065b67"/>
+                <reportElement x="-10" y="10" width="581" height="62" uuid="13e208dc-3b87-4ceb-8a8e-10c812065b67">
+                    <printWhenExpression><![CDATA[$V{PAGE_NUMBER}==1]]></printWhenExpression>
+                </reportElement>
                 <staticText>
                     <reportElement x="20" y="5" width="290" height="52" uuid="8f453d41-3aef-40ba-a958-dd2fa5af36d2"/>
                     <textElement textAlignment="Center" verticalAlignment="Middle">

@@ -33,6 +33,7 @@ public class Start implements CommandLineRunner {
         restaurantService.addOrder(12, list);
         restaurantService.addOrder(1, list);
         restaurantService.addOrder(5, list);
+
     }
 }
 
