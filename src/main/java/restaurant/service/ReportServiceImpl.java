@@ -5,7 +5,7 @@ import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ResourceUtils;
-import restaurant.Entity.Summary;
+import restaurant.entity.Summary;
 import restaurant.dao.SummaryRepository;
 
 import java.io.File;

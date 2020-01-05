@@ -3,10 +3,8 @@ package restaurant.dao;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-import restaurant.Entity.Summary;
+import restaurant.entity.Summary;
 
-import java.time.LocalDate;
-import java.util.Collection;
 import java.util.List;
 
 public interface SummaryRepository extends JpaRepository<Summary, Integer> {

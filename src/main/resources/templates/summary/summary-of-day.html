@@ -13,16 +13,16 @@
 <div class="container">
     <h1 th:text="'Data: ' + ${summaryOfDay.get(0).getdate()}"/>
     <hr>
+    <form th:action="@{/logout}" method="post">
     <div>
         <a th:href="@{/summary/getDays(year=${summaryOfDay.get(0).getdate().year},month=${summaryOfDay.get(0).getdate().monthValue})}"
            class="btn btn-secondary btn-lg mb-3 col-2">
             Wróć
         </a>
-        <a style="float:right" th:href="@{/}"
-           class="btn btn-info btn-lg mb-3 col-2">
-            Wyloguj
-        </a>
+        <input type="submit" value="Wyloguj"
+               class="btn btn-info btn-lg mb-3 col-2" style="float:right"/>
     </div>
+    </form>
     <table class="table table-bordered table-striped">
         <thead class="thead-dark">
         <tr>

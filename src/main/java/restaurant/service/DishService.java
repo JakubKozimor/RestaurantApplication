@@ -1,6 +1,6 @@
 package restaurant.service;
 
-import restaurant.Entity.Dish;
+import restaurant.entity.Dish;
 
 import java.util.List;
 import java.util.Optional;

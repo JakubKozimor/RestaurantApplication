@@ -20,20 +20,20 @@
 <div class="container">
     <h1>Zawartość magazynu</h1>
     <hr>
+    <form th:action="@{/logout}" method="post">
     <div>
         <a th:href="@{/inventory/showFormForEditListOfProduct}"
            class="btn btn-warning btn-lg mb-3">
             Zaktualizuj liste produktów
         </a>
-        <a style="float:right;margin-left: 5px" th:href="@{/}"
-           class="btn btn-info btn-lg mb-3 col-2">
-            Wyloguj
-        </a>
+        <input type="submit" value="Wyloguj"
+               class="btn btn-info btn-lg mb-3 col-2" style="float:right;margin-left: 5px"/>
         <a style="float:right" th:href="@{/}"
            class="btn btn-secondary btn-lg mb-3 col-2">
             Wróć
         </a>
     </div>
+    </form>
     <table class="table table-bordered table-striped">
         <thead class="thead-dark">
         <tr>

@@ -3,14 +3,13 @@ package restaurant.domain;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
-import restaurant.Entity.Dish;
+import restaurant.entity.Dish;
 import restaurant.components.TablesComponent;
 import restaurant.dao.DishRepository;
 import restaurant.dao.SummaryRepository;
 import restaurant.service.RestaurantServiceImpl;
 import restaurant.service.SummaryService;
 
-import java.util.Calendar;
 import java.util.List;
 
 @Component

@@ -5,7 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import restaurant.Entity.Dish;
+import restaurant.entity.Dish;
 import restaurant.components.TablesComponent;
 import restaurant.service.DishService;
 import restaurant.service.RestaurantService;

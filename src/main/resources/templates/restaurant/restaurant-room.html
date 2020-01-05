@@ -56,10 +56,9 @@
             <div class="border border-dark bg-light text-dark" id="table12">Stolik nr:12</div>
         </a>
 
-        <div id="wyloguj"><a th:href="@{/}"
-                             class="btn btn-info btn-lg">
-            Wyloguj
-        </a></div>
+        <form th:action="@{/logout}" method="post">
+            <input id="wyloguj" type="submit" value="Wyloguj" class="btn btn-info btn-lg"/>
+        </form>
     </div>
 </div>
 

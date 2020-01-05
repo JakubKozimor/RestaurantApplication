@@ -1,4 +1,4 @@
-package restaurant.Entity;
+package restaurant.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.Digits;

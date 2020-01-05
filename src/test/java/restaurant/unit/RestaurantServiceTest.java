@@ -5,7 +5,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-import restaurant.Entity.Dish;
+import restaurant.entity.Dish;
 import restaurant.components.TablesComponent;
 import restaurant.service.RestaurantServiceImpl;
 

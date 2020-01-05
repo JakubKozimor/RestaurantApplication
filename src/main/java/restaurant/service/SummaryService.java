@@ -1,8 +1,7 @@
 package restaurant.service;
 
-import restaurant.Entity.Summary;
+import restaurant.entity.Summary;
 
-import java.time.LocalDate;
 import java.util.List;
 
 public interface SummaryService {

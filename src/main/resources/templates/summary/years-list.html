@@ -14,16 +14,16 @@
 <div class="container">
     <h1 style="font-size: 64px">Rok</h1>
     <hr>
+    <form th:action="@{/logout}" method="post">
     <div>
         <a th:href="@{/}"
            class="btn btn-secondary btn-lg mb-3 col-2">
             Wróć
         </a>
-        <a style="float:right" th:href="@{/}"
-           class="btn btn-info btn-lg mb-3 col-2">
-            Wyloguj
-        </a>
+        <input type="submit" value="Wyloguj"
+               class="btn btn-info btn-lg mb-3 col-2" style="float:right"/>
     </div>
+    </form>
     <table class="table table-bordered table-striped">
         <thead class="thead-dark">
         <tr>

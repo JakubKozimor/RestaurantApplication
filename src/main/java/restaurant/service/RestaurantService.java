@@ -1,6 +1,6 @@
 package restaurant.service;
 
-import restaurant.Entity.Dish;
+import restaurant.entity.Dish;
 
 import java.math.BigDecimal;
 import java.util.List;

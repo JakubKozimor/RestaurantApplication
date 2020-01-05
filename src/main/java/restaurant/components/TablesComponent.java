@@ -1,7 +1,7 @@
 package restaurant.components;
 
 import org.springframework.stereotype.Component;
-import restaurant.Entity.Dish;
+import restaurant.entity.Dish;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -22,20 +22,21 @@
 <div class="container">
     <h1>Edutuj menu</h1>
     <hr>
+    <form th:action="@{/logout}" method="post">
     <div>
         <a th:href="@{/dish/showFormForAddDish}"
            class="btn btn-success btn-lg mb-3 col-2">
             Dodaj danie
         </a>
-        <a style="float:right;margin-left: 5px" th:href="@{/}"
-           class="btn btn-info btn-lg mb-3 col-2">
-            Wyloguj
-        </a>
+        <input type="submit" value="Wyloguj"
+               class="btn btn-info btn-lg mb-3 col-2" style="float:right;margin-left: 5px"/>
+
         <a style="float:right" th:href="@{/dish/dishList}"
            class="btn btn-secondary btn-lg mb-3 col-2">
             Wróć
         </a>
     </div>
+    </form>
     <div class="container">
         <div class="col">
             <div class="row">

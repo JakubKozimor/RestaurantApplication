@@ -2,7 +2,7 @@ package restaurant.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import restaurant.Entity.Dish;
+import restaurant.entity.Dish;
 import restaurant.components.TablesComponent;
 import restaurant.dao.DishRepository;
 

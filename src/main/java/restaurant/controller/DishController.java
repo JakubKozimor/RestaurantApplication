@@ -5,7 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import restaurant.Entity.Dish;
+import restaurant.entity.Dish;
 import restaurant.service.DishService;
 
 import javax.validation.Valid;
