@@ -45,9 +45,9 @@ public class UsersController {
 
     @PostMapping("/saveUser")
     public String addUser(@Valid @ModelAttribute("user") Users user,
-                          @RequestParam(value = "role",required = false) String role, BindingResult bindingResult) {
+                          @RequestParam(value = "role", required = false) String role, BindingResult bindingResult) {
         if (!usersService.saveUser(user, role)) {
-            bindingResult.addError(new FieldError("username","username","Użytkownik już istnieje"));
+            bindingResult.addError(new FieldError("username", "username", "Użytkownik już istnieje"));
             return "/users/add-user-form";
         } else {
             return "redirect:/users/allUsers";
@@ -59,5 +59,11 @@ public class UsersController {
         Optional<Users> userToUpdate = usersService.getUserByLogin(username);
         userToUpdate.ifPresent(user -> model.addAttribute("user", userToUpdate));
         return "/users/add-user-form";
+    }
+
+    @GetMapping("/delete")
+    public String delete(@RequestParam("username") String username) {
+        usersService.deleteUser(username);
+        return "redirect:/users/allUsers";
     }
 }

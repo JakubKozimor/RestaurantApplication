@@ -8,4 +8,6 @@ public interface UsersService {
     boolean saveUser(Users user, String role);
 
     Optional<Users> getUserByLogin(String username);
+
+    void deleteUser(String username);
 }

@@ -8,6 +8,7 @@ import restaurant.dao.UsersRepository;
 import restaurant.entity.Authorities;
 import restaurant.entity.Users;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -60,5 +61,20 @@ public class UsersServiceImpl implements UsersService {
     @Override
     public Optional<Users> getUserByLogin(String username) {
         return usersRepository.findById(username);
+    }
+
+    @Override
+    public void deleteUser(String username) {
+        Optional<Users> tempUser = usersRepository.findById(username);
+        tempUser.ifPresent(user -> {
+            Optional<Authorities> tempAuthorities = authoritiesRepository.findByUsername(user);
+            tempAuthorities.ifPresent(authorities -> {
+                List<Authorities> listOfAuthority = authoritiesRepository.getListOfAuthority(authorities.getAuthority());
+                if (listOfAuthority.size() > 1) {
+                    authoritiesRepository.delete(authorities);
+                    usersRepository.delete(user);
+                }
+            });
+        });
     }
 }
