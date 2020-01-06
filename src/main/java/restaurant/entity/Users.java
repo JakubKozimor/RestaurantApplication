@@ -13,7 +13,7 @@ public class Users {
     private String username;
 
     @NotNull
-    @Column(name = "password", columnDefinition = "varchar(50)")
+    @Column(name = "password", columnDefinition = "char (68)")
     private String password;
 
     @NotNull
