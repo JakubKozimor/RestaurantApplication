@@ -14,30 +14,26 @@
     <hr>
     <form th:action="@{/logout}" method="post">
         <div>
-            <a th:href="@{/}"
-               class="btn btn-success btn-lg mb-3">
+            <a th:href="@{/users/showFormForAddUser}"
+               class="btn btn-success btn-lg mb-3 col-2">
                 Dodaj
             </a>
             <input type="submit" value="Wyloguj"
                    class="btn btn-info btn-lg mb-3 col-2" style="float:right;margin-left: 5px"/>
-            <a style="float:right" th:href="@{/}"
-               class="btn btn-secondary btn-lg mb-3 col-2">
-                Wróć
-            </a>
         </div>
     </form>
     <table class="table table-bordered table-striped">
         <thead class="thead-dark">
         <tr>
-            <th>Login</th>
-            <th>Rola</th>
+            <th style="font-size: 32px;" width="50%">Login</th>
+            <th style="font-size: 32px;" width="50%">Rola</th>
 
         </tr>
         </thead>
         <tbody>
         <tr th:each="tempUser : ${listOfUsers}">
-            <td th:text="${tempUser.getUsername().getUsername()}"/>
-            <td th:text="${tempUser.getAuthority()}"/>
+            <td style="font-size: 32px" th:text="${tempUser.getUsername().getUsername()}"/>
+            <td style="font-size: 25px" th:text="${tempUser.getAuthority()}"/>
         </tr>
         </tbody>
     </table>
