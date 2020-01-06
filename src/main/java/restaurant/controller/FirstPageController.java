@@ -27,7 +27,7 @@ public class FirstPageController {
             response.sendRedirect("/restaurant/restaurantRoom");
         } else {
             if (role.contains("MANAGER")) {
-                response.sendRedirect("/dish/dishList");
+                response.sendRedirect("/manager/managerFirstPage");
             } else {
                 if (role.contains("ADMIN")) {
                     response.sendRedirect("/users/allUsers");

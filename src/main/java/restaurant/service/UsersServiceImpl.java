@@ -25,14 +25,10 @@ public class UsersServiceImpl implements UsersService {
         StringBuilder password = new StringBuilder("{bcrypt}").append(passwordEncoder.encode(user.getPassword()));
         Optional<Users> isNew = usersRepository.findById(user.getUsername());
         Optional<Authorities> isToUpdate = authoritiesRepository.findByUsername(user);
-        if (!isNew.isPresent()) {
-            return saveNewUser(user, role, password);
-        } else {
-            if (role == null) {
-                return updateUser(isToUpdate, user, password);
-            } else {
-                return false;
-            }
+        if (!isNew.isPresent()) return saveNewUser(user, role, password);
+        else {
+            if (role == null) return updateUser(isToUpdate, user, password);
+            else return false;
         }
     }
 
