@@ -3,5 +3,5 @@ package restaurant.service;
 import restaurant.entity.Users;
 
 public interface UsersService {
-    void saveUser(Users user, String role);
+    boolean saveUser(Users user, String role);
 }
