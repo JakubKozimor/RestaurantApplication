@@ -23,17 +23,42 @@ public class UsersServiceImpl implements UsersService {
     public boolean saveUser(Users user, String role) {
         StringBuilder password = new StringBuilder("{bcrypt}").append(passwordEncoder.encode(user.getPassword()));
         Optional<Users> isNew = usersRepository.findById(user.getUsername());
+        Optional<Authorities> isToUpdate = authoritiesRepository.findByUsername(user);
         if (!isNew.isPresent()) {
-            user.setPassword(password.toString());
+            return saveNewUser(user, role, password);
+        } else {
+            if (role == null) {
+                return updateUser(isToUpdate, user, password);
+            } else {
+                return false;
+            }
+        }
+    }
+
+    public boolean saveNewUser(Users user, String role, StringBuilder password) {
+        user.setPassword(password.toString());
+        user.setEnabled(1);
+        Authorities authorities = new Authorities();
+        authorities.setUsername(user);
+        authorities.setAuthority(role);
+        usersRepository.save(user);
+        authoritiesRepository.save(authorities);
+        return true;
+    }
+
+    public boolean updateUser(Optional<Authorities> isToUpdate, Users user, StringBuilder password) {
+        isToUpdate.ifPresent(authorities -> {
             user.setEnabled(1);
-            Authorities authorities = new Authorities();
+            user.setPassword(password.toString());
             authorities.setUsername(user);
-            authorities.setAuthority(role);
             usersRepository.save(user);
             authoritiesRepository.save(authorities);
-            return true;
-        }else {
-            return false;
-        }
+        });
+        return true;
+    }
+
+    @Override
+    public Optional<Users> getUserByLogin(String username) {
+        return usersRepository.findById(username);
     }
 }

@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
-<body>
+<body onload="myFunction()">
 <div class="container">
     <h1>Dodaj użytkownika</h1>
     <hr>
@@ -20,15 +20,16 @@
     <form th:action="@{/users/saveUser}"
           th:object="${user}" method="post">
         <div th:if="${#fields.hasErrors('username')}" class="alert alert-danger col-4">
-            <p class="h3" style="text-align: center;margin-top: 0" th:errors="*{username}"/>
+            <p class="h3" style="text-align: center;margin-top: 0;" th:errors="*{username}"/>
         </div>
-        <input style="height:50px" type="text" th:field="*{username}"
+        <input id="hiddenField" type="hidden" th:field="*{username}">
+        <input id="login" style="height:50px;" type="text" th:field="*{username}"
                class="form-control mb-4 col-4 " placeholder="Login" required/>
         <input style="height:50px" type="password" th:field="*{password}" id="password"
                class="form-control mb-4 col-4 " placeholder="Hasło" required/>
         <input style="height:50px" type="password" id="confirm_password"
                class="form-control mb-4 col-4 " placeholder="Potwierdź hasło" required/>
-        <select class="form-control mb-4 col-4" style="height:50px" th:name="role">
+        <select id="role" class="form-control mb-4 col-4" style="height:50px" th:name="role">
             <option th:text="ROLE_WAITER" th:value="ROLE_WAITER"/>
             <option th:text="ROLE_MANAGER" th:value="ROLE_MANAGER"/>
             <option th:text="ROLE_ADMIN" th:value="ROLE_ADMIN"/>
@@ -66,6 +67,20 @@
 
     password.onchange = validatePassword;
     confirm_password.onkeyup = validatePassword;
+
+</script>
+<script>
+    function myFunction() {
+        var x =document.getElementById("login").value.length;
+        if (x > 0) {
+            document.getElementById("login").disabled = true;
+            document.getElementById("role").style.display = "none";
+            document.getElementById("role").disabled = true;
+            document.getElementById("hiddenField").disabled = false;
+        }else {
+            document.getElementById("hiddenField").disabled = true;
+        }
+    }
 </script>
 </body>
 </html>

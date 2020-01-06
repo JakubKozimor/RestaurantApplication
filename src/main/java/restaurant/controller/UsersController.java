@@ -1,5 +1,6 @@
 package restaurant.controller;
 
+import org.bouncycastle.math.raw.Mod;
 import org.eclipse.jdt.internal.compiler.apt.model.ErrorTypeElement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +16,7 @@ import restaurant.service.UsersService;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/users")
@@ -43,13 +45,19 @@ public class UsersController {
 
     @PostMapping("/saveUser")
     public String addUser(@Valid @ModelAttribute("user") Users user,
-                          @RequestParam("role") String role, BindingResult bindingResult) {
+                          @RequestParam(value = "role",required = false) String role, BindingResult bindingResult) {
         if (!usersService.saveUser(user, role)) {
             bindingResult.addError(new FieldError("username","username","Użytkownik już istnieje"));
-            return "users/add-user-form";
+            return "/users/add-user-form";
         } else {
             return "redirect:/users/allUsers";
         }
+    }
 
+    @GetMapping("/showFormForUpdateUser")
+    public String showFormForUpdateUser(@RequestParam("username") String username, Model model) {
+        Optional<Users> userToUpdate = usersService.getUserByLogin(username);
+        userToUpdate.ifPresent(user -> model.addAttribute("user", userToUpdate));
+        return "/users/add-user-form";
     }
 }

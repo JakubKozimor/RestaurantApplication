@@ -25,8 +25,9 @@
     <table class="table table-bordered table-striped">
         <thead class="thead-dark">
         <tr>
-            <th style="font-size: 32px;" width="50%">Login</th>
-            <th style="font-size: 32px;" width="50%">Rola</th>
+            <th style="font-size: 32px;" width="33%">Login</th>
+            <th style="font-size: 32px;" width="33%">Rola</th>
+            <th style="font-size: 32px;" width="34%">Edytuj</th>
 
         </tr>
         </thead>
@@ -34,6 +35,15 @@
         <tr th:each="tempUser : ${listOfUsers}">
             <td style="font-size: 32px" th:text="${tempUser.getUsername().getUsername()}"/>
             <td style="font-size: 25px" th:text="${tempUser.getAuthority()}"/>
+            <td>
+                <a th:href="@{/users/showFormForUpdateUser(username=${tempUser.username.username})}"
+                   class="btn btn-info col-5">
+                    Zmień hasło
+                </a>
+                <a th:href="@{/users/delete(username=${tempUser.username.username})}"
+                   class="btn btn-danger col-5"
+                   onclick="if (!(confirm('Na pewno chcesz usunąć użytkownika?'))) return false">Usuń</a>
+            </td>
         </tr>
         </tbody>
     </table>
