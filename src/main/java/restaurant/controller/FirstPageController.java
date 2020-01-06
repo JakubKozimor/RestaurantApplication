@@ -30,7 +30,7 @@ public class FirstPageController {
                 response.sendRedirect("/dish/dishList");
             } else {
                 if (role.contains("ADMIN")) {
-                    response.sendRedirect("/");
+                    response.sendRedirect("/users/allUsers");
                 } else {
                     response.sendRedirect("/firstPage/login");
                 }
