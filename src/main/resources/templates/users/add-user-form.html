@@ -24,11 +24,11 @@
         </div>
         <input id="hiddenField" type="hidden" th:field="*{username}">
         <input id="login" style="height:50px;" type="text" th:field="*{username}"
-               class="form-control mb-4 col-4 " placeholder="Login" required/>
+               class="form-control mb-4 col-4 " placeholder="Login" required  pattern="^\S+"/>
         <input style="height:50px" type="password" th:field="*{password}" id="password"
-               class="form-control mb-4 col-4 " placeholder="Hasło" required/>
+               class="form-control mb-4 col-4 " placeholder="Hasło" required pattern="^\S+"/>
         <input style="height:50px" type="password" id="confirm_password"
-               class="form-control mb-4 col-4 " placeholder="Potwierdź hasło" required/>
+               class="form-control mb-4 col-4 " placeholder="Potwierdź hasło" required pattern="^\S+"/>
         <select id="role" class="form-control mb-4 col-4" style="height:50px" th:name="role">
             <option th:text="ROLE_WAITER" th:value="ROLE_WAITER"/>
             <option th:text="ROLE_MANAGER" th:value="ROLE_MANAGER"/>

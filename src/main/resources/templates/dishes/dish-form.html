@@ -26,23 +26,26 @@
 
         <input style="height:50px" type="text" th:field="*{name}"
                class="form-control mb-4 col-4 " placeholder="Nazwa" required/>
-        <p style="color: red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"/>
-
+        <div th:if="${#fields.hasErrors('name')}" class="alert alert-danger col-4">
+            <p class="h3" style="text-align: center;margin-top: 0;" th:errors="*{name}"/>
+        </div>
         <input style="height:50px" type="text" th:field="*{price_buy_or_preparation}"
                class="form-control mb-4 col-4 " placeholder="Kwota potrzebna do przygotowania"
                pattern="[0-9]+\.[0-9]+" required/>
-        <p style="color: red" th:if="${#fields.hasErrors('price_buy_or_preparation')}"
-           th:errors="*{price_buy_or_preparation}"/>
-
+        <div th:if="${#fields.hasErrors('price_buy_or_preparation')}" class="alert alert-danger col-4">
+            <p class="h3" style="text-align: center;margin-top: 0;" th:errors="*{price_buy_or_preparation}"/>
+        </div>
         <input style="height:50px" type="text" th:field="*{priceSell}"
                class="form-control mb-4 col-4" placeholder="Cena" required pattern="[0-9]+\.[0-9]+"
                title="Wartość musi być cyfrą (oddnieloną .)"/>
-        <p style="color: red" th:if="${#fields.hasErrors('priceSell')}" th:errors="*{priceSell}"/>
-
+        <div th:if="${#fields.hasErrors('priceSell')}" class="alert alert-danger col-4">
+            <p class="h3" style="text-align: center;margin-top: 0;" th:errors="*{priceSell}"/>
+        </div>
         <input style="height:50px" type="text" th:field="*{description}"
                class="form-control mb-4 col-4" placeholder="Opis (składniki)"/>
-        <p style="color: red" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"/>
-
+        <div th:if="${#fields.hasErrors('description')}" class="alert alert-danger col-4">
+            <p class="h3" style="text-align: center;margin-top: 0;" th:errors="*{description}"/>
+        </div>
         <select class="form-control mb-4 col-4" style="height:50px" th:field="*{category}">
             <option th:text="pizza" th:value="pizza"/>
             <option th:text="kebab" th:value="kebab"/>

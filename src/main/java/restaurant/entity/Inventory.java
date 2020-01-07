@@ -13,9 +13,8 @@ public class Inventory {
     @Column(name = "product_id")
     private int productId;
 
-    @NotNull(message = "Nazwa nie może byś pusta")
+    @NotNull
     @NotBlank(message = "Nazwa nie może byś pusta")
-    @Pattern(regexp = "[a-zA-Z]+", message = "Nazwa nie może zawierać znaków specjalnych")
     @Column(name = "product_name", columnDefinition = "varchar(255)")
     private String name;
 
@@ -25,7 +24,7 @@ public class Inventory {
     private int quantity;
 
     @NotNull(message = "Pole nie może być puste")
-    @Digits(integer = 10, fraction = 2, message = "Wartość przed kropką nie może mieć więcej niż 10 znaków i więcej niż 2 po kropce")
+    @Digits(integer = 10, fraction = 2, message = "Podaj wartość we właściwym formacie")
     @Column(name = "product_price", columnDefinition = "decimal(10,2)")
     private BigDecimal price;
 

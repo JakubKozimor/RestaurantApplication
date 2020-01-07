@@ -24,13 +24,19 @@
         <input type="hidden" th:field="*{productId}">
         <input style="height:50px" type="text" th:field="*{name}"
                class="form-control mb-4 col-4 " placeholder="Nazwa" required>
-        <p style="color: red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"/>
+        <div th:if="${#fields.hasErrors('name')}" class="alert alert-danger col-4">
+            <p class="h3" style="text-align: center;margin-top: 0;" th:errors="*{name}"/>
+        </div>
         <input style="height:50px"  type="text" th:field="*{price}"
-               class="form-control mb-4 col-4 " placeholder="Cena" required pattern="[0-9]+\.[0-9]+" title="Wartość musi być cyfrą (oddnieloną .)" />
-        <p style="color: red" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"/>
+               class="form-control mb-4 col-4 " placeholder="Cena" required pattern="[0-9]+\.[0-9]+"/>
+        <div th:if="${#fields.hasErrors('price')}" class="alert alert-danger col-4">
+            <p class="h3" style="text-align: center;margin-top: 0;" th:errors="*{price}"/>
+        </div>
         <input style="height:50px" type="text" th:field="*{quantity}"
-               class="form-control mb-4 col-4" placeholder="Ilość">
-        <p style="color: red" th:if="${#fields.hasErrors('quantity')}" th:errors="*{quantity}"/>
+               class="form-control mb-4 col-4" placeholder="Ilość" required pattern="[0-9]+">
+        <div th:if="${#fields.hasErrors('quantity')}" class="alert alert-danger col-4">
+            <p class="h3" style="text-align: center;margin-top: 0;" th:errors="*{quantity}"/>
+        </div>
         <button type="submit" class="btn btn-info btn-lg col-4">Zapisz</button>
     </form>
     <br>

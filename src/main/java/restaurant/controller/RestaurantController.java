@@ -72,7 +72,7 @@ public class RestaurantController {
 
     @GetMapping("/acceptPayment")
     public String acceptPayment(@RequestParam(value = "tableId") int tableId, RedirectAttributes redirectAttributes) {
-        if (tablesComponent.getMyRestaurant(tableId) != null) {
+        if (tablesComponent.getMyRestaurant(tableId).size() > 0) {
             restaurantService.acceptPaymentAndCleanOrder(tableId);
         }
         redirectAttributes.addAttribute("tableId", tableId);

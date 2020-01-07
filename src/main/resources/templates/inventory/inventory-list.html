@@ -54,10 +54,10 @@
             <td th:text="${tempProduct.getPrice()}+ zł"/>
             <td>
                 <form th:action="@{/inventory/updateQuantity(productId=${tempProduct.getProductId()})}"
-                      onsubmit="return myFunctionForUpdate()" th:object="${quantity}" method="post">
+                      th:object="${quantity}" method="post">
                     <div class="input-group">
-                        <input th:type="text" id="quantityUpdate" th:name="quantityUpdate" class="form-control col-4 "
-                               required pattern="\S+"/>
+                        <input th:type="text" th:name="quantityUpdate" class="form-control col-4 "
+                               required pattern="[0-9]+"/>
                         <div class="input-group-prepend">
                             <input type="submit" value="Aktualizuj" class="btn btn-primary btn-sm"/>
                         </div>
@@ -67,10 +67,10 @@
             </td>
             <td>
                 <form th:action="@{/inventory/addQuantity(productId=${tempProduct.getProductId()})}"
-                      onsubmit="return myFunctionForAdd()" th:object="${quantity}" method="post">
+                      th:object="${quantity}" method="post">
                     <div  class="input-group">
-                        <input th:type="text" id="quantityAdd" th:name="quantityAdd" class="form-control col-4 "
-                               required pattern="\S+"/>
+                        <input th:type="text"  th:name="quantityAdd" class="form-control col-4 "
+                               required pattern="[0-9]+"/>
                         <div class="input-group-prepend">
                             <input type="submit" value="+" class="btn btn-success"/>
                         </div>
@@ -80,10 +80,10 @@
             </td>
             <td>
                 <form th:action="@{/inventory/removeQuantity(productId=${tempProduct.getProductId()})}"
-                      onsubmit="return myFunctionForRemove()" th:object="${quantity}" method="post">
+                      th:object="${quantity}" method="post">
                     <div class="input-group">
-                        <input th:type="text" id="quantityRemove" th:name="quantityRemove" class="form-control col-4 "
-                               required pattern="\S+"/>
+                        <input th:type="text" th:name="quantityRemove" class="form-control col-4 "
+                               required pattern="[0-9]+"/>
                         <div class="input-group-prepend">
                             <input type="submit" value="-" class="btn btn-danger"/>
                         </div>
@@ -106,7 +106,6 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
-<script type="text/javascript" th:src="@{/js/inventory/inventory-list.js}" rel="stylesheet"></script>
 </body>
 
 </html>

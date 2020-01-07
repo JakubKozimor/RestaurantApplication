@@ -17,18 +17,18 @@ public class Dish {
     @Column(name = "dish_id")
     private int dishId;
 
-    @NotNull(message = "Nazwa nie może byś pusta")
+    @NotNull
     @NotBlank(message = "Nazwa nie może byś pusta")
     @Column(name = "dish_name", columnDefinition = "varchar(255)")
     private String name;
 
     @NotNull(message = "Pole nie może być puste")
-    @Digits(integer = 10, fraction = 2, message = "Wartość przed kropką nie może mieć więcej niż 10 znaków i więcej niż 2 po kropce")
+    @Digits(integer = 10, fraction = 2, message = "Podaj wartość we właściwym formacie")
     @Column(name = "dish_price_buy_or_preparation",columnDefinition = "decimal(10,2)")
     private BigDecimal price_buy_or_preparation;
 
     @NotNull(message = "Pole nie może być puste")
-    @Digits(integer = 10, fraction = 2, message = "Wartość przed kropką nie może mieć więcej niż 10 znaków i więcej niż 2 po kropce")
+    @Digits(integer = 10, fraction = 2, message = "Podaj wartość we właściwym formacie")
     @Column(name = "dish_price_sell", columnDefinition = "decimal(10,2)")
     private BigDecimal priceSell;
 

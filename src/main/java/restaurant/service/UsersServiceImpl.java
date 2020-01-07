@@ -22,6 +22,8 @@ public class UsersServiceImpl implements UsersService {
 
     @Override
     public boolean saveUser(Users user, String role) {
+        user.setUsername(user.getUsername().trim());
+        user.setPassword(user.getPassword().trim());
         StringBuilder password = new StringBuilder("{bcrypt}").append(passwordEncoder.encode(user.getPassword()));
         Optional<Users> isNew = usersRepository.findById(user.getUsername());
         Optional<Authorities> isToUpdate = authoritiesRepository.findByUsername(user);

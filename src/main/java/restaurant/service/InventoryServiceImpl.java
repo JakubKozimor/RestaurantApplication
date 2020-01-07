@@ -21,7 +21,7 @@ public class InventoryServiceImpl implements InventoryService {
 
     @Override
     public void saveProduct(Inventory product) {
-        product.setName(product.getName().toLowerCase());
+        product.setName(product.getName().toLowerCase().trim());
         inventoryRepository.save(product);
     }
 
