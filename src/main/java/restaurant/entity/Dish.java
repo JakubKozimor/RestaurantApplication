@@ -24,7 +24,7 @@ public class Dish {
 
     @NotNull(message = "Pole nie może być puste")
     @Digits(integer = 10, fraction = 2, message = "Podaj wartość we właściwym formacie")
-    @Column(name = "dish_price_buy_or_preparation",columnDefinition = "decimal(10,2)")
+    @Column(name = "dish_price_buy_or_preparation", columnDefinition = "decimal(10,2)")
     private BigDecimal price_buy_or_preparation;
 
     @NotNull(message = "Pole nie może być puste")
@@ -107,18 +107,5 @@ public class Dish {
 
     public void setOldDish(Integer oldDish) {
         this.oldDish = oldDish;
-    }
-
-    @Override
-    public String toString() {
-        return "Dish{" +
-                "dishId=" + dishId +
-                ", name='" + name + '\'' +
-                ", price_buy_or_preparation=" + price_buy_or_preparation +
-                ", priceSell=" + priceSell +
-                ", description='" + description + '\'' +
-                ", category='" + category + '\'' +
-                ", oldDish=" + oldDish +
-                '}';
     }
 }

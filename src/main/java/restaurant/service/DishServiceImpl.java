@@ -20,11 +20,6 @@ public class DishServiceImpl implements DishService {
     }
 
     @Override
-    public List<Dish> matchDishesById(List<Integer> listOfOrder) {
-        return dishRepository.findAllById(listOfOrder);
-    }
-
-    @Override
     public void saveDish(Dish dish) {
         dish.setOldDish(0);
         dish.setName(dish.getName().trim());

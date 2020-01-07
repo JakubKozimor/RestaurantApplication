@@ -71,14 +71,4 @@ public class Summary {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
-
-    @Override
-    public String toString() {
-        return "Summary{" +
-                "summary_id=" + summaryId +
-                ", date=" + date +
-                ", dish=" + dish +
-                ", quantity=" + quantity +
-                '}';
-    }
 }

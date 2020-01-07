@@ -14,13 +14,12 @@ public interface SummaryRepository extends JpaRepository<Summary, Integer> {
             nativeQuery = true
     )
     List<Summary> findAllByDate(@Param("dayParam") int dayParam,
-                                @Param("monthParam") int monthParam,@Param("yearParam") int yearParam);
+                                @Param("monthParam") int monthParam, @Param("yearParam") int yearParam);
 
     @Query(
             value = "SELECT DISTINCT extract(year from date) " +
                     "FROM summary ORDER BY extract(year from date) DESC ",
             nativeQuery = true
-
     )
     List<Integer> findDistinctYears();
 
@@ -28,7 +27,6 @@ public interface SummaryRepository extends JpaRepository<Summary, Integer> {
             value = "SELECT DISTINCT extract(month from date) FROM summary " +
                     "WHERE extract(year from date) = :yearParam ORDER BY extract(month from date)",
             nativeQuery = true
-
     )
     List<Integer> findDistinctMonths(@Param("yearParam") Integer year);
 
@@ -38,10 +36,8 @@ public interface SummaryRepository extends JpaRepository<Summary, Integer> {
                     "AND extract(month from date) = :monthParam " +
                     "ORDER BY extract(day from date)",
             nativeQuery = true
-
     )
     List<Integer> findDistinctDays(@Param("yearParam") Integer year, @Param("monthParam") Integer month);
-
 
 
     @Query(
@@ -51,5 +47,5 @@ public interface SummaryRepository extends JpaRepository<Summary, Integer> {
                     "AND extract(day from date) = :dayParam",
             nativeQuery = true
     )
-    List<Summary> getSummaryOfDay(@Param("yearParam") Integer year, @Param("monthParam") Integer month,@Param("dayParam") Integer day);
+    List<Summary> getSummaryOfDay(@Param("yearParam") Integer year, @Param("monthParam") Integer month, @Param("dayParam") Integer day);
 }

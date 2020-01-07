@@ -28,8 +28,8 @@ public class RestaurantServiceTest {
 
     private List<Dish> before = new ArrayList<>();
     private List<Dish> after = new ArrayList<>();
-    private Dish dish1 = new Dish(1,"coffee", BigDecimal.valueOf(2),BigDecimal.valueOf(5));
-    private Dish dish2 = new Dish(2,"tea",BigDecimal.valueOf(1),BigDecimal.valueOf(3));
+    private Dish dish1 = new Dish(1, "coffee", BigDecimal.valueOf(2), BigDecimal.valueOf(5));
+    private Dish dish2 = new Dish(2, "tea", BigDecimal.valueOf(1), BigDecimal.valueOf(3));
     private BigDecimal toPay = BigDecimal.valueOf(0);
 
     @Test
@@ -64,13 +64,13 @@ public class RestaurantServiceTest {
         listToRemove.add(dish1);
         listToRemove.add(dish2);
         after.add(dish1);
-        tablesComponent.setMyRestaurant(1,before);
+        tablesComponent.setMyRestaurant(1, before);
 
         // when
-        restaurantService.removeElementFromOrder(1,listToRemove);
+        restaurantService.removeElementFromOrder(1, listToRemove);
 
         // then
-        assertThat(after,is(equalTo(tablesComponent.getMyRestaurant(1))));
+        assertThat(after, is(equalTo(tablesComponent.getMyRestaurant(1))));
     }
 
     @Test
@@ -87,8 +87,8 @@ public class RestaurantServiceTest {
         restaurantService.removeOrderWithoutAcceptPayment(1);
 
         // then
-        assertThat(tablesComponent.getMyRestaurant(1),is(equalTo(after)));
-        assertThat(tablesComponent.getMyRestaurant(1).size(),is(equalTo(0)));
+        assertThat(tablesComponent.getMyRestaurant(1), is(equalTo(after)));
+        assertThat(tablesComponent.getMyRestaurant(1).size(), is(equalTo(0)));
     }
 
     @Test
@@ -109,6 +109,6 @@ public class RestaurantServiceTest {
 
         //then
         assertThat(toPay, is(equalTo(toPayFromService)));
-        assertThat(tablesComponent.getMyRestaurant(1).size(),is(equalTo(0)));
+        assertThat(tablesComponent.getMyRestaurant(1).size(), is(equalTo(0)));
     }
 }

@@ -1,7 +1,5 @@
 package restaurant.entity;
 
-import org.hibernate.validator.constraints.UniqueElements;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
@@ -21,7 +19,6 @@ public class Users {
     @NotNull
     @Column(name = "enabled", columnDefinition = "int(1)")
     private int enabled;
-
 
     public Users() {
     }
@@ -48,14 +45,5 @@ public class Users {
 
     public void setEnabled(int enabled) {
         this.enabled = enabled;
-    }
-
-    @Override
-    public String toString() {
-        return "Users{" +
-                "username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", enabled=" + enabled +
-                '}';
     }
 }

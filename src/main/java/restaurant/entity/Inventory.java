@@ -19,7 +19,7 @@ public class Inventory {
     private String name;
 
     @NotNull
-    @Min(value = 0,message = "Wartość musi być większa od 0")
+    @Min(value = 0, message = "Wartość musi być większa od 0")
     @Column(name = "product_quantity", columnDefinition = "int default '0'")
     private int quantity;
 
@@ -76,15 +76,5 @@ public class Inventory {
 
     public void removeQuantity(int quantity) {
         this.quantity -= quantity;
-    }
-
-    @Override
-    public String toString() {
-        return "Inventory{" +
-                "productId=" + productId +
-                ", name='" + name + '\'' +
-                ", quantity=" + quantity +
-                ", price=" + price +
-                '}';
     }
 }

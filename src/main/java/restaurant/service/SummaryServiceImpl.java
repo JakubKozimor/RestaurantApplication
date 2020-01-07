@@ -19,11 +19,6 @@ public class SummaryServiceImpl implements SummaryService {
     SummaryRepository summaryRepository;
 
     @Override
-    public List<Summary> getListOfSummary() {
-        return summaryRepository.findAll();
-    }
-
-    @Override
     public void updateSummary(int theNumberOfTable) {
         updateMissingDishesInSummary(theNumberOfTable);
         List<Dish> theTable = theTablesComponent.getMyRestaurant().get(theNumberOfTable);
@@ -34,7 +29,6 @@ public class SummaryServiceImpl implements SummaryService {
                 if (tempDish.getDishId() == tempSummary.getdish().getDishId()) {
                     int newQuantity = tempSummary.getQuantity() + 1;
                     tempSummary.setQuantity(newQuantity);
-//                    tempSummary.setDate(tempSummary.getdate());
                     summaryRepository.save(tempSummary);
                 }
             }

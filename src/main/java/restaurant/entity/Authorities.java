@@ -24,6 +24,7 @@ public class Authorities {
 
     public Authorities() {
     }
+
     public Authorities(Users username, String authority) {
     }
 
@@ -49,13 +50,5 @@ public class Authorities {
 
     public void setAuthority(String authority) {
         this.authority = authority;
-    }
-
-    @Override
-    public String toString() {
-        return "Authorities{" +
-                "username='" + username + '\'' +
-                ", authority='" + authority + '\'' +
-                '}';
     }
 }

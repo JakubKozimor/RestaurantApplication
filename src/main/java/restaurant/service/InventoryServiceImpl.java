@@ -52,7 +52,7 @@ public class InventoryServiceImpl implements InventoryService {
     @Override
     public void removeQuantity(int productId, Integer quantity) {
         Optional<Inventory> tempProduct = getSingleProduct(productId);
-        tempProduct.ifPresent(product ->{
+        tempProduct.ifPresent(product -> {
             if (product.getQuantity() < quantity) {
                 product.setQuantity(0);
                 inventoryRepository.save(product);

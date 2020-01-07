@@ -53,7 +53,7 @@ public class DishController {
     @GetMapping("/showFormForUpdateDish")
     public String showFormForUpdateDish(@RequestParam("dishId") int dishId, Model model) {
         Optional<Dish> theDish = dishService.getSingleDish(dishId);
-        theDish.ifPresent(dish ->{
+        theDish.ifPresent(dish -> {
             model.addAttribute("dish", theDish);
         });
         return "/dishes/dish-form";

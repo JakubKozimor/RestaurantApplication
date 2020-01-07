@@ -36,7 +36,7 @@ public class ReportServiceImpl implements ReportService {
         parameters.put("dailyProfit", dailyProfit);
         JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
         JasperExportManager.exportReportToPdfFile(jasperPrint,
-                path + "\\summary-of-day-"+ year + "-" + month + "-" + day +".pdf");
+                path + "\\summary-of-day-" + year + "-" + month + "-" + day + ".pdf");
     }
 
     public BigDecimal getDailyProfit(int year, int month, int day) {

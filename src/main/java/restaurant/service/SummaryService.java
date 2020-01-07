@@ -6,8 +6,6 @@ import java.util.List;
 
 public interface SummaryService {
 
-    List<Summary> getListOfSummary();
-
     void updateSummary(int numberOfTable);
 
     List<Integer> getListOfYears();
@@ -15,7 +13,6 @@ public interface SummaryService {
     List<Integer> getListOfMonths(Integer year);
 
     List<Integer> getListOfDays(Integer year, Integer month);
-
 
     List<Summary> getSummaryOfDay(int year, int month, int day);
 }

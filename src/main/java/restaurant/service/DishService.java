@@ -6,9 +6,8 @@ import java.util.List;
 import java.util.Optional;
 
 public interface DishService {
-    List<Dish> getListOfDishes();
 
-    List<Dish> matchDishesById(List<Integer> listOfOrder);
+    List<Dish> getListOfDishes();
 
     void saveDish(Dish dish);
 

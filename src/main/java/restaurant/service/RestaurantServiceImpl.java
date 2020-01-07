@@ -55,7 +55,6 @@ public class RestaurantServiceImpl implements RestaurantService {
     @Override
     public void removeOrderWithoutAcceptPayment(int theNumberOfTable) {
         tablesComponent.removeTable(theNumberOfTable);
-
     }
 
     @Override

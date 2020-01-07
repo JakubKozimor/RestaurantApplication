@@ -49,5 +49,4 @@ public class SummaryController {
         model.addAttribute("summaryOfDay", summaryOfDay);
         return "/summary/summary-of-day";
     }
-
 }

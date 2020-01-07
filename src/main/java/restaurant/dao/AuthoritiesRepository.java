@@ -9,7 +9,8 @@ import restaurant.entity.Users;
 import java.util.List;
 import java.util.Optional;
 
-public interface AuthoritiesRepository extends JpaRepository<Authorities,Integer> {
+public interface AuthoritiesRepository extends JpaRepository<Authorities, Integer> {
+
     Optional<Authorities> findByUsername(Users user);
 
     @Query(

@@ -27,7 +27,7 @@ public class TablesComponent {
     public List<Dish> getMyRestaurant(int nrOfTable) {
         if (myRestaurant.get(nrOfTable) == null) {
             return new ArrayList<>();
-        }else {
+        } else {
             return myRestaurant.get(nrOfTable);
         }
     }
@@ -42,12 +42,5 @@ public class TablesComponent {
 
     public void removeTable(int numberOfTable) {
         this.myRestaurant.remove(numberOfTable);
-    }
-
-    @Override
-    public String toString() {
-        return "TablesComponent{" +
-                "myRestaurant=" + myRestaurant +
-                '}';
     }
 }
