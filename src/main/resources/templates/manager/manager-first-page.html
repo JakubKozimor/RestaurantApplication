@@ -7,15 +7,60 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        li{
+            margin-top: 5px;
+        }
+        ul{
+            margin-top: 30px;
+            margin-bottom: 40px;
+            margin-left: 20px;
+        }
+        h2{
+            margin-top: 20px
+        }
+    </style>
 </head>
 <body>
 <div class="container">
-    <h1>Manager</h1>
+    <h1>Panel menadżera</h1>
     <hr>
-    <h1>Wszystkie strony</h1>
-    <h2><a href="/dish/dishList">Menu</a></h2>
-    <h2><a href="/inventory/inventoryList">Inventory</a></h2>
-    <h2><a href="/summary/getAllYears">Summary by dates</a></h2>
+    <form th:action="@{/logout}" method="post">
+    <div>
+        <input type="submit" value="Wyloguj"
+               class="btn btn-info btn-lg mb-3 col-2" style="float:right;margin-left: 5px;border-radius:15px;"/>
+    </div>
+    </form>
+    <div class="row" style="margin-top: 100px">
+        <div class="border border-dark bg-light" style="width: 32%;transform: rotate(0); border-radius:75px;">
+            <h2 th:align="center"><a class="stretched-link" href="/dish/dishList">Menu</a></h2>
+            <ul>
+                <li>Aktualne menu</li>
+                <li>Doadaj nowe danie</li>
+                <li>Edytuj danie</li>
+                <li>Usuń danie</li>
+            </ul>
+        </div>
+        <div class="border border-dark bg-light" style="width: 32%; margin-right: 2%; margin-left: 2%;transform: rotate(0);border-radius:75px;">
+            <h2 th:align="center"><a class="stretched-link" href="/inventory/inventoryList">Magazyn</a></h2>
+            <ul>
+                <li>Aktualny stan magazynu</li>
+                <li>Ustaw nową ilość</li>
+                <li>Dodaj produkt</li>
+                <li>Edytuj produkt</li>
+                <li>Dodaj produkt</li>
+            </ul>
+        </div>
+            <div class="border border-dark bg-light" style="width: 32%;transform: rotate(0);border-radius:75px;">
+                <h2 th:align="center"><a class="stretched-link" href="/summary/getAllYears">Podsumowanie dnia</a></h2>
+                <ul>
+                    <li>Podgląd podsumowania dnia</li>
+                    <li>Generuj i pobierz raport</li>
+                </ul>
+            </div>
+
+    </div>
+
 </div>
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
